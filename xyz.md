@@ -24,7 +24,7 @@ This is a table of notations used within this document to denote various types o
 Types may be appended with `[n]`, where n is a positive integer, in order to denote a contiguous chunk of said type. For example, `U8[4]` represents four contiguous unsigned 8-bit integers.
 
 ## Memory Layout
-The following describes the overall structure of an XYZ file from top to bottom:
+The following describes the overall structure of an XYZ file. The contents are listed in the order they appear in the file.
 
 | Name | Type | Description |
 | --- | --- | --- |
