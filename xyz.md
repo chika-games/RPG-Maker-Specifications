@@ -31,7 +31,7 @@ The following describes the overall structure of an XYZ file. The contents are l
 | `Header` | U8[4] | The header is always `XYZ1` and should be used to determine if a file represents an XYZ image. |
 | `Width` | U16 | The width of the image in pixels. |
 | `Height` | U16 | The height of the image in pixels. |
-| `Palette`* | RGB[256] | The image's palette; this contains all of the colors that will be present in the image. |
-| `Pixel Data`* | U8[`Width` * `Height`] | Indexes into the image `Palette`. Each index represents a pixel within the image; one index for every pixel. |
+| `Palette`<sup>1</sup> | RGB[256] | The image's palette; this contains all of the colors that will be present in the image. |
+| `Pixel Data`<sup>1</sup> | U8[`Width` * `Height`] | Indexes into the image `Palette`. Each index represents a pixel within the image; one index for every pixel. |
 
-* All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be sure you uncompress the rest of the file! This can be achieved by using zlib or something similar.
+<sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be sure you uncompress the rest of the file! This can be achieved by using zlib or something similar.
