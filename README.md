@@ -1,6 +1,6 @@
 # RPGMaker 2000/2003 Specifications
 ## Introduction
-This repository contains various specifications and layouts of RPG Maker 2000/2003 assets, such as image and map files.
+This repository contains various specifications and file layouts of RPG Maker 2000/2003 assets, such as image and map files.
 
 ### Table of Contents
 * [Introduction](#introduction)
