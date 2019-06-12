@@ -58,3 +58,22 @@ int read_encoded_integer(reader):
 ### Map Information
 
 ### Map Start
+This contains information about a game's starting maps and positions. Note: not all of the following may be present in an LMT file.
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `Player Map` | EINT | The ID of the map to start the game in. This isn't the main menu. |
+| `Player X` | EINT | The x-position in the `Player Map` to start the player at. |
+| `Player Y` | EINT | The y-position in the `Player Map` to start the player at. |
+| `Boat Map` | EINT | The ID of the boat map. |
+| `Boat X` | EINT | The x-position in the `Boat Map` to start the player at. |
+| `Boat Y` | EINT | The y-position in the `Boat Map` to start the player at. |
+| `Ship Map` | EINT | The ID of the ship map. |
+| `Ship X` | EINT | The x-position in the `Ship Map` to start the player at. |
+| `Ship Y` | EINT | The y-position in the `Ship Map` to start the player at. |
+| `Airship Map` | EINT | The ID of the airship map. |
+| `Airship X` | EINT | The x-position in the `Airship Map` to start the player at. |
+| `Airship Y` | EINT | The y-position in the `Airship Map` to start the player at. |
+
+## Attribution
+In addition to personal research and digging, information within this document is also based on the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
