@@ -17,7 +17,8 @@ This is a table of notations used within this document to denote various types o
 | STRING | An `EINT` `length` value followed by a contiguous chunk of `length`-many unsigned 8-bit integers. (I.e. a length followed by characters.) |
 | CHUNK | Equivalent to `STRING`: an `EINT` length followed by unsigned 8-bit values. This represents an arbitrary piece of data unless otherwise noted. |
 | EINT | An encoded variable-length signed integer. See [Encoded Integers](#encoded-integers) for more information. |
-| BOOL | A boolean value. When represented using an integer, zero is _false_ and nonzero is _true_.
+| U32 | An unsigned 32-bit integer. |
+| BOOL | A boolean value. When represented using an integer, zero is _false_ and nonzero is _true_. |
 
 ## Memory Layout
 The following describes the overall structure of an LMT file from top to bottom:
@@ -64,21 +65,30 @@ There is no guarantee that the following chunks will be present as they are some
 
 | Name | Type | Description |
 | --- | --- | --- |
-| ID | EINT | The ID of one of the below items. |
-| length | EINT | The number of items in the data array that follows this field. Usually 1. |
+| ID | EINT | The ID of the item to be handled. See the table below. |
+| length | EINT | The length in bytes of the data that follows this field. Usually 1. |
 | data | CHUNK[`length`] or STRING[`length`] | See the table below in order to interpret this data. |
 
-| Name | ID (Hex) | Type and `length` | Default Value | Description |
+| Name | ID (Hex) | Type | Default Value | Description |
 | --- | --- | --- | --- | --- |
-| Game Name | 0 | STRING[1] | An empty string. | Traditionally used to give the game's name. This should be ignored, however, as game names are specified in an accompanying INI file (i.e. `RPG_RT.ini`). |
-| Map Name | 1 | STRING[1] | An empty string. | The name of the map being described. |
-| Parent ID | 2 | CHUNK[1] | 0 | Either the ID of a parent map or 0. This should be treated like an unsigned integer. |
-| Indentation | 3 | CHUNK[1] | 0 | This should be treated like an unsigned integer. |
-| Map Type | 4 | CHUNK[1] | 0 | The type of map being described. See [Map Types](#map-types) for a list of special values. This should be treated like an unsigned integer. |
-| Edit Position X | 5 | CHUNK[1] | 0 | For editor use. This should be treated like a signed integer. |
-| Edit Position Y | 6 | CHUNK[1] | 0 | For editor use. This should be treated like a signed integer. |
-| Edit Expanded | 7 | CHUNK[1] | false (0) | For editor use. This should be treated like a `BOOL`. |
-| Music Type | B | CHUNK[1] | 0 | How music should be played in the map. See [Music Types](#music-types) for a list of special values. This should be treated like an unsigned integer. |
+| Game Name | 0 | STRING | An empty string. | Traditionally used to give the game's name. This should be ignored, however, as game names are specified in an accompanying INI file (i.e. `RPG_RT.ini`). |
+| Map Name | 1 | STRING | An empty string. | The name of the map being described. |
+| Parent ID | 2 | CHUNK | 0 | Either the ID of a parent map or 0. This should be treated like an unsigned integer. |
+| Indentation | 3 | CHUNK | 0 | This should be treated like an unsigned integer. |
+| Map Type | 4 | CHUNK | 0 | The type of map being described. See [Map Types](#map-types) for a list of special values. This should be treated like an unsigned integer. |
+| Edit Position X | 5 | CHUNK | 0 | For editor use. This should be treated like a signed integer. |
+| Edit Position Y | 6 | CHUNK | 0 | For editor use. This should be treated like a signed integer. |
+| Edit Expanded | 7 | CHUNK | false (0) | For editor use. This should be treated like a `BOOL`. |
+| Music Type | B | CHUNK | 0 | How music should be played in the map. See [Music Types](#music-types) for a list of special values. This should be treated like an unsigned integer. |
+| Music | C | CHUNK | See defaults in [Music](#music) | A structure containing various music properties for the map. This should be trated like a [Music](#music) structure. |
+| Background Type | 15 | CHUNK | 0 | The type of background this map has. See [Background Types](#background-types) for a list of special values. This should be treated like an unsigned integer. |
+| Background Name | 16 | STRING | An empty string. | The filename of this map's background. (Backdrop folder.) |
+| Teleport Flag | 1F | CHUNK | 0 | This should be treated like a `BOOL`. |
+| Escape Flag | 20 | CHUNK | 0 | This should be treated like a `BOOL`. |
+| Save Flag | 21 | CHUNK | 0 | This should be treated like a `BOOL`. |
+| Encounters | 29 | CHUNK | An empty array. | An array of encounters. This should be treated like an [Encounter](#encounters) [`n`] where `n` is the number of encounters. See [Encounter](#encounter) for more information. |
+| Encounter Steps | 2C | CHUNK | 25 | The number of steps for encounters. 0 means encounters are disabled. This should be treated like an unsigned integer. |
+| Area Rectangle | 33 | CHUNK | 0 | The rectangle for the map's area. (0, 0, 0, 0) represents a regular map (non-area). This should be treated like a U32[4] for left, up, right, and down coordinates respectively. |
 
 #### Map Types
 | Name | Value |
@@ -93,6 +103,17 @@ There is no guarantee that the following chunks will be present as they are some
 | Inherit | 0 |
 | Event | 1 |
 | Specified | 2 |
+
+#### Background Types
+| Name | Value |
+| --- | --- |
+| Inherit | 0 |
+| Terrain LDB | 1 |
+| Specified | 2 |
+
+### Music
+
+### Encounter
 
 ### Map Start
 This contains information about a game's starting maps and positions. Note: not all of the following may be present in an LMT file. If any of the following are absent, then they should be assumed to have a value of `0`.
