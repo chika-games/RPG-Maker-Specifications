@@ -15,7 +15,7 @@ This is a table of notations used within this document to denote various types o
 | Notation | Description |
 | --- | --- |
 | STRING | An unsigned 8-bit `length` value followed by a contiguous chunk of `length`-many unsigned 8-bit integers. (I.e. a length followed by characters.) |
-| EINT | An encoded variable-length integer. See [Encoded Integers](#encoded-integers) for more information. |
+| EINT | An encoded variable-length signed integer. See [Encoded Integers](#encoded-integers) for more information. |
 
 ## Memory Layout
 The following describes the overall structure of an LMT file from top to bottom:
