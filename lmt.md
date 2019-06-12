@@ -15,6 +15,7 @@ This is a table of notations used within this document to denote various types o
 | Notation | Description |
 | --- | --- |
 | STRING | An unsigned 8-bit `length` value followed by a contiguous chunk of `length`-many unsigned 8-bit integers. (I.e. a length followed by characters.) |
+| CHUNK | Equivalent to `STRING`: length in bytes followed by the data. This represents an arbitrary piece of data unless otherwise noted. |
 | EINT | An encoded variable-length signed integer. See [Encoded Integers](#encoded-integers) for more information. |
 
 ## Memory Layout
@@ -56,9 +57,15 @@ int read_encoded_integer(reader):
 (Based on code from [gabien-app-r48](https://github.com/20kdc/gabien-app-r48).)
 
 ### Map Information
+Map information is layed out as an `EINT` ID followed by a `CHUNK`. There is no guarantee that the following chunks will be present as they are sometimes omitted if redundant, but the order in which they're layed out will always be the same. If a chunk is not present, then it is assumed to have a listed default value.
+
+| Name | ID (Hex) | Default Value | Description |
+| --- | --- | --- | --- |
+| Game Name | 0 | An empty string. | Traditionally used to give the game's name. This should be ignored, however, as game names are specified in an accompanying INI file (i.e. `RPG_RT.ini`). |
+| Map Name | 1 | An empty string. | The name of the map being described. |
 
 ### Map Start
-This contains information about a game's starting maps and positions. Note: not all of the following may be present in an LMT file.
+This contains information about a game's starting maps and positions. Note: not all of the following may be present in an LMT file. If any of the following are absent, then they should be assumed to have a value of `0`.
 
 | Name | Type | Description |
 | --- | --- | --- |
