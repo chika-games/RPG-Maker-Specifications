@@ -5,6 +5,7 @@ XYZ files are what RPG Maker 2000/2003 use to store image data.
 | Key | Value |
 | --- | --- |
 | Version | 1.0.0 |
+| Status | Complete |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Overview
