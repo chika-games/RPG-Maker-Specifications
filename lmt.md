@@ -122,7 +122,7 @@ Map info is represented using a tag-based model where each property is represent
 ## Map Start Structure
 
 ## Tags
-All tags have a tag ID followed by a size except for the [End Tag](#end-tag):
+All tags have a tag ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -300,6 +300,14 @@ This tag specifies the filename of a map's background.
 | False | 2 | The flag is unset. |
 
 #### Encounters Tag
+This tag outlines any encounters within a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 41. |
+| TagSize | VINT | The total size of the following fields measured in bytes. |
+| EncounterCount | VINT | The number of encounters. |
+| Encounters | [Troop Tag](#troop-tag) [`EncounterCount`] | The troops involved in each encounter. |
 
 #### Encounter Steps Tag
 This tag specifies the encounter steps for a map.
@@ -325,8 +333,64 @@ This tag specifies the area rectangle for a map. Regular maps have a rectangle o
 ### Music Tags
 These tags are used within the [Music Tag](#music-tag).
 
+#### Music Name Tag
+This tag specifies the filename of the music to be played in a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 1. |
+| TagSize | VINT | The size of the music's filename in bytes. |
+| MapName | U8[`TagSize`] | The music's filename. |
+
+#### Music Fade Time Tag
+This tag specifies the fade time for a map's music.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 2. |
+| TagSize | VINT | The size of `FadeTime` measured in bytes. |
+| FadeTime | VINT | The music's fade time. |
+
+#### Music Volume Tag
+This tag specifies the volume for a map's music.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 3. |
+| TagSize | VINT | The size of `Volume` measured in bytes. |
+| Volume | VINT | The music's volume. |
+
+#### Music Tempo Tag
+This tag specifies the tempo for a map's music.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 4. |
+| TagSize | VINT | The size of `Tempo` measured in bytes. |
+| Tempo | VINT | The music's tempo. |
+
+#### Music Balance Tag
+This tag specifies the left-right balance for a map's music.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 5. |
+| TagSize | VINT | The size of `Balance` measured in bytes. |
+| Balance | VINT | The music's left-right balance. |
+
 ### Encounter Tags
 These tags are used within the [Encounters Tag](#encounters-tag).
+
+#### Troop Tag<sup>?</sup>
+| Field | Type | Description |
+| --- | --- | --- |
+| TroopIndex | VINT | The troop's index within an encounter array. |
+| ??? | VINT |   |
+| ??? | VINT |   |
+| TroopID | VINT | The troop's unique ID. This can be treated as the type of troop<sup>3</sup>. |
+| End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
+
+<sup>3</sup> For example, a game may understand 15 to be green ooze.
 
 ## Attribution
 In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
