@@ -115,7 +115,7 @@ Map info is represented using a tag-based model where each property is represent
 | Encounters | [Encounters Tag](#encounters-tag) | An empty array. Should always be present<sup>?</sup>. | An array of encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0]. Should always be present<sup>?</sup>. | The map area rectangle. A regular map has a rectangle of [0, 0, 0, 0]. |
-| End | [End Tag](#end-tag) | Always present. | Indicates the end of a map info structure. |
+| End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
 <sup>2</sup> Historically, the name of the root map was used to determine a game's title. This, however, remains mostly an ancient artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
@@ -129,15 +129,15 @@ All tags have a tag ID followed by a size except for the [End Tag](#end-tag):
 | TagID | VINT | The tag's ID. |
 | TagSize | VINT | The size of the tag's data measured in bytes. |
 
-### Map Info Tags
-These tags are used in the [Map Info Structure](#map-info-structure).
-
 #### End Tag
 Marks the end of some structure or other specific tags. This tag only has an ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 0. |
+
+### Map Info Tags
+These tags are used in the [Map Info Structure](#map-info-structure).
 
 #### Map Name Tag
 This tag stores the name of a map.
@@ -222,6 +222,18 @@ This tag specifies how music should be played within a map.
 | Specified | 2 | Music is specified explicitly. |
 
 #### Music Tag
+This tag specifies various music properties for a map. If one of the listed tags is missing, then its default value is assumed.
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| TagID | VINT | Always present. | TagID is 12. |
+| TagSize | VINT | Always present. | The total size of the below tags measured in bytes. |
+| MusicName | [Music Name Tag](#music-name-tag) | An empty string. | The filename of the music to be played. |
+| MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means there is no fading. |
+| MusicVolume | [Music Volume Tag](#music-volume-tag) | 100 | The volume of the music. |
+| MusicTempo | [Music Tempo Tag](#music-tempo-tag) | 100 | The tempo of the music. |
+| MusicBalance | [Music Balance Tag](#music-balance-tag) | 50 | The left-right balance of the music. 50 means centered. |
+| End | [End Tag](#end-tag) | Always present. | Indicates the end of the music tag. |
 
 #### Background Type Tag
 This tag specifies the type of background within a map.
