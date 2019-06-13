@@ -35,6 +35,7 @@ These are the "atomic" types as all other structures are built using these funda
 | Type | Description |
 | --- | --- |
 | U8 | An unsigned 8-bit integer. |
+| U32 | An unsigned 32-bit integer. |
 | VINT | An integer of variable size. See [Variable-Size Integers](#variable-size-integers) for more information. |
 
 #### Variable-Size Integers
@@ -118,6 +119,190 @@ Map info is represented using a tag-based model where each property is represent
 ## Map Start Structure
 
 ## Tags
+All tags have a tag ID followed by a size except for the [End Tag](#end-tag):
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | The tag's ID. |
+| TagSize | VINT | The size of the tag's data measured in bytes. |
+
+### End Tag
+Marks the end of some structure or other specific tags. This tag only has an ID.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 0. |
+
+### Map Name Tag
+This tag stores the name of a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 1. |
+| TagSize | VINT | The size of the map's name in bytes. |
+| MapName | U8[`TagSize`] | The map's name. |
+
+### Parent ID Tag
+This tag stores the ID of a parent map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 2. |
+| TagSize | VINT | The size of `ParentID` measured in bytes. |
+| ParentID | VINT | The parent map's ID. 0 means there is no parent map. |
+
+### Indentation Tag
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 3. |
+| TagSize | VINT | The size of `Indentation` measured in bytes. |
+| Indentation | VINT | The map's indentation. |
+
+### Map Type Tag
+This tag specifies the type of map being described.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 4. |
+| TagSize | VINT | The size of `MapType` measured in bytes. |
+| MapType | VINT | The map's type. Special map types are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Root | 0 | A root map. |
+| Map | 1 | A regular map. |
+| Area | 2 | An area map. |
+
+### Edit Position X Tag
+This tag is for editor use only. The camera's x-position within an editor<sup>?</sup>.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 5. |
+| TagSize | VINT | The size of `EditPosX` measured in bytes. |
+| EditPosX | VINT | The editor x-position. |
+
+### Edit Position Y Tag
+This tag is for editor use only. The camera's y-position within an editor<sup>?</sup>.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 6. |
+| TagSize | VINT | The size of `EditPosY` measured in bytes. |
+| EditPosY | VINT | The editor y-position. |
+
+### Edit Expanded Tag
+This tag is for editor use only.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 7. |
+| TagSize | VINT | The size of `EditExpanded` measured in bytes. |
+| EditExpanded | VINT | This field may be treated like a boolean value: false when zero and true when nonzero. |
+
+### Music Type Tag
+This tag specifies how music should be played within a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 11. |
+| TagSize | VINT | The size of `MusicType` measured in bytes. |
+| MusicType | VINT | The map's music type. Special music types are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Inherit | 0 | Inherit the music. |
+| Event | 1 | Music specified through an event. |
+| Specified | 2 | Music is specified explicitly. |
+
+### Music Tag
+
+### Background Type Tag
+This tag specifies the type of background within a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 21. |
+| TagSize | VINT | The size of `BackgroundType` measured in bytes. |
+| BackgroundType | VINT | The map's background type. Special background types are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Inherit | 0 | Inherit the background. |
+| TerrainLdb | 1 |  |
+| Specified | 2 | Background is specified explicitly. |
+
+### Background Name Tag
+This tag specifies the filename of a map's background.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 22. |
+| TagSize | VINT | The size of the background's name in bytes. |
+| BackgroundName | U8[`TagSize`] | The background's filename. |
+
+
+### Teleport Flag Tag
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 31. |
+| TagSize | VINT | The size of `TeleportFlag` measured in bytes. |
+| TeleportFlag | VINT | The map's teleport flag. Special values are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Inherit | 0 | Inherit the flag's value. |
+| True | 1 | The flag is set. |
+| False | 2 | The flag is unset. |
+
+### Escape Flag Tag
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 32. |
+| TagSize | VINT | The size of `EscapeFlag` measured in bytes. |
+| EscapeFlag | VINT | The map's escape flag. Special values are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Inherit | 0 | Inherit the flag's value. |
+| True | 1 | The flag is set. |
+| False | 2 | The flag is unset. |
+
+### Save Flag Tag
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 33. |
+| TagSize | VINT | The size of `SaveFlag` measured in bytes. |
+| SaveFlag | VINT | The map's save flag. Special values are listed below. |
+
+| Type | Value | Description |
+| --- | --- | --- |
+| Inherit | 0 | Inherit the flag's value. |
+| True | 1 | The flag is set. |
+| False | 2 | The flag is unset. |
+
+### Encounters Tag
+
+### Encounter Steps Tag
+This tag specifies the encounter steps for a map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 44. |
+| TagSize | VINT | The size of `EncounterSteps` measured in bytes. |
+| EncounterSteps | VINT | The encounter steps for a map. 0 means encounters are disabled. |
+
+### Area Rectangle Tag
+This tag specifies the area rectangle for a map. Regular maps have a rectangle of [0, 0, 0, 0].
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 51. |
+| TagSize | VINT | Should always be 16<sup>?</sup>. |
+| Left | U32 | The left-coordinate of the rectangle. |
+| Top | U32 | The top-coordinate of the rectangle. |
+| Right | U32 | The right-coordinate of the rectangle. |
+| Bottom | U32 | The bottom-coordinate of the rectangle. |
 
 ## Attribution
 In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
