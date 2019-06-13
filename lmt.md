@@ -1,6 +1,4 @@
 # LCF Map Tree Specification (LMT)
-## Background
-
 | Key | Value |
 | --- | --- |
 | Version | _UNDER CONSTRUCTION_ |
