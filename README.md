@@ -14,6 +14,7 @@ XYZ files are used by RPG Maker 2000/2003 to store image data.
 [__Specification__](xyz.md)
 
 ## LCF Map Trees
+LCF Map Trees (LMT) are used to specify various map properties, map orders, and map start information.
 
 [__Specification__](lmt.md)
 
