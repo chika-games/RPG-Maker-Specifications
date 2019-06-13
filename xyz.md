@@ -1,38 +1,70 @@
 # XYZ Image Specification
-## Background
-XYZ files are what RPG Maker 2000/2003 use to store image data.
-
 | Key | Value |
 | --- | --- |
-| Version | 1.0.0 |
+| Version | 2.0.0 |
 | Status | Complete |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
-## Overview
-XYZ is a palette-based image format with 24 bits per channel (red, green, blue). The palette can store up to 256 distinct colors, and the pixel data is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
+## Table of Contents
+* Table of Contents
+* [Introduction](#introduction)
+* [Data Types](#data-types)
+  * [Basic Data Types](#basic-data-types)
+  * [Complex Data Types](#complex-data-types)
+    * [RGB Values](#rgb-values)
+* [XYZ File Structure](#xyz-file-structure)
+* [Document Changes](#document-changes)
+* [Attribution](#attribution)
 
-Overall, the XYZ format is very compact and has a simple specification. An example of a piece of code that reads XYZ files (among other things) can be found [here](https://github.com/napen123/xyz2png/blob/master/src/main.rs).
+## Introduction
+The XYZ file format is a custom image format used in RPG Maker 2000 and RPG Maker 2003. This simple format is palette based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel. The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm is used to compress the file's palette and pixel data.
 
-## Type Notation
-This is a table of notations used within this document to denote various types of values:
+XYZ files typically have the extension `.xyz`.
 
-| Notation | Description |
+## Data Types
+This section describes the various data types that will be used throughout this document. Little-endian is assumed.
+
+Types may be appended with `[n]` in order to denote a contiguous array of said type where n is the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
+
+### Basic Data Types
+These types are considered _primitive_ as all other data structures are built using these fundamental types.
+
+| Type | Description |
 | --- | --- |
 | U8 | An unsigned 8-bit integer. |
 | U16 | An unsigned 16-bit integer. |
-| RGB | Three unsigned 8-bit integers representing the color channels red, green, and blue, respectively. This is equivalent to `U8[3]`. |
 
-Types may be appended with `[n]`, where n is a positive integer, in order to denote a contiguous array of said type. For example, `U8[4]` represents an array of four unsigned 8-bit integers.
+### Complex Data Types
+These types are built using a combination of [Basic Data Types](#basic-data-types).
 
-## Memory Layout
-The following describes the overall structure of an XYZ file. The contents are listed in the order they appear in the file.
+#### RGB Values
+`RGB` values represent a color through three channels: red, green, and blue.
 
-| Name | Type | Description |
+| Field | Type | Description |
 | --- | --- | --- |
-| `Header` | U8[4] | The header is always `XYZ1` and should be used to determine if a file represents an XYZ image. |
-| `Width` | U16 | The width of the image in pixels. |
-| `Height` | U16 | The height of the image in pixels. |
-| `Palette`<sup>1</sup> | RGB[256] | The image's palette; this contains all of the colors that will be present in the image. |
-| `Pixel Data`<sup>1</sup> | U8[`Width` * `Height`] | Indexes into the image `Palette`. Each index represents a pixel within the image; one index for every pixel. |
+| Red | U8 | The amount of red in the color. |
+| Green | U8 | The amount of green in the color. |
+| Blue | U8 | The amount of blue in the color. |
 
-<sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be sure you uncompress the rest of the file! This can be achieved by using zlib or something similar.
+## XYZ File Structure
+This section details the structure of an XYZ file.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| Signature | U8[4] | This field is used to determine if a file claims to be a valid XYZ file. The value of this field should always be "XYZ1". |
+| Width | U16 | The width of the image in pixels. |
+| Height | U16 | The height of the image in pixels. |
+| Palette<sup>1</sup> | RGB[256] | The image's palette; this contains all of the colors that will be present in the image. |
+| PixelData<sup>1</sup> | U8[`Width * Height`] | The image's pixel data; these are indexes into the image's `Palette` where each index represents a pixel. |
+
+<sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be the rest of the file is uncompressed before reading these fields. This can be achieved by using zlib or a similar library.
+
+## Document Changes
+### Version 2.0.0
+Rewrote the document from scratch.
+
+### Version 1.0.0
+First version of the document released.
+
+## Attribution
+RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
