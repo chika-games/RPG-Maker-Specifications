@@ -22,7 +22,7 @@
 * [Attribution](#attribution)
 
 ## Introduction
-Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
+__Speculation:__ Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
 
 ## Data Types
 This section describes the various data types that will be used throughout this document.
@@ -42,7 +42,7 @@ LCF files predominantly use integers of variable size instead of the more common
 
 For example, the value `25` will be represented using a single byte; `123456` will take up two bytes.
 
-Below is a piece of pseudocode that reads and decodes these variable-length integers into a fixed format<sup>1</sup>:
+Below is a piece of pseudocode that reads and decodes these variable-length integers into a fixed format:
 ```python
 u32 read_variable_integer(reader):
     u32 ret = 0
@@ -58,8 +58,7 @@ u32 read_variable_integer(reader):
     
     return ret
 ```
-
-<sup>1</sup> This code was adapted from the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
+(This code was adapted from the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.)
 
 ### Complex Data Types
 These types are built using a combination of [Basic Data Types](#basic-data-types).
@@ -72,9 +71,9 @@ These types are built using a combination of [Basic Data Types](#basic-data-type
 | Length | VINT | The length of the string measured in bytes. |
 | Characters | U8[`Length`] | The array of characters that make up the string. |
 
-No guarantee is made about the encoding of the characters<sup>2</sup>; therefore, it is up to the implementor's discretion as to which one to use.
+No guarantee is made about the encoding of the characters<sup>1</sup>; therefore, it is up to the implementor's discretion as to which one to use.
 
-<sup>2</sup> Most games using the Japanese language are encoded in [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
+<sup>1</sup> Most games using the Japanese language are encoded in [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
 
 ## LMT File Structure
 This section gives an overview of LMT files as a whole. All LMT files will follow the same basic format:
@@ -94,7 +93,7 @@ Map info is represented using a tag-based model where each property is represent
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as a playable map; it is used to provide top-level information<sup>4</sup>. |
+| MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as a playable map; it is used to provide top-level information<sup>2</sup>. |
 | MapName | [Map Name Tag](#map-name-tag) | An empty string. Should always be present<sup>?</sup>. | The map's name. |
 | ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map. Maps should be thought of as being in a tree hierarchy. |
 | Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
@@ -114,7 +113,7 @@ Map info is represented using a tag-based model where each property is represent
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0]. Should always be present<sup>?</sup>. | The map area rectangle. A regular map has a rectangle of [0, 0, 0, 0]. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of a map info structure. |
 
-<sup>4</sup> Historically, the name of the root map was used to determine a game's title. This, however, remains mostly an ancient artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+<sup>2</sup> Historically, the name of the root map was used to determine a game's title. This, however, remains mostly an ancient artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
 ## Map Start Structure
 
