@@ -20,6 +20,7 @@
    * [Map Info Tags](#map-info-tags)
    * [Music Tags](#music-tags)
    * [Encounter Tags](#encounter-tags)
+* [Document Changes](#document-changes)
 * [Attribution](#attribution)
 
 ## Introduction
@@ -389,6 +390,8 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
 
 <sup>3</sup> For example, a game may understand 15 to be green ooze.
+
+## Document Changes
 
 ## Attribution
 In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
