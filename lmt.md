@@ -16,8 +16,9 @@
     * [Complex Data Types](#complex-data-types)
         * [String Values](#string-values)
 * [LMT File Structure](#lmt-file-structure)
-    * [Map Info Structure](#map-info-structure)
-    * [Map Start Structure](#map-start-structure)
+* [Map Info Structure](#map-info-structure)
+* [Map Start Structure](#map-start-structure)
+* [Tags](#tags)
 * [Attribution](#attribution)
 
 ## Introduction
@@ -88,9 +89,36 @@ This section gives an overview of LMT files as a whole. All LMT files will follo
 | Active Node | VINT | |
 | MapStart | [Map Start](#map-start-structure) | This field holds map starting information, such as starting position. |
 
-### Map Info Structure
+## Map Info Structure
+Map info is represented using a tag-based model where each property is represented using a tag. No guarantee is made about the presense of each tag. In the case of a missing tag, the property it represents is expected to take on a specified default value. The order in which the tags appear are guaranteed to be in the listed order<sup>?</sup>. See [Tags](#tags) for more information about tags.
 
-### Map Start Structure
+| Field | Type | Default Value | Description |
+| --- | --- | --- | --- |
+| MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as a playable map; it is used to provide top-level information<sup>4</sup>. |
+| MapName | [Map Name Tag](#map-name-tag) | An empty string. Should always be present<sup>?</sup>. | The map's name. |
+| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map. Maps should be thought of as being in a tree hierarchy. |
+| Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
+| MapType | [Map Type Tag](#map-type-tag) | root (0) | The type of map being described. |
+| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. The camera's x-position within an editor<sup>?</sup>. |
+| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. The camera's y-position within an editor<sup>?</sup>. |
+| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | false (0) | For editor use only. |
+| MusicType | [Music Type Tag](#music-type-tag) | inherit (0) | How music should be played. |
+| Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | Properties pertaining to music, such as volume and tempo. |
+| BackgroundType | [Background Type Tag](#background-type-tag) | inherit (0) | The type of background to display. |
+| BackgroundName | [Background Name Tag](#background-name-tag) | An empty string. Should always be present<sup>?</sup>. | The filename of the background to display. |
+| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | inherit (0) |  |
+| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | inherit (0) |  |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | inherit (0) |  |
+| Encounters | [Encounters Tag](#encounters-tag) | An empty array. Should always be present<sup>?</sup>. | An array of encounters within the map. |
+| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
+| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0]. Should always be present<sup>?</sup>. | The map area rectangle. A regular map has a rectangle of [0, 0, 0, 0]. |
+| End | [End Tag](#end-tag) | Always present. | Indicates the end of a map info structure. |
+
+<sup>4</sup> Historically, the name of the root map was used to determine a game's title. This, however, remains mostly an ancient artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+
+## Map Start Structure
+
+## Tags
 
 ## Attribution
 In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
