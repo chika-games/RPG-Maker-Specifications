@@ -4,48 +4,50 @@
 | Key | Value |
 | --- | --- |
 | Version | _UNDER CONSTRUCTION_ |
-| Status | _Research/Speculation_ |
+| Status | _Finalization & Speculation_ |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
-## Overview
+## Table of Contents
+* Table of Contents
+* [Introduction](#introduction)
+* [Data Types](#data-types)
+    * [Basic Data Types](#basic-data-types)
+        * [Variable-Size Integers](#variable-size-integers)
+    * [Complex Data Types](#complex-data-types)
+        * [String Values](#string-values)
+* [LMT File Structure](#lmt-file-structure)
+    * [Map Info Structure](#map-info-structure)
+    * [Map Start Structure](#map-start-structure)
+* [Attribution](#attribution)
 
-## Type Notation
-This is a table of notations used within this document to denote various types of values:
+## Introduction
+Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
 
-| Notation | Description |
+## Data Types
+This section describes the various data types that will be used throughout this document.
+
+Types may be appended with `[n]` in order to denote a contiguous array of said type where `n` is the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
+
+### Basic Data Types
+These are the "atomic" types as all other structures are built using these fundamental types.
+
+| Type | Description |
 | --- | --- |
-| STRING | An `EINT` `length` value followed by a contiguous chunk of `length`-many unsigned 8-bit integers. (I.e. a length followed by characters.) |
-| CHUNK | Equivalent to `STRING`: an `EINT` length followed by unsigned 8-bit values. This represents an arbitrary piece of data unless otherwise noted. |
-| EINT | An encoded variable-length signed integer. See [Encoded Integers](#encoded-integers) for more information. |
-| U32 | An unsigned 32-bit integer. |
-| BOOL | A boolean value. When represented using an integer, zero is _false_ and nonzero is _true_. |
+| U8 | An unsigned 8-bit integer. |
+| VINT | An integer of variable size. See [Variable-Size Integers](#variable-size-integers) for more information. |
 
-## Memory Layout
-The following describes the overall structure of an LMT file from top to bottom:
+#### Variable-Size Integers
+LCF files predominantly use integers of variable size instead of the more common fixed-length formats, such as 32-bit integers. These types of integers can be thought of as a form of compression: integers will only take up the necessary amount of bytes needed in order to encode a particular value. This is in contrast to fixed-size formats as they will always be represented using the same number of bits regardless of the number being represented.
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `Header` | STRING | The header always has a length of 10 and a value of `LcfMapTree`. This is used to determine if a file represents an LMT file. |
-| `Info Count` | EINT | The number of [Map Information] structures to follow. |
-| `Map Info` | [Map Information] [Info Count] | An array of [Map Information] structures. |
-| `Order Count` | EINT | The number of map orderings to follow. |
-| `Map Order` | EINT[`Order Count`] | An array of map IDs in sequential order. For example, the first map of a game is the first element in the array. |
-| `Active Node` | EINT |  |
-| `Start` | [Map Start](#map-start) | A structure containing information about starting maps and positions. |
+For example, the value `25` will be represented using a single byte; `123456` will take up two bytes.
 
-Types may be appended with `[n]`, where n is a positive integer, in order to denote a contiguous array of said type. For example, `U8[4]` represents an array of four unsigned 8-bit integers.
-
-[Map Information]: #map-information
-
-### Encoded Integers
-LCF files store integers in an encoded format. Below is pseudo-code for reading and decoding these integers:
-
+Below is a piece of pseudocode that reads and decodes these variable-length integers into a fixed format<sup>1</sup>:
 ```python
-int read_encoded_integer(reader):
-    var ret = 0
+u32 read_variable_integer(reader):
+    u32 ret = 0
     
     while true:
-        var b = reader.read_u8()
+        u8 b = reader.read_u8()
         
         ret <<= 7
         ret |= b & 0x7F
@@ -56,82 +58,41 @@ int read_encoded_integer(reader):
     return ret
 ```
 
-(Based on code from [gabien-app-r48](https://github.com/20kdc/gabien-app-r48).)
+<sup>1</sup> This code was adapted from the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
 
-### Map Information
-Map information is layed out as an `EINT` ID, followed by an `EINT` length, then either a `CHUNK[length]` or `STRING[length]`. In most cases, `length` will be 1.
+### Complex Data Types
+These types are built using a combination of [Basic Data Types](#basic-data-types).
 
-There is no guarantee that the following chunks will be present as they are sometimes omitted if redundant, but the order in which they're layed out will always be the same. If a chunk is not present, then it is assumed to have a listed default value.
+#### String Values
+`STRING` values represent a length-prepended string of characters. These are used to represent all forms of textual data.
 
-| Name | Type | Description |
+| Field | Type | Description |
 | --- | --- | --- |
-| ID | EINT | The ID of the item to be handled. See the table below. |
-| length | EINT | The length in bytes of the data that follows this field. Usually 1. |
-| data | CHUNK[`length`] or STRING[`length`] | See the table below in order to interpret this data. |
+| Length | VINT | The length of the string measured in bytes. |
+| Characters | U8[`Length`] | The array of characters that make up the string. |
 
-| Name | ID (Hex) | Type | Default Value | Description |
-| --- | --- | --- | --- | --- |
-| Game Name | 0 | STRING | An empty string. | Traditionally used to give the game's name. This should be ignored, however, as game names are specified in an accompanying INI file (i.e. `RPG_RT.ini`). |
-| Map Name | 1 | STRING | An empty string. | The name of the map being described. |
-| Parent ID | 2 | CHUNK | 0 | Either the ID of a parent map or 0. This should be treated like an unsigned integer. |
-| Indentation | 3 | CHUNK | 0 | This should be treated like an unsigned integer. |
-| Map Type | 4 | CHUNK | 0 | The type of map being described. See [Map Types](#map-types) for a list of special values. This should be treated like an unsigned integer. |
-| Edit Position X | 5 | CHUNK | 0 | For editor use. This should be treated like a signed integer. |
-| Edit Position Y | 6 | CHUNK | 0 | For editor use. This should be treated like a signed integer. |
-| Edit Expanded | 7 | CHUNK | false (0) | For editor use. This should be treated like a `BOOL`. |
-| Music Type | B | CHUNK | 0 | How music should be played in the map. See [Music Types](#music-types) for a list of special values. This should be treated like an unsigned integer. |
-| Music | C | CHUNK | See defaults in [Music](#music) | A structure containing various music properties for the map. This should be trated like a [Music](#music) structure. |
-| Background Type | 15 | CHUNK | 0 | The type of background this map has. See [Background Types](#background-types) for a list of special values. This should be treated like an unsigned integer. |
-| Background Name | 16 | STRING | An empty string. | The filename of this map's background. (Backdrop folder.) |
-| Teleport Flag | 1F | CHUNK | 0 | This should be treated like a `BOOL`. |
-| Escape Flag | 20 | CHUNK | 0 | This should be treated like a `BOOL`. |
-| Save Flag | 21 | CHUNK | 0 | This should be treated like a `BOOL`. |
-| Encounters | 29 | CHUNK | An empty array. | An array of encounters. This should be treated like an [Encounter](#encounters) [`n`] where `n` is the number of encounters. See [Encounter](#encounter) for more information. |
-| Encounter Steps | 2C | CHUNK | 25 | The number of steps for encounters. 0 means encounters are disabled. This should be treated like an unsigned integer. |
-| Area Rectangle | 33 | CHUNK | 0 | The rectangle for the map's area. (0, 0, 0, 0) represents a regular map (non-area). This should be treated like a U32[4] for left, up, right, and down coordinates respectively. |
+No guarantee is made about the encoding of the characters<sup>2</sup>; therefore, it is up to the implementor's discretion as to which one to use.
 
-#### Map Types
-| Name | Value |
-| --- | --- |
-| Root | 0 |
-| Map | 1 |
-| Area | 2 |
+<sup>2</sup> Most games using the Japanese language are encoded in [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
 
-#### Music Types
-| Name | Value |
-| --- | --- |
-| Inherit | 0 |
-| Event | 1 |
-| Specified | 2 |
+## LMT File Structure
+This section gives an overview of LMT files as a whole. All LMT files will follow the same basic format:
 
-#### Background Types
-| Name | Value |
-| --- | --- |
-| Inherit | 0 |
-| Terrain LDB | 1 |
-| Specified | 2 |
-
-### Music
-
-### Encounter
-
-### Map Start
-This contains information about a game's starting maps and positions. Note: not all of the following may be present in an LMT file. If any of the following are absent, then they should be assumed to have a value of `0`.
-
-| Name | Type | Description |
+| Field | Type | Description |
 | --- | --- | --- |
-| `Player Map` | EINT | The ID of the map to start the game in. This isn't the main menu. |
-| `Player X` | EINT | The x-position in the `Player Map` to start the player at. |
-| `Player Y` | EINT | The y-position in the `Player Map` to start the player at. |
-| `Boat Map` | EINT | The ID of the boat map. |
-| `Boat X` | EINT | The x-position in the `Boat Map` to start the player at. |
-| `Boat Y` | EINT | The y-position in the `Boat Map` to start the player at. |
-| `Ship Map` | EINT | The ID of the ship map. |
-| `Ship X` | EINT | The x-position in the `Ship Map` to start the player at. |
-| `Ship Y` | EINT | The y-position in the `Ship Map` to start the player at. |
-| `Airship Map` | EINT | The ID of the airship map. |
-| `Airship X` | EINT | The x-position in the `Airship Map` to start the player at. |
-| `Airship Y` | EINT | The y-position in the `Airship Map` to start the player at. |
+| Signature | STRING | This field is used to determine if a file claims to be a valid LMT file. The value of this field should always be "LcfMapTree". |
+| MapInfoCount | VINT | The number of [Map Info Structures](#map-info-structure) present. |
+| MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of map information. |
+| MapOrderCount | VINT | The number of map orderings present. |
+| MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for the maps presented in `MapInfos`. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
+| Active Node | VINT | |
+| MapStart | [Map Start](#map-start-structure) | This field holds map starting information, such as starting position. |
+
+### Map Info Structure
+
+### Map Start Structure
 
 ## Attribution
-In addition to personal research and digging, information within this document is also based on the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
+In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
+
+RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
