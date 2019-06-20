@@ -1,7 +1,7 @@
-# XYZ Image Specification
+# XYZ Image Specification (XYZ)
 | Key | Value |
 | --- | --- |
-| Version | 2.0.0 |
+| Version | 2.0.1 |
 | Status | Complete |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
@@ -60,6 +60,9 @@ This section details the structure of an XYZ file.
 <sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be the rest of the file is uncompressed before reading these fields. This can be achieved by using zlib or a similar library.
 
 ## Document Changes
+### Version 2.0.1
+Added "(XYZ)" to title.
+
 ### Version 2.0.0
 Rewrote the document from scratch.
 
