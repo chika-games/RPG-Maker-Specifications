@@ -1,13 +1,34 @@
 # RPGMaker 2000/2003 File Specifications
 ## Introduction
-This repository contains specification documents detailing the various file formats used by RPG Maker 2000 and RPG Maker 2003, such as image and map files.
+This repository contains documents detailing the various file formats used by RPG Maker 2000/2003, such as image and map files.
 
 ### Table of Contents
-* Table of Contents
 * [Introduction](#introduction)
-* [XYZ Images](#xyz-images)
-* [LCF Map Trees](#lcf-map-trees)
+* Table of Contents
+* [About The Specifications](#about-the-specifications)
+* [XYZ Images (XYZ)](#xyz-images-xyz)
+* [LCF Map Tree (LMT)](#lcf-map-tree-lmt)
+* [LCF Save Data (LSD)](#lcf-save-data-lsd)
 * [License](#license)
+
+## About The Specifications
+All of the specifications within this repository are written with independence in mind; all relevant information is included, and they make no reference to each other.
+
+Each specification includes a table that specifies its __Version__, __Status__, and __License__ information.
+
+__Version__ indicates the relevant document's version and follows a major.minor.revision format. The document may include a _Document Changes_ section that lists any notable changes between versions.
+
+__Status__ indicates the status of a document's information. There are three main values this field can take: _Researching_, _Finalization_, and _Complete_.
+
+_Researching_ means a specification is in the drafting phase and is presenting information that was being researched at the time of writing. As such, documents marked as _Researching_ shouldn't be relied upon for accurate information.
+
+_Finalization_ is used when a format has been completely researched, and its specification is being written to detail the research. Though incomplete, information within _Finalization_ documents should be taken as trustworthy unless otherwise noted (see _Speculation_).
+
+_Complete_ means a specification completely describes its respective file format in detail. These documents may be relied upon for accurate information unless otherwise noted (see _Speculation_).
+
+In addition to the three statuses above, documents may also be marked as _Speculation_. This means some information contained is only an educated guess and has not been totally confirmed. Any speculated information will be superscripted with a question mark (?). Take this information with a grain of salt.
+
+__License__ provides a document's copyright license.
 
 ## XYZ Images (XYZ)
 XYZ files are used by RPG Maker 2000/2003 to store image data.
