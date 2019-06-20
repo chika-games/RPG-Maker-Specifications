@@ -26,6 +26,8 @@
 ## Introduction
 __Speculation:__ Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
 
+This specification is part of a larger collection that can be found at the following link: [https://github.com/napen123/rpgmaker-asset-specs](https://github.com/napen123/rpgmaker-asset-specs)
+
 ## Data Types
 This section describes the various data types that will be used throughout this document.
 
