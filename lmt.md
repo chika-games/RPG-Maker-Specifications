@@ -396,6 +396,6 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 ## Document Changes
 
 ## Attribution
-In addition to personal digging, information within this document is also based on code within the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.
+[gabien-app-r48](https://github.com/20kdc/gabien-app-r48)
 
 RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
