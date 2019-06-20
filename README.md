@@ -9,15 +9,20 @@ This repository contains specification documents detailing the various file form
 * [LCF Map Trees](#lcf-map-trees)
 * [License](#license)
 
-## XYZ Images
+## XYZ Images (XYZ)
 XYZ files are used by RPG Maker 2000/2003 to store image data.
 
 [__Specification__](xyz.md)
 
-## LCF Map Trees
-LCF Map Trees (LMT) are used to specify various map properties, map orders, and map start information.
+## LCF Map Tree (LMT)
+LMT files are used to specify various map properties, map orderings, and game start information.
 
 [__Specification__](lmt.md)
+
+## LCF Save Data (LSD)
+LSD files are used to store game save data.
+
+[__Specification__](lsd.md)
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
