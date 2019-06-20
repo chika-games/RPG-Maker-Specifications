@@ -1,7 +1,7 @@
 # XYZ Image Specification (XYZ)
 | Key | Value |
 | --- | --- |
-| Version | 2.0.1 |
+| Version | 2.0.2 |
 | Status | Complete |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
@@ -20,6 +20,8 @@
 The XYZ file format is a custom image format used in RPG Maker 2000 and RPG Maker 2003. This simple format is palette based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel. The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm is used to compress the file's palette and pixel data.
 
 XYZ files typically have the extension `.xyz`.
+
+This specification is part of a larger collection that can be found at the following link: [https://github.com/napen123/rpgmaker-asset-specs](https://github.com/napen123/rpgmaker-asset-specs)
 
 ## Data Types
 This section describes the various data types that will be used throughout this document. Little-endian is assumed.
@@ -60,6 +62,9 @@ This section details the structure of an XYZ file.
 <sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be the rest of the file is uncompressed before reading these fields. This can be achieved by using zlib or a similar library.
 
 ## Document Changes
+### Version 2.0.2
+Provided a link to the rpgmaker-asset-specs repository in the introduction.
+
 ### Version 2.0.1
 Added "(XYZ)" to title.
 
