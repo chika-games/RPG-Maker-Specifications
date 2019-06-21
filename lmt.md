@@ -2,7 +2,7 @@
 | Key | Value |
 | --- | --- |
 | Version | _UNDER CONSTRUCTION_ |
-| Status | _Finalization & Speculation_ |
+| Status | _Researching & Speculation_ |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -24,6 +24,8 @@
 * [Attribution](#attribution)
 
 ## Introduction
+LCF Map Tree files are used to store map properties, game start information, and map orderings.
+
 __Speculation:__ Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
 
 This specification is part of a larger collection that can be found at the following link: [https://github.com/napen123/rpgmaker-asset-specs](https://github.com/napen123/rpgmaker-asset-specs)
