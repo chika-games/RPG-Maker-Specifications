@@ -2,7 +2,7 @@
 | Key | Value |
 | --- | --- |
 | Version | _UNDER CONSTRUCTION_ |
-| Status | Complete, Speculation |
+| Status | Finalization, Speculation |
 | License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
