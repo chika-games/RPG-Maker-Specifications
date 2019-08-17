@@ -1,9 +1,8 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | _UNDER CONSTRUCTION_ |
-| Status | _Researching & Speculation_ |
-| License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
+| Version | _Researching_ |
+| License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
 * Table of Contents
@@ -21,7 +20,7 @@
    * [Music Tags](#music-tags)
    * [Encounter Tags](#encounter-tags)
 * [Document Changes](#document-changes)
-* [Attribution](#attribution)
+* [Legal Information](#legal-information)
 
 ## Introduction
 LCF Map Tree files are used to store map properties, game start information, and map orderings.
@@ -397,7 +396,9 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 
 ## Document Changes
 
-## Attribution
-20kdc's [gabien-app-r48](https://github.com/20kdc/gabien-app-r48).
+## Legal Information
+This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
-RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
+The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
+
+All rights belong to their respective owners.
