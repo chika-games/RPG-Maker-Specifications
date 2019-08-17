@@ -1,9 +1,9 @@
 # XYZ Image Specification (XYZ)
 | Key | Value |
 | --- | --- |
-| Version | 2.0.2 |
+| Version | 2.1.0 |
 | Status | Complete |
-| License | [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/) |
+| License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
 * Table of Contents
@@ -14,22 +14,24 @@
     * [RGB Values](#rgb-values)
 * [XYZ File Structure](#xyz-file-structure)
 * [Document Changes](#document-changes)
-* [Attribution](#attribution)
+* [Legal Information](#legal-information)
 
 ## Introduction
-The XYZ file format is a custom image format used in RPG Maker 2000 and RPG Maker 2003. This simple format is palette based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel. The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm is used to compress the file's palette and pixel data.
+The XYZ file format (`.xyz`) is the custom image format used in RPG Maker 2000 and 2003. This format is palette-based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel. This results is a design that is simple to read and write.
 
-XYZ files typically have the extension `.xyz`.
+The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm is used to compress image palettes and pixel data.
 
-This specification is part of a larger collection that can be found at the following link: [https://github.com/napen123/rpgmaker-asset-specs](https://github.com/napen123/rpgmaker-asset-specs)
+This specification is part of a larger collection that can be found at the following URL: [https://github.com/chika-games/RPGMaker-Specifications](https://github.com/chika-games/RPGMaker-Specifications)
 
 ## Data Types
-This section describes the various data types that will be used throughout this document. Little-endian is assumed.
+This section describes the various data types that will be used throughout this specification.
 
-Types may be appended with `[n]` in order to denote a contiguous array of said type where n is the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
+Little-endian byte order is assumed for all types; the least significant byte is stored first, and the most significant byte is stored last.
+
+Types may be appended with `[n]` in order to denote a contiguous array of the type with `n` being the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
 
 ### Basic Data Types
-These types are considered _primitive_ as all other data structures are built using these fundamental types.
+These types are considered _primitive_ as all other data types are constructed using these.
 
 | Type | Description |
 | --- | --- |
@@ -39,8 +41,8 @@ These types are considered _primitive_ as all other data structures are built us
 ### Complex Data Types
 These types are built using a combination of [Basic Data Types](#basic-data-types).
 
-#### RGB Values
-`RGB` values represent a color through three channels: red, green, and blue.
+#### RGB
+The `RGB` type represents a color with three channels: red, green, and blue.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -49,19 +51,26 @@ These types are built using a combination of [Basic Data Types](#basic-data-type
 | Blue | U8 | The amount of blue in the color. |
 
 ## XYZ File Structure
-This section details the structure of an XYZ file.
+This section details the overall structure of an XYZ file.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| Signature | U8[4] | This field is used to determine if a file claims to be a valid XYZ file. The value of this field should always be "XYZ1". |
+| Signature | U8[4] | This field is the file's signature. The value of this field should always be "XYZ1". |
 | Width | U16 | The width of the image in pixels. |
 | Height | U16 | The height of the image in pixels. |
-| Palette<sup>1</sup> | RGB[256] | The image's palette; this contains all of the colors that will be present in the image. |
+| Palette<sup>1</sup> | RGB[256] | The image's palette; this contains all of the colors that may be present in the image. |
 | PixelData<sup>1</sup> | U8[`Width * Height`] | The image's pixel data; these are indexes into the image's `Palette` where each index represents a pixel. |
 
-<sup>1</sup> All of the data after the height parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm. Be the rest of the file is uncompressed before reading these fields. This can be achieved by using zlib or a similar library.
+<sup>1</sup> All of the fields after the `Height` parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm; all fields before this are uncompressed. Libraries such as zlib may be used to decompress this data.
 
 ## Document Changes
+### Version 2.1.0
+Rename the "Attribution" section to "Legal Information".
+
+Update some wording.
+
+Use the textual format of CC BY-SA 4.0 rather than the image.
+
 ### Version 2.0.2
 Provided a link to the rpgmaker-asset-specs repository in the introduction.
 
@@ -74,5 +83,7 @@ Rewrote the document from scratch.
 ### Version 1.0.0
 First version of the document released.
 
-## Attribution
-RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
+## Legal Information
+This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license. The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
+
+All rights belong to their respective owners.
