@@ -1,8 +1,7 @@
 # XYZ Image Specification (XYZ)
 | Key | Value |
 | --- | --- |
-| Version | 2.1.0 |
-| Status | Complete |
+| Version | 2.1.1 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -64,6 +63,9 @@ This section details the overall structure of an XYZ file.
 <sup>1</sup> All of the fields after the `Height` parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm; all fields before this are uncompressed. Libraries such as zlib may be used to decompress this data.
 
 ## Document Changes
+### Version 2.1.1
+Remove the "Status" field in the document information table.
+
 ### Version 2.1.0
 Rename the "Attribution" section to "Legal Information".
 
