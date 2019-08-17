@@ -11,24 +11,17 @@ This repository contains specifications the various file formats used by RPG Mak
 * [LCF Save Data (LSD)](#lcf-save-data-lsd)
 * [License](#license)
 
-## About The Specifications
+## About the Specifications
 All of the specifications within this repository are written with independence in mind; all relevant information is included, and they make no reference to each other.
 
-Each specification includes a table that specifies its __Version__, __Status__, and __License__ information.
+Each specification includes a table that specifies its __Version__ and __License__ information.
 
-__Version__ indicates the relevant document's version and follows a major.minor.revision format. The document may include a _Document Changes_ section that lists any notable changes between versions.
+__Version__ provides the relevant document's version. This field has three potential values:
+* _Researching_ means the specification is still being researched and drafted.
+* _Finalizing_ all relevant research has completed, and the specification is undergoing finalization.
+* A completed specification will have a major.minor.revision version format.
 
-__Status__ indicates the status of a document's information. There are three main values this field can take: _Researching_, _Finalization_, and _Complete_.
-
-_Researching_ means a specification is in the drafting phase and is presenting information that was being researched at the time of writing. As such, documents marked as _Researching_ shouldn't be relied upon for accurate information.
-
-_Finalization_ is used when a format has been completely researched, and its specification is being written to detail the research. Though incomplete, information within _Finalization_ documents should be taken as trustworthy unless otherwise noted (see _Speculation_).
-
-_Complete_ means a specification completely describes its respective file format in detail. These documents may be relied upon for accurate information unless otherwise noted (see _Speculation_).
-
-In addition to the three statuses above, documents may also be marked as _Speculation_. This means some information contained is only an educated guess and has not been totally confirmed. Any speculated information will be superscripted with a question mark (?). Take this information with a grain of salt.
-
-__License__ provides a document's copyright license.
+__License__ provides a specification's copyright license. All specifications are provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
 ## XYZ Images (XYZ)
 XYZ files are used by RPG Maker 2000/2003 to store image data.
@@ -41,13 +34,13 @@ LMT files are used to specify various map properties, map orderings, and game st
 [__Specification__](lmt.md)
 
 ## LCF Save Data (LSD)
-LSD files are used to store game save data.
+LSD files are used to store save data.
 
 [__Specification__](lsd.md)
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+This document is licensed under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
-RPG Maker is property of Enterbrain, Inc. and Kadokawa Corporation.
+The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation. All rights belong to their respective owners.
