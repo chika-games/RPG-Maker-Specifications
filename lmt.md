@@ -1,7 +1,7 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | _Researching_ |
+| Version | 1.0.0 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -539,6 +539,8 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
 
 ## Document Changes
+### Version 1.0.0
+First version of the document released.
 
 ## Legal Information
 This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
