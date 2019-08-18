@@ -27,7 +27,7 @@ __License__ provides a specification's copyright license. All specifications are
 ## RPG Maker Config File (RPG_RT.ini)
 The `RPG_RT.ini` file provides basic game information, such as the title.
 
-[__Specification__](config.md)
+[__Specification__](config.md) (_Researching_)
 
 ## XYZ Images (XYZ)
 XYZ files are used by RPG Maker 2000/2003 to store image data.
@@ -42,7 +42,7 @@ LMT files are used to specify various map properties, map orderings, and game st
 ## LCF Save Data (LSD)
 LSD files are used to store save data.
 
-[__Specification__](lsd.md)
+[__Specification__](lsd.md) (_Researching_)
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
