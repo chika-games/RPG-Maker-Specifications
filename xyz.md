@@ -1,7 +1,7 @@
 # XYZ Image Specification (XYZ)
 | Key | Value |
 | --- | --- |
-| Version | 2.1.1 |
+| Version | 2.1.2 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -10,7 +10,7 @@
 * [Data Types](#data-types)
   * [Basic Data Types](#basic-data-types)
   * [Complex Data Types](#complex-data-types)
-    * [RGB Values](#rgb-values)
+    * [RGB Type](#rgb-type)
 * [XYZ File Structure](#xyz-file-structure)
 * [Document Changes](#document-changes)
 * [Legal Information](#legal-information)
@@ -40,7 +40,7 @@ These types are considered _primitive_ as all other data types are constructed u
 ### Complex Data Types
 These types are built using a combination of [Basic Data Types](#basic-data-types).
 
-#### RGB
+#### RGB Type
 The `RGB` type represents a color with three channels: red, green, and blue.
 
 | Field | Type | Description |
@@ -63,6 +63,9 @@ This section details the overall structure of an XYZ file.
 <sup>1</sup> All of the fields after the `Height` parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm; all fields before this are uncompressed. Libraries such as zlib may be used to decompress this data.
 
 ## Document Changes
+### Version 2.1.2
+Rename the "RGB" section to "RGB Type" and fix its entry in the Table of Contents.
+
 ### Version 2.1.1
 Remove the "Status" field in the document information table.
 
