@@ -157,6 +157,8 @@ Marks the end of a structure or specific tags. This tag only has an ID.
 | --- | --- | --- |
 | TagID | VINT | TagID is 0. |
 
+---
+
 ### Map Info Tags
 These tags are used in the [Map Info Structure](#map-info-structure).
 
@@ -358,6 +360,8 @@ This tag specifies the area rectangle for a map's view. Regular maps have a rect
 | Right | U32 | The right-coordinate of the rectangle. |
 | Bottom | U32 | The bottom-coordinate of the rectangle. |
 
+---
+
 ### Map Start Tags
 These tags are used in the [Map Start Structure](#map-start-structure).
 
@@ -469,6 +473,8 @@ This tag specifies the starting y-position within the airship map.
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
+---
+
 ### Music Tags
 These tags are used within the [Music Tag](#music-tag).
 
@@ -517,6 +523,8 @@ This tag specifies the left-right balance for a map's music.
 | TagID | VINT | TagID is 5. |
 | TagSize | VINT | The size of `Balance` measured in bytes. |
 | Balance | VINT | The music's left-right balance. |
+
+---
 
 ### Encounter Tags
 These tags are used within the [Encounters Tag](#encounters-tag).
