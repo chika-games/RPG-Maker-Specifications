@@ -17,6 +17,7 @@
 * [Map Start Structure](#map-start-structure)
 * [Tags](#tags)
    * [Map Info Tags](#map-info-tags)
+   * [Map Start Tags](#map-start-tags)
    * [Music Tags](#music-tags)
    * [Encounter Tags](#encounter-tags)
 * [Document Changes](#document-changes)
@@ -356,6 +357,117 @@ This tag specifies the area rectangle for a map's view. Regular maps have a rect
 | Top | U32 | The top-coordinate of the rectangle. |
 | Right | U32 | The right-coordinate of the rectangle. |
 | Bottom | U32 | The bottom-coordinate of the rectangle. |
+
+### Map Start Tags
+These tags are used in the [Map Start Structure](#map-start-structure).
+
+#### Party Map ID Tag
+This tag specifies the party's starting map ID.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 1. |
+| TagSize | VINT | The size of `MapID` measured in bytes. |
+| MapID | VINT | The starting map ID. |
+
+#### Party X Tag
+This tag specifies the party's starting x-position within the starting map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 2. |
+| TagSize | VINT | The size of `XPos` measured in bytes. |
+| XPos | VINT | The starting x-position. |
+
+#### Party Y Tag
+This tag specifies the party's starting y-position within the starting map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 3. |
+| TagSize | VINT | The size of `YPos` measured in bytes. |
+| YPos | VINT | The starting y-position. |
+
+#### Boat Map ID Tag
+This tag specifies the boat map's ID.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 11. |
+| TagSize | VINT | The size of `MapID` measured in bytes. |
+| MapID | VINT | The boat map ID. |
+
+#### Boat X Tag
+This tag specifies the starting x-position within the boat map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 12. |
+| TagSize | VINT | The size of `XPos` measured in bytes. |
+| XPos | VINT | The starting x-position. |
+
+#### Boat Y Tag
+This tag specifies the starting y-position within the boat map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 13. |
+| TagSize | VINT | The size of `YPos` measured in bytes. |
+| YPos | VINT | The starting y-position. |
+
+#### Ship Map ID Tag
+This tag specifies the ship map's ID.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 21. |
+| TagSize | VINT | The size of `MapID` measured in bytes. |
+| MapID | VINT | The ship map ID. |
+
+#### Ship X Tag
+This tag specifies the starting x-position within the ship map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 22. |
+| TagSize | VINT | The size of `XPos` measured in bytes. |
+| XPos | VINT | The starting x-position. |
+
+#### Ship Y Tag
+This tag specifies the starting y-position within the ship map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 23. |
+| TagSize | VINT | The size of `YPos` measured in bytes. |
+| YPos | VINT | The starting y-position. |
+
+#### Airship Map ID Tag
+This tag specifies the airship map's ID.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 31. |
+| TagSize | VINT | The size of `MapID` measured in bytes. |
+| MapID | VINT | The airship map ID. |
+
+#### Airship X Tag
+This tag specifies the starting x-position within the airship map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 32. |
+| TagSize | VINT | The size of `XPos` measured in bytes. |
+| XPos | VINT | The starting x-position. |
+
+#### Airship Y Tag
+This tag specifies the starting y-position within the airship map.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| TagID | VINT | TagID is 33. |
+| TagSize | VINT | The size of `YPos` measured in bytes. |
+| YPos | VINT | The starting y-position. |
 
 ### Music Tags
 These tags are used within the [Music Tag](#music-tag).
