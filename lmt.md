@@ -82,7 +82,7 @@ __Note:__ RPG Maker has no standard encoding for strings. It is up to the implem
 ## LMT File Structure
 This section details the overall structure of an LMT file.
 
-LMT files can be viewed as having a tag-based structure similar to SWF files. See [Tags](tags) for a list of all relevant tags.
+LMT files can be viewed as having a tag-based structure similar to SWF files. This allows easier traversal of LMT files as unwanted tags can easily be skipped using their size field. See [Tags](tags) for a list of all relevant tags.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -116,7 +116,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
 | Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
-| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. A regular map has a rectangle of [0, 0, 0, 0]. The fields are [left, top, right, bottom]. |
+| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
 <sup>1</sup> Historically, the name of the root map was used to determine the game's title. However, this is remains a historical artifact because game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
@@ -140,7 +140,9 @@ This section details the Map Start Structure in its entirety. In practice, not a
 | AirhipY | [Airship Y Tag](#airship-y-tag) | 0 | The party's starting y-position within the airship map. |
 
 ## Tags
-All tags have a tag ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
+All tags have an ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
+
+This general format should 
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -148,7 +150,7 @@ All tags have a tag ID followed by a size except for [End Tags](#end-tag) and [T
 | TagSize | VINT | The size of the tag's data measured in bytes. |
 
 #### End Tag
-Marks the end of some structure or other specific tags. This tag only has an ID.
+Marks the end of a structure or specific tags. This tag only has an ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -163,8 +165,9 @@ This tag stores the name of a map.
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 1. |
-| TagSize | VINT | The size of the map's name in bytes. |
-| MapName | U8[`TagSize`] | The map's name. |
+| MapName | STRING | The map's name. |
+
+(`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
 
 #### Parent ID Tag
 This tag stores the ID of a parent map.
@@ -173,7 +176,7 @@ This tag stores the ID of a parent map.
 | --- | --- | --- |
 | TagID | VINT | TagID is 2. |
 | TagSize | VINT | The size of `ParentID` measured in bytes. |
-| ParentID | VINT | The parent map's ID. 0 means there is no parent map. |
+| ParentID | VINT | The parent map's ID. `0` means there is no parent map. |
 
 #### Indentation Tag
 | Field | Type | Description |
@@ -189,8 +192,9 @@ This tag specifies the type of map being described.
 | --- | --- | --- |
 | TagID | VINT | TagID is 4. |
 | TagSize | VINT | The size of `MapType` measured in bytes. |
-| MapType | VINT | The map's type. Special map types are listed below. |
+| MapType | VINT | The map's type. Map types are listed below. |
 
+##### Map Types
 | Type | Value | Description |
 | --- | --- | --- |
 | Root | 0 | A root map. |
@@ -198,7 +202,7 @@ This tag specifies the type of map being described.
 | Area | 2 | An area map. |
 
 #### Edit Position X Tag
-This tag is for editor use only. The camera's x-position within an editor<sup>?</sup>.
+This tag is for editor use only.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -207,7 +211,7 @@ This tag is for editor use only. The camera's x-position within an editor<sup>?<
 | EditPosX | VINT | The editor x-position. |
 
 #### Edit Position Y Tag
-This tag is for editor use only. The camera's y-position within an editor<sup>?</sup>.
+This tag is for editor use only.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -233,10 +237,11 @@ This tag specifies how music should be played within a map.
 | TagSize | VINT | The size of `MusicType` measured in bytes. |
 | MusicType | VINT | The map's music type. Special music types are listed below. |
 
+##### Music Types
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the music. |
-| Event | 1 | Music specified through an event. |
+| Event | 1 | Music provided through an event. |
 | Specified | 2 | Music is specified explicitly. |
 
 #### Music Tag
@@ -245,12 +250,12 @@ This tag specifies various music properties for a map. If one of the listed tags
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
 | TagID | VINT | Always present. | TagID is 12. |
-| TagSize | VINT | Always present. | The total size of the below tags measured in bytes. |
+| TagSize | VINT | Always present. | The total size of the below fields measured in bytes. |
 | MusicName | [Music Name Tag](#music-name-tag) | An empty string. | The filename of the music to be played. |
-| MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means there is no fading. |
+| MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means no fade. |
 | MusicVolume | [Music Volume Tag](#music-volume-tag) | 100 | The volume of the music. |
 | MusicTempo | [Music Tempo Tag](#music-tempo-tag) | 100 | The tempo of the music. |
-| MusicBalance | [Music Balance Tag](#music-balance-tag) | 50 | The left-right balance of the music. 50 means centered. |
+| MusicBalance | [Music Balance Tag](#music-balance-tag) | 50 | The left-right balance of the music. 50 is central. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the music tag. |
 
 #### Background Type Tag
@@ -262,10 +267,11 @@ This tag specifies the type of background within a map.
 | TagSize | VINT | The size of `BackgroundType` measured in bytes. |
 | BackgroundType | VINT | The map's background type. Special background types are listed below. |
 
+##### Background Types
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the background. |
-| TerrainLdb | 1 |  |
+| TerrainLDB | 1 |  |
 | Specified | 2 | Background is specified explicitly. |
 
 #### Background Name Tag
@@ -274,9 +280,9 @@ This tag specifies the filename of a map's background.
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 22. |
-| TagSize | VINT | The size of the background's name in bytes. |
-| BackgroundName | U8[`TagSize`] | The background's filename. |
+| BackgroundName | STRING | The background's filename. |
 
+(`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
 
 #### Teleport Flag Tag
 | Field | Type | Description |
@@ -285,6 +291,7 @@ This tag specifies the filename of a map's background.
 | TagSize | VINT | The size of `TeleportFlag` measured in bytes. |
 | TeleportFlag | VINT | The map's teleport flag. Special values are listed below. |
 
+##### Teleport Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the flag's value. |
@@ -298,6 +305,7 @@ This tag specifies the filename of a map's background.
 | TagSize | VINT | The size of `EscapeFlag` measured in bytes. |
 | EscapeFlag | VINT | The map's escape flag. Special values are listed below. |
 
+##### Escape Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the flag's value. |
@@ -311,6 +319,7 @@ This tag specifies the filename of a map's background.
 | TagSize | VINT | The size of `SaveFlag` measured in bytes. |
 | SaveFlag | VINT | The map's save flag. Special values are listed below. |
 
+##### Save Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the flag's value. |
@@ -318,7 +327,7 @@ This tag specifies the filename of a map's background.
 | False | 2 | The flag is unset. |
 
 #### Encounters Tag
-This tag outlines any encounters within a map.
+This tag describes any encounters within a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -334,15 +343,15 @@ This tag specifies the encounter steps for a map.
 | --- | --- | --- |
 | TagID | VINT | TagID is 44. |
 | TagSize | VINT | The size of `EncounterSteps` measured in bytes. |
-| EncounterSteps | VINT | The encounter steps for a map. 0 means encounters are disabled. |
+| EncounterSteps | VINT | The encounter steps for a map. |
 
 #### Area Rectangle Tag
-This tag specifies the area rectangle for a map. Regular maps have a rectangle of [0, 0, 0, 0].
+This tag specifies the area rectangle for a map's view. Regular maps have a rectangle of [0, 0, 0, 0].
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 51. |
-| TagSize | VINT | Should always be 16<sup>?</sup>. |
+| TagSize | VINT | Should be 16. |
 | Left | U32 | The left-coordinate of the rectangle. |
 | Top | U32 | The top-coordinate of the rectangle. |
 | Right | U32 | The right-coordinate of the rectangle. |
@@ -357,8 +366,9 @@ This tag specifies the filename of the music to be played in a map.
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 1. |
-| TagSize | VINT | The size of the music's filename in bytes. |
-| MapName | U8[`TagSize`] | The music's filename. |
+| MusicName | STRING | The music's filename. |
+
+(`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
 
 #### Music Fade Time Tag
 This tag specifies the fade time for a map's music.
@@ -399,16 +409,14 @@ This tag specifies the left-right balance for a map's music.
 ### Encounter Tags
 These tags are used within the [Encounters Tag](#encounters-tag).
 
-#### Troop Tag<sup>?</sup>
+#### Troop Tag
 | Field | Type | Description |
 | --- | --- | --- |
 | TroopIndex | VINT | The troop's index within an encounter array. |
 | ??? | VINT |   |
 | ??? | VINT |   |
-| TroopID | VINT | The troop's unique ID. This can be treated as the type of troop<sup>3</sup>. |
+| TroopID | VINT | The type of troop. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
-
-<sup>3</sup> For example, a game may understand 15 to be green ooze.
 
 ## Document Changes
 
