@@ -122,6 +122,22 @@ This section details the Map Info Structure in its entirety. In practice, not al
 <sup>1</sup> Historically, the name of the root map was used to determine the game's title. However, this is remains a historical artifact because game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
 ## Map Start Structure
+This section details the Map Start Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
+
+| Field | Type | Default Value | Description |
+| --- | --- | --- | --- |
+| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the normal starting map. |
+| PartyX | [Party X Tag](#party-x-tag) | Always present. | The party's starting x-position within the starting map. |
+| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The party's starting y-position within the starting map. |
+| BoatMapID | [Boat Map ID Tag](#boat-map-id-tag) | 0 | The ID of the boat map. |
+| BoatX | [Boat X Tag](#boat-x-tag) | 0 | The party's starting x-position within the boat map. |
+| BoatY | [Boat Y Tag](#boat-y-tag) | 0 | The party's starting y-position within the boat map. |
+| ShipMapID | [Ship Map ID Tag](#ship-map-id-tag) | 0 | The ID of the ship map. |
+| ShipX | [Ship X Tag](#ship-x-tag) | 0 | The party's starting x-position within the ship map. |
+| ShipY | [Ship Y Tag](#ship-y-tag) | 0 | The party's starting y-position within the ship map. |
+| AirhipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the airship map. |
+| AirhipX | [Airship X Tag](#airship-x-tag) | 0 | The party's starting x-position within the airship map. |
+| AirhipY | [Airship Y Tag](#airship-y-tag) | 0 | The party's starting y-position within the airship map. |
 
 ## Tags
 All tags have a tag ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
