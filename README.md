@@ -18,9 +18,9 @@ All of the specifications within this repository are written with independence i
 Each specification includes a table that specifies its __Version__ and __License__ information.
 
 __Version__ provides the relevant document's version. This field has three potential values:
-* _Researching_ means the specification is still being researched and drafted.
-* _Finalizing_ all relevant research has completed, and the specification is undergoing finalization.
-* A completed specification will have a major.minor.revision version format.
+* _Researching_ indicates the specification is still being researched and drafted.
+* _Finalizing_ means all relevant research has completed, and the specification is undergoing finalization.
+* A completed specification will have a `major.minor.revision` version format.
 
 __License__ provides a specification's copyright license. All specifications are provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
