@@ -6,6 +6,7 @@ This repository contains specifications the various file formats used by RPG Mak
 * [Introduction](#introduction)
 * Table of Contents
 * [About The Specifications](#about-the-specifications)
+* [RPG Maker Config File (RPG_RT.ini)](#rpg-maker-config-file-rpg_rtini)
 * [XYZ Images (XYZ)](#xyz-images-xyz)
 * [LCF Map Tree (LMT)](#lcf-map-tree-lmt)
 * [LCF Save Data (LSD)](#lcf-save-data-lsd)
