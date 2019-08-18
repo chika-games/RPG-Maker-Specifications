@@ -11,7 +11,7 @@
     * [Basic Data Types](#basic-data-types)
         * [Variable-Size Integers](#variable-size-integers)
     * [Complex Data Types](#complex-data-types)
-        * [String Values](#string-values)
+        * [String Type](#string-type)
 * [LMT File Structure](#lmt-file-structure)
 * [Map Info Structure](#map-info-structure)
 * [Map Start Structure](#map-start-structure)
@@ -23,76 +23,76 @@
 * [Legal Information](#legal-information)
 
 ## Introduction
-LCF Map Tree files are used to store map properties, game start information, and map orderings.
+LCF Map Tree files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 games.
 
-__Speculation:__ Any piece of information superscripted with a question mark (?) is speculation and should not be treated as fact.
-
-This specification is part of a larger collection that can be found at the following link: [https://github.com/napen123/rpgmaker-asset-specs](https://github.com/napen123/rpgmaker-asset-specs)
+This specification is part of a larger collection that can be found at the following URL: [https://github.com/chika-games/RPGMaker-Specifications](https://github.com/chika-games/RPGMaker-Specifications)
 
 ## Data Types
-This section describes the various data types that will be used throughout this document.
+This section describes the various data types that will be used throughout this specification.
 
-Types may be appended with `[n]` in order to denote a contiguous array of said type where `n` is the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
+Little-endian byte order is assumed for all types; the least significant byte is stored first, and the most significant byte is stored last.
+
+Types may be appended with `[n]` in order to denote a contiguous array of the type with `n` being the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
 
 ### Basic Data Types
-These are the "atomic" types as all other structures are built using these fundamental types.
+These types are considered basic as all other data types are constructed using these.
 
 | Type | Description |
 | --- | --- |
 | U8 | An unsigned 8-bit integer. |
 | U32 | An unsigned 32-bit integer. |
-| VINT | An integer of variable size. See [Variable-Size Integers](#variable-size-integers) for more information. |
+| VINT | An integer of variable size. See [Variable-Size Integers](#variable-size-integers). |
 
 #### Variable-Size Integers
-LCF files predominantly use integers of variable size instead of the more common fixed-length formats, such as 32-bit integers. These types of integers can be thought of as a form of compression: integers will only take up the necessary amount of bytes needed in order to encode a particular value. This is in contrast to fixed-size formats as they will always be represented using the same number of bits regardless of the number being represented.
+LCF files predominantly use integers of variable size instead of the more common fixed-length formats. These types of integers will only take up the necessary amount of bytes needed in order to encode its value. For example, the value `25` will be represented using a single byte; `123456` will take up two bytes. This helps reduce the overall size of the LCF file.
 
-For example, the value `25` will be represented using a single byte; `123456` will take up two bytes.
-
-Below is a piece of pseudocode that reads and decodes these variable-length integers into a fixed format:
-```python
-u32 read_variable_integer(reader):
-    u32 ret = 0
+Below is some pseudocode that reads and decodes these variable-length integers into a fixed-length format:
+```rust
+u32 read_variable_integer(reader) {
+    u32 ret = 0;
     
-    while true:
-        u8 b = reader.read_u8()
+    while true {
+        u8 b = reader.read_u8();
         
-        ret <<= 7
-        ret |= b & 0x7F
+        ret <<= 7;
+        ret |= b & 0x7F;
         
-        if (b & 0x80) == 0:
-            break
+        if (b & 0x80) == 0 {
+            break;
+        }
+    }
     
-    return ret
+    return ret;
+}
 ```
-(This code was adapted from the [gabien-app-r48](https://github.com/20kdc/gabien-app-r48) repository.)
 
 ### Complex Data Types
 These types are built using a combination of [Basic Data Types](#basic-data-types).
 
-#### String Values
-`STRING` values represent a length-prepended string of characters. These are used to represent all forms of textual data.
+#### String Type
+The `STRING` type represent a length-prepended string of characters. These are used for all forms of textual data.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | Length | VINT | The length of the string measured in bytes. |
 | Characters | U8[`Length`] | The array of characters that make up the string. |
 
-No guarantee is made about the encoding of the characters<sup>1</sup>; therefore, it is up to the implementor's discretion as to which one to use.
-
-<sup>1</sup> Most games using the Japanese language are encoded in [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
+__Note:__ RPG Maker has no standard encoding for strings. It is up to the implementor's discretion as to which encoding to use. (Newer games will usually use UTF-8; Japanese games will tend to use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
 
 ## LMT File Structure
-This section gives an overview of LMT files as a whole. All LMT files will follow the same basic format:
+This section details the overall structure of an LMT file.
+
+LMT files can be viewed as having a tag-based structure similar to SWF files. See [Tags](tags) for a list of all relevant tags.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| Signature | STRING | This field is used to determine if a file claims to be a valid LMT file. The value of this field should always be "LcfMapTree". |
-| MapInfoCount | VINT | The number of [Map Info Structures](#map-info-structure) present. |
-| MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of map information. |
-| MapOrderCount | VINT | The number of map orderings present. |
-| MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for the maps presented in `MapInfos`. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
+| Signature | STRING | This field is the file's signature. The value of this field should always be "LcfMapTree". |
+| MapInfoCount | VINT | The number of [Map Info Structures](#map-info-structure). |
+| MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
+| MapOrderCount | VINT | The number of map orderings. |
+| MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
 | Active Node | VINT | |
-| MapStart | [Map Start](#map-start-structure) | This field holds map starting information, such as starting position. |
+| MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
 ## Map Info Structure
 Map info is represented using a tag-based model where each property is represented using a tag. No guarantee is made about the presense of each tag. In the case of a missing tag, the property it represents is expected to take on a specified default value. The order in which the tags appear are guaranteed to be in the listed order<sup>?</sup>. See [Tags](#tags) for more information about tags.
