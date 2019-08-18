@@ -91,35 +91,35 @@ LMT files can be viewed as having a tag-based structure similar to SWF files. Se
 | MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
 | MapOrderCount | VINT | The number of map orderings. |
 | MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
-| Active Node | VINT | |
+| Active Node | VINT | For editor use only. The value of this field is a map ID. |
 | MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
 ## Map Info Structure
-Map info is represented using a tag-based model where each property is represented using a tag. No guarantee is made about the presense of each tag. In the case of a missing tag, the property it represents is expected to take on a specified default value. The order in which the tags appear are guaranteed to be in the listed order<sup>?</sup>. See [Tags](#tags) for more information about tags.
+This section details the Map Info Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as a playable map; it is used to provide top-level information<sup>2</sup>. |
-| MapName | [Map Name Tag](#map-name-tag) | An empty string. Should always be present<sup>?</sup>. | The map's name. |
-| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map. Maps should be thought of as being in a tree hierarchy. |
+| MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as an ordinary playable map<sup>1</sup>. |
+| MapName | [Map Name Tag](#map-name-tag) | Always present. | The map's name. |
+| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means no parent. |
 | Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
-| MapType | [Map Type Tag](#map-type-tag) | root (0) | The type of map being described. |
-| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. The camera's x-position within an editor<sup>?</sup>. |
-| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. The camera's y-position within an editor<sup>?</sup>. |
-| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | false (0) | For editor use only. |
-| MusicType | [Music Type Tag](#music-type-tag) | inherit (0) | How music should be played. |
-| Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | Properties pertaining to music, such as volume and tempo. |
-| BackgroundType | [Background Type Tag](#background-type-tag) | inherit (0) | The type of background to display. |
-| BackgroundName | [Background Name Tag](#background-name-tag) | An empty string. Should always be present<sup>?</sup>. | The filename of the background to display. |
-| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | inherit (0) |  |
-| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | inherit (0) |  |
-| SaveFlag | [Save Flag Tag](#save-flag-tag) | inherit (0) |  |
-| Encounters | [Encounters Tag](#encounters-tag) | An empty array. Should always be present<sup>?</sup>. | An array of encounters within the map. |
+| MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
+| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
+| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
+| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For internal editor use only. |
+| MusicType | [Music Type Tag](#music-type-tag) | Inherit (0) | How music should be played. |
+| Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
+| BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
+| BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
+| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | Inherit (0) |  |
+| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | Inherit (0) |  |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
+| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
-| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0]. Should always be present<sup>?</sup>. | The map area rectangle. A regular map has a rectangle of [0, 0, 0, 0]. |
+| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. A regular map has a rectangle of [0, 0, 0, 0]. The fields are [left, top, right, bottom]. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
-<sup>2</sup> Historically, the name of the root map was used to determine a game's title. This, however, remains mostly an ancient artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+<sup>1</sup> Historically, the name of the root map was used to determine the game's title. However, this is remains a historical artifact because game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
 ## Map Start Structure
 
