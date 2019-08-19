@@ -13,6 +13,7 @@
     * [Complex Data Types](#complex-data-types)
         * [String Type](#string-type)
 * [LMT File Structure](#lmt-file-structure)
+    * [Example Map Hierarchy](#example-map-hierarchy)
 * [Map Info Structure](#map-info-structure)
 * [Map Start Structure](#map-start-structure)
 * [Tags](#tags)
@@ -103,7 +104,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as an ordinary playable map<sup>1</sup>. |
 | MapName | [Map Name Tag](#map-name-tag) | Always present. | The map's name. |
 | ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means this is a top-level map (parent is root). |
-| Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
+| Indentation | [Indentation Tag](#indentation-tag) | 0 (root); 1 (non-root) | The map's hierarchical indentation; indicates the number of parent maps. `0` is reserved for root maps, `1` is for top-level maps (direct children of the root map), etc. See [Example Map Hierarchy](#example-map-hierarchy). |
 | MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
 | EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
 | EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
@@ -121,6 +122,18 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
 <sup>1</sup> The root map forms the top-most part of the map hierarchy; all maps are children to the root. Additionally, the name of the root map was once used to determine a game's title. However, this is remains a historical artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+
+### Example Map Hierarchy
+This is an example hierarchy to help illustrate what the `ParentID` and `Indentation` fields are for. Notice all maps are children to the root map.
+
+```
+. My Game (root; indentation=0)
++-- Map 1 (parent=0; indentation=1)
+|   +-- Map 2 (parent=1; indentation=2)
+|   |   +-- Map 5 (parent=2; indentation=3)
+|   |   +-- Map 4 (parent=1; indentation=2)
++-- Map 3 (parent=0; indentation=1)
+```
 
 ## Map Start Structure
 This section details the Map Start Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
