@@ -1,7 +1,7 @@
 # RPG Maker Config File Specification (RPG_RT.ini)
 | Key | Value |
 | --- | --- |
-| Version | _Researching_ |
+| Version | _Finalizing_ |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -9,12 +9,14 @@
 * [Introduction](#introduction)
 * [Data Types](#data-types)
 * [Config File Structure](#config-file-structure)
+    * [Map Editing Modes](#map-editing-modes)
+    * [Map Zoom Levels](#map-zoom-levels)
 * [Example Config File](#example-config-file)
 * [Document Changes](#document-changes)
 * [Legal Information](#legal-information)
 
 ## Introduction
-The `RPG_RT.ini` configuation file provides basic startup information used by RPG Maker 2000 and 2003 when launching a game. This file follows a simple [INI](https://en.wikipedia.org/wiki/INI_file) format, as its file extension suggests.
+The `RPG_RT.ini` configuation file provides basic game information for RPG Maker 2000 and 2003. This file follows a simple [INI](https://en.wikipedia.org/wiki/INI_file) format.
 
 ## Data Types
 This section describes the various data types that will be used throughout this specification.
@@ -22,7 +24,7 @@ This section describes the various data types that will be used throughout this 
 | Type | Description |
 | --- | --- |
 | STRING | A string of characters. |
-| INT | A signed integer. |
+| UINT | An unsigned integer. |
 | BOOL | A boolean integer: `0` is false and `1` is true. |
 
 ## Config File Structure
@@ -35,9 +37,24 @@ None of the fields listed below are required and may be omitted; missing fields 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
 | GameTitle | STRING | "Untitled" | Determines the title of the game window. |
-| MapEditMode | INT | 0 | |
-| MapEditZoom | INT | 0 | |
+| MapEditMode | UINT | 0 | For editor use only. Indicates the last layer-editing mode used. This may help when re-opening a project; the last selected mode can automatically be re-selected. See [Map Editing Modes](#map-editing-modes). |
+| MapEditZoom | UINT | 0 | For editor use only. Indicates the last zoom level used. This may help when re-opening a project; the last zoom level selected can automatically be re-selected. See [Map Zoom Levels](#map-zoom-levels). |
 | FullPackageFlag | BOOL | false (`0`) | Determines whether or not to skip loading a runtime package (RTP); true (`1`) means do not load. |
+
+### Map Editing Modes
+| Mode | Value |
+| --- | --- |
+| Lower Layer | 0 |
+| Upper Layer | 1 |
+| Event Layer | 2 |
+
+### Map Zoom Levels
+| Level | Value |
+| --- | --- |
+| 1:1 Ratio | 0 |
+| 1:2 Ratio | 1 |
+| 1:4 Ratio | 2 |
+| 1:8 Ratio | 3 |
 
 ## Example Config File
 Below is an example configuration file for demonstration purposes.
