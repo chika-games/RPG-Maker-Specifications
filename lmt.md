@@ -113,9 +113,9 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
 | BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
-| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleportation spells/items may be used to escape the map. |
-| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escape spells/items may be used to escape the map. |
-| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) |  |
+| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleporting out of the map is allowed. |
+| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escaping out of the map is allowed. |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) | Determines whether or not saving is allowed within the map. |
 | Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of random enemy encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps between each random encounter. |
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
@@ -303,6 +303,8 @@ This tag specifies the filename of a map's background.
 (`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
 
 #### Teleport Flag Tag
+Determines whether or not teleporting out of the map is allowed. For top-level maps (maps whose parent is the root map), the default value of `TeleportFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 31. |
@@ -312,11 +314,13 @@ This tag specifies the filename of a map's background.
 ##### Teleport Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow teleporting. |
+| Forbid | 2 | Forbid teleporting. |
 
 #### Escape Flag Tag
+Determines whether or not escaping out of the map is allowed. For top-level maps (maps whose parent is the root map), the default value of `EscapeFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 32. |
@@ -326,11 +330,15 @@ This tag specifies the filename of a map's background.
 ##### Escape Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow escaping. |
+| Forbid | 2 | Forbid escaping. |
 
 #### Save Flag Tag
+Determines whether or not saving is allowed within the map. For top-level maps (maps whose parent is the root map), the default value of `EscapeFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
+If `SaveFlag` is set to `Allow`, then a save option will be available in the pause menu; otherwise, saving can only occur through events.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 33. |
@@ -340,9 +348,9 @@ This tag specifies the filename of a map's background.
 ##### Save Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow saving. |
+| Forbid | 2 | Forbid saving. |
 
 #### Encounters Tag
 This tag describes the type of enemy encounters within a map.
