@@ -269,7 +269,7 @@ This tag specifies various music properties for a map. If one of the listed tags
 | --- | --- | --- | --- |
 | TagID | VINT | Always present. | TagID is 12. |
 | TagSize | VINT | Always present. | The total size of the below fields measured in bytes. |
-| MusicName | [Music Name Tag](#music-name-tag) | An empty string. | The filename of the music to be played. |
+| MusicName | [Music Name Tag](#music-name-tag) | "(OFF)" | The filename of the music to be played. |
 | MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means no fade. |
 | MusicVolume | [Music Volume Tag](#music-volume-tag) | 100 | The volume of the music. |
 | MusicTempo | [Music Tempo Tag](#music-tempo-tag) | 100 | The tempo of the music. |
@@ -496,7 +496,7 @@ This tag specifies the starting y-position within the airship map.
 These tags are used within the [Music Tag](#music-tag).
 
 #### Music Name Tag
-This tag specifies the filename of the music to be played in a map.
+This tag specifies the filename of the music to be played in a map. If `MusicName` is "(OFF)", then no music will automatically play within the map.
 
 | Field | Type | Description |
 | --- | --- | --- |
