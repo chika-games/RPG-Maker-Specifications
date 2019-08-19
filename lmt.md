@@ -1,7 +1,7 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | 1.0.0 |
+| Version | 2.0.0 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -15,6 +15,7 @@
 * [LMT File Structure](#lmt-file-structure)
 * [Map Info Structure](#map-info-structure)
 * [Map Start Structure](#map-start-structure)
+* [Example Map Hierarchy](#example-map-hierarchy)
 * [Tags](#tags)
    * [Map Info Tags](#map-info-tags)
    * [Map Start Tags](#map-start-tags)
@@ -91,8 +92,8 @@ LMT files can be viewed as having a tag-based structure similar to SWF files. Th
 | MapInfoCount | VINT | The number of [Map Info Structures](#map-info-structure). |
 | MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
 | MapOrderCount | VINT | The number of map orderings. |
-| MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
-| Active Node | VINT | For editor use only. The value of this field is a map ID. |
+| MapOrders | VINT[`MapOrderCount`] | This array holds the hierarchical orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
+| ActiveNode | VINT | For editor use only. The value of this field is the ID of the last active map. Editors may use this to re-open the last active map when opening a project. |
 | MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
 ## Map Info Structure
@@ -102,48 +103,62 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | --- | --- | --- | --- |
 | MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as an ordinary playable map<sup>1</sup>. |
 | MapName | [Map Name Tag](#map-name-tag) | Always present. | The map's name. |
-| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means no parent. |
-| Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
+| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means this is a top-level map (parent is root). |
+| Indentation | [Indentation Tag](#indentation-tag) | 0 (root); 1 (non-root) | The map's hierarchical indentation; indicates the number of parent maps. `0` is reserved for root maps, `1` is for top-level maps (direct children of the root map), etc. See [Example Map Hierarchy](#example-map-hierarchy). |
 | MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
-| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
-| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
-| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For internal editor use only. |
-| MusicType | [Music Type Tag](#music-type-tag) | Inherit (0) | How music should be played. |
+| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last x-position when this map was last edited. |
+| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last y-position when this map was last edited. |
+| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For editor use only. |
+| MusicType | [Music Type Tag](#music-type-tag) | See tag's section. | How music should be played. |
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
 | BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
-| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | Inherit (0) |  |
-| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | Inherit (0) |  |
-| SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
-| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of encounters within the map. |
-| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
-| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. |
+| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleporting out of the map is allowed. |
+| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escaping out of the map is allowed. |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) | Determines whether or not saving is always allowed within the map. |
+| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of random enemy encounters within the map. |
+| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps between each random encounter. |
+| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
-<sup>1</sup> Historically, the name of the root map was used to determine the game's title. However, this is remains a historical artifact because game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+<sup>1</sup> The root map forms the top-most part of the map hierarchy; all maps are children to the root. Additionally, the name of the root map was once used to determine a game's title. However, this is remains a historical artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
 ## Map Start Structure
 This section details the Map Start Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the normal starting map. |
-| PartyX | [Party X Tag](#party-x-tag) | Always present. | The party's starting x-position within the starting map. |
-| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The party's starting y-position within the starting map. |
-| BoatMapID | [Boat Map ID Tag](#boat-map-id-tag) | 0 | The ID of the boat map. |
-| BoatX | [Boat X Tag](#boat-x-tag) | 0 | The party's starting x-position within the boat map. |
-| BoatY | [Boat Y Tag](#boat-y-tag) | 0 | The party's starting y-position within the boat map. |
-| ShipMapID | [Ship Map ID Tag](#ship-map-id-tag) | 0 | The ID of the ship map. |
-| ShipX | [Ship X Tag](#ship-x-tag) | 0 | The party's starting x-position within the ship map. |
-| ShipY | [Ship Y Tag](#ship-y-tag) | 0 | The party's starting y-position within the ship map. |
-| AirhipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the airship map. |
-| AirhipX | [Airship X Tag](#airship-x-tag) | 0 | The party's starting x-position within the airship map. |
-| AirhipY | [Airship Y Tag](#airship-y-tag) | 0 | The party's starting y-position within the airship map. |
+| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the player's starting map. |
+| PartyX | [Party X Tag](#party-x-tag) | Always present. | The player's starting x-position within the starting map. |
+| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The player's starting y-position within the starting map. |
+| SkiffMapID | [Skiff Map ID Tag](#skiff-map-id-tag) | 0 | The ID of the map to spawn the skiff in. |
+| SkiffX | [Skiff X Tag](#skiff-x-tag) | 0 | The skiff's starting x-position within its starting map. |
+| SkiffY | [Skiff Y Tag](#skiff-y-tag) | 0 | The skiff's starting y-position within its starting map. |
+| ShipMapID | [Ship Map ID Tag](#ship-map-id-tag) | 0 | The ID of the map to spawn the ship in. |
+| ShipX | [Ship X Tag](#ship-x-tag) | 0 | The ship's starting x-position within its starting map. |
+| ShipY | [Ship Y Tag](#ship-y-tag) | 0 | The ship's starting y-position within its starting map. |
+| AirshipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the map to spawn the airship in. |
+| AirshipX | [Airship X Tag](#airship-x-tag) | 0 | The airship's starting x-position within its starting map. |
+| AirshipY | [Airship Y Tag](#airship-y-tag) | 0 | The airship's starting y-position within its starting map. |
+
+## Example Map Hierarchy
+This is an example hierarchy to help illustrate various fields of an LMT file. Notice all maps are children to the root map.
+
+```
+. My Game (root; indentation=0)
++-- Map 1 (parent=0; indentation=1)
+|   +-- Map 2 (parent=1; indentation=2)
+|   |   +-- Map 5 (parent=2; indentation=3)
+|   |   +-- Map 4 (parent=1; indentation=2)
++-- Map 3 (parent=0; indentation=1)
+```
+
+The orderings for these maps should then be [__0__, __1__, __2__, __5__, __4__, __3__].
 
 ## Tags
-All tags have an ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
+All tags have an ID followed by a size except for [End Tags](#end-tag) and [Monster Group Tags](#monster-group-tag).
 
-This general format should 
+Basic format:
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -202,25 +217,25 @@ This tag specifies the type of map being described.
 | --- | --- | --- |
 | Root | 0 | A root map. |
 | Map | 1 | A regular map. |
-| Area | 2 | An area map. |
+| Area | 2 | An area of a map. |
 
 #### Edit Position X Tag
-This tag is for editor use only.
+This tag is for editor use only. This represents the editor's last x-position when a particular map was last edited.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 5. |
 | TagSize | VINT | The size of `EditPosX` measured in bytes. |
-| EditPosX | VINT | The editor x-position. |
+| EditPosX | VINT | The editor's last x-position. |
 
 #### Edit Position Y Tag
-This tag is for editor use only.
+This tag is for editor use only. This represents the editor's last y-position when a particular map was last edited.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 6. |
 | TagSize | VINT | The size of `EditPosY` measured in bytes. |
-| EditPosY | VINT | The editor y-position. |
+| EditPosY | VINT | The editor's last y-position. |
 
 #### Edit Expanded Tag
 This tag is for editor use only.
@@ -232,7 +247,7 @@ This tag is for editor use only.
 | EditExpanded | VINT | This field may be treated like a boolean value: false when zero and true when nonzero. |
 
 #### Music Type Tag
-This tag specifies how music should be played within a map.
+This tag specifies how music should be played within a map. The default music type should be Inherit (0) for top-level maps (maps whose parent is the root map) and Event (1) for all other maps.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -254,7 +269,7 @@ This tag specifies various music properties for a map. If one of the listed tags
 | --- | --- | --- | --- |
 | TagID | VINT | Always present. | TagID is 12. |
 | TagSize | VINT | Always present. | The total size of the below fields measured in bytes. |
-| MusicName | [Music Name Tag](#music-name-tag) | An empty string. | The filename of the music to be played. |
+| MusicName | [Music Name Tag](#music-name-tag) | "(OFF)" | The filename of the music to be played. |
 | MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means no fade. |
 | MusicVolume | [Music Volume Tag](#music-volume-tag) | 100 | The volume of the music. |
 | MusicTempo | [Music Tempo Tag](#music-tempo-tag) | 100 | The tempo of the music. |
@@ -288,6 +303,8 @@ This tag specifies the filename of a map's background.
 (`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
 
 #### Teleport Flag Tag
+Determines whether or not teleporting out of the map is allowed. For top-level maps (maps whose parent is the root map), the default value of `TeleportFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 31. |
@@ -297,11 +314,13 @@ This tag specifies the filename of a map's background.
 ##### Teleport Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow teleporting. |
+| Forbid | 2 | Forbid teleporting. |
 
 #### Escape Flag Tag
+Determines whether or not escaping out of the map is allowed. For top-level maps (maps whose parent is the root map), the default value of `EscapeFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 32. |
@@ -311,11 +330,15 @@ This tag specifies the filename of a map's background.
 ##### Escape Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow escaping. |
+| Forbid | 2 | Forbid escaping. |
 
 #### Save Flag Tag
+Determines whether or not saving is allowed within the map. For top-level maps (maps whose parent is the root map), the default value of `EscapeFlag` is 1; otherwise, for maps with a non-root parent, the default value is 0.
+
+If `SaveFlag` is set to `Allow`, then a save option will be available in the pause menu; otherwise, saving can only occur through events.
+
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 33. |
@@ -325,19 +348,19 @@ This tag specifies the filename of a map's background.
 ##### Save Flag Values
 | Type | Value | Description |
 | --- | --- | --- |
-| Inherit | 0 | Inherit the flag's value. |
-| True | 1 | The flag is set. |
-| False | 2 | The flag is unset. |
+| Inherit | 0 | Use the same value as the map's parent. |
+| Allow | 1 | Allow saving. |
+| Forbid | 2 | Forbid saving. |
 
 #### Encounters Tag
-This tag describes any encounters within a map.
+This tag describes the type of enemy encounters within a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 41. |
 | TagSize | VINT | The total size of the following fields measured in bytes. |
 | EncounterCount | VINT | The number of encounters. |
-| Encounters | [Troop Tag](#troop-tag) [`EncounterCount`] | The troops involved in each encounter. |
+| Encounters | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | The encounters. |
 
 #### Encounter Steps Tag
 This tag specifies the encounter steps for a map.
@@ -349,7 +372,9 @@ This tag specifies the encounter steps for a map.
 | EncounterSteps | VINT | The encounter steps for a map. |
 
 #### Area Rectangle Tag
-This tag specifies the area rectangle for a map's view. Regular maps have a rectangle of [0, 0, 0, 0].
+This tag specifies the boundaries of an area of a map. This only applies to maps with a `MapType` of `Area`; other kinds of maps have a rectangle of [0, 0, 0, 0].
+
+The coordinates are measured in pixels and begin in the top-left corner of a map. For example, an area rectangle of [0, 0, 100, 100] would completely cover a 100x100 map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -366,7 +391,7 @@ This tag specifies the area rectangle for a map's view. Regular maps have a rect
 These tags are used in the [Map Start Structure](#map-start-structure).
 
 #### Party Map ID Tag
-This tag specifies the party's starting map ID.
+This tag specifies the player's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -375,7 +400,7 @@ This tag specifies the party's starting map ID.
 | MapID | VINT | The starting map ID. |
 
 #### Party X Tag
-This tag specifies the party's starting x-position within the starting map.
+This tag specifies the player's starting x-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -384,7 +409,7 @@ This tag specifies the party's starting x-position within the starting map.
 | XPos | VINT | The starting x-position. |
 
 #### Party Y Tag
-This tag specifies the party's starting y-position within the starting map.
+This tag specifies the player's starting y-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -392,17 +417,17 @@ This tag specifies the party's starting y-position within the starting map.
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
-#### Boat Map ID Tag
-This tag specifies the boat map's ID.
+#### Skiff Map ID Tag
+This tag specifies the skiff's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 11. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The boat map ID. |
+| MapID | VINT | The starting map ID. |
 
-#### Boat X Tag
-This tag specifies the starting x-position within the boat map.
+#### Skiff X Tag
+This tag specifies the skiff's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -410,8 +435,8 @@ This tag specifies the starting x-position within the boat map.
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
-#### Boat Y Tag
-This tag specifies the starting y-position within the boat map.
+#### Skiff Y Tag
+This tag specifies the skiff's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -420,16 +445,16 @@ This tag specifies the starting y-position within the boat map.
 | YPos | VINT | The starting y-position. |
 
 #### Ship Map ID Tag
-This tag specifies the ship map's ID.
+This tag specifies the ship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 21. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The ship map ID. |
+| MapID | VINT | The starting map ID. |
 
 #### Ship X Tag
-This tag specifies the starting x-position within the ship map.
+This tag specifies the ship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -438,7 +463,7 @@ This tag specifies the starting x-position within the ship map.
 | XPos | VINT | The starting x-position. |
 
 #### Ship Y Tag
-This tag specifies the starting y-position within the ship map.
+This tag specifies the ship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -447,16 +472,16 @@ This tag specifies the starting y-position within the ship map.
 | YPos | VINT | The starting y-position. |
 
 #### Airship Map ID Tag
-This tag specifies the airship map's ID.
+This tag specifies the airship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 31. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The airship map ID. |
+| MapID | VINT | The starting map ID. |
 
 #### Airship X Tag
-This tag specifies the starting x-position within the airship map.
+This tag specifies the airship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -465,7 +490,7 @@ This tag specifies the starting x-position within the airship map.
 | XPos | VINT | The starting x-position. |
 
 #### Airship Y Tag
-This tag specifies the starting y-position within the airship map.
+This tag specifies the airship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -479,7 +504,7 @@ This tag specifies the starting y-position within the airship map.
 These tags are used within the [Music Tag](#music-tag).
 
 #### Music Name Tag
-This tag specifies the filename of the music to be played in a map.
+This tag specifies the filename of the music to be played in a map. If `MusicName` is "(OFF)", then no music will automatically play within the map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -529,14 +554,14 @@ This tag specifies the left-right balance for a map's music.
 ### Encounter Tags
 These tags are used within the [Encounters Tag](#encounters-tag).
 
-#### Troop Tag
+#### Monster Group Tag
 | Field | Type | Description |
 | --- | --- | --- |
-| TroopIndex | VINT | The troop's index within an encounter array. |
-| ??? | VINT |   |
-| ??? | VINT |   |
-| TroopID | VINT | The type of troop. |
-| End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
+| EncounterIndex | VINT | The position of this encounter within the encounter array starting at `1`. |
+| N/A | VINT | Should be `1`. |
+| GroupBytes | VINT | The size of `GroupID` measured in bytes. |
+| GroupID | VINT | The type of monster group to use. |
+| End | [End Tag](#end-tag) | Indicates the end of the monster group tag. |
 
 ## Document Changes
 ### Version 1.0.0
