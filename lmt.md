@@ -1,7 +1,7 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | 1.1.0 |
+| Version | 2.0.0 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -113,11 +113,11 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
 | BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
-| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | Inherit (0) |  |
-| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | Inherit (0) |  |
-| SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
-| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of enemy encounters within the map. |
-| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
+| TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleportation spells/items may be used to escape the map. |
+| EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escape spells/items may be used to escape the map. |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) |  |
+| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of random enemy encounters within the map. |
+| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps between each random encounter. |
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
