@@ -27,7 +27,7 @@ __License__ provides a specification's copyright license. All specifications are
 ## RPG Maker Config File (RPG_RT.ini)
 The `RPG_RT.ini` file provides basic game information, such as the title.
 
-[__Specification__](config.md) (_Researching_)
+[__Specification__](config.md)
 
 ## XYZ Images (XYZ)
 XYZ files are used by RPG Maker 2000/2003 to store image data.
