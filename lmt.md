@@ -109,7 +109,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last x-position when this map was last edited. |
 | EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last y-position when this map was last edited. |
 | EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For editor use only. |
-| MusicType | [Music Type Tag](#music-type-tag) | Inherit (0) | How music should be played. |
+| MusicType | [Music Type Tag](#music-type-tag) | See tag's section. | How music should be played. |
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
 | BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
@@ -247,7 +247,7 @@ This tag is for editor use only.
 | EditExpanded | VINT | This field may be treated like a boolean value: false when zero and true when nonzero. |
 
 #### Music Type Tag
-This tag specifies how music should be played within a map.
+This tag specifies how music should be played within a map. The default music type should be Inherit (0) for top-level maps (maps whose parent is the root map) and Event (1) for all other maps.
 
 | Field | Type | Description |
 | --- | --- | --- |
