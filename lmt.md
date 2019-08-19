@@ -115,7 +115,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
 | TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleporting out of the map is allowed. |
 | EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escaping out of the map is allowed. |
-| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) | Determines whether or not saving is allowed within the map. |
+| SaveFlag | [Save Flag Tag](#save-flag-tag) | See [Save Flag Tag](#save-flag-tag) | Determines whether or not saving is always allowed within the map. |
 | Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of random enemy encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps between each random encounter. |
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
