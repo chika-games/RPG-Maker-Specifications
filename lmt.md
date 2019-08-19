@@ -122,9 +122,9 @@ This section details the Map Start Structure in its entirety. In practice, not a
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the player's starting map. |
-| PartyX | [Party X Tag](#party-x-tag) | Always present. | The player's starting x-position within the starting map. |
-| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The player's starting y-position within the starting map. |
+| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Required to play. | The ID of the player's starting map. |
+| PartyX | [Party X Tag](#party-x-tag) | Required to play. | The player's starting x-position within the starting map. |
+| PartyY | [Party Y Tag](#party-y-tag) | Required to play. | The player's starting y-position within the starting map. |
 | SkiffMapID | [Skiff Map ID Tag](#skiff-map-id-tag) | 0 | The ID of the map to spawn the skiff in. |
 | SkiffX | [Skiff X Tag](#skiff-x-tag) | 0 | The skiff's starting x-position within its starting map. |
 | SkiffY | [Skiff Y Tag](#skiff-y-tag) | 0 | The skiff's starting y-position within its starting map. |
