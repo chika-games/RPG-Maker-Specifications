@@ -1,7 +1,7 @@
 # RPG Maker Config File Specification (RPG_RT.ini)
 | Key | Value |
 | --- | --- |
-| Version | _Finalizing_ |
+| Version | 1.0.0 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -68,6 +68,8 @@ FullPackageFlag=1
 ```
 
 ## Document Changes
+### Version 1.0.0
+First version of the document released.
 
 ## Legal Information
 This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
