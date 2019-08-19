@@ -92,7 +92,7 @@ LMT files can be viewed as having a tag-based structure similar to SWF files. Th
 | MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
 | MapOrderCount | VINT | The number of map orderings. |
 | MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
-| Active Node | VINT | For editor use only. The value of this field is the ID of the last active map. Editors may use this to re-open the last active map when opening a project. |
+| ActiveNode | VINT | For editor use only. The value of this field is the ID of the last active map. Editors may use this to re-open the last active map when opening a project. |
 | MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
 ## Map Info Structure
@@ -102,7 +102,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | --- | --- | --- | --- |
 | MapID | VINT | Always present. | The map's unique ID. `0` is usually the root map and shouldn't be treated as an ordinary playable map<sup>1</sup>. |
 | MapName | [Map Name Tag](#map-name-tag) | Always present. | The map's name. |
-| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means no parent. |
+| ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means this is a top-level map (parent is root). |
 | Indentation | [Indentation Tag](#indentation-tag) | 0 |  |
 | MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
 | EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
