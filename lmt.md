@@ -217,7 +217,7 @@ This tag specifies the type of map being described.
 | --- | --- | --- |
 | Root | 0 | A root map. |
 | Map | 1 | A regular map. |
-| Area | 2 | An area map. |
+| Area | 2 | An area of a map. |
 
 #### Edit Position X Tag
 This tag is for editor use only.
