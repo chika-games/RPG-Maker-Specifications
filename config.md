@@ -1,9 +1,4 @@
 # RPG Maker Config File Specification (RPG_RT.ini)
-| Key | Value |
-| --- | --- |
-| Version | 1.0.0 |
-| License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
-
 ## Table of Contents
 * Table of Contents
 * [Introduction](#introduction)
@@ -12,7 +7,6 @@
     * [Map Editing Modes](#map-editing-modes)
     * [Map Zoom Levels](#map-zoom-levels)
 * [Example Config File](#example-config-file)
-* [Document Changes](#document-changes)
 * [Legal Information](#legal-information)
 
 ## Introduction
@@ -66,10 +60,6 @@ MapEditMode=2
 MapEditZoom=0
 FullPackageFlag=1
 ```
-
-## Document Changes
-### Version 1.0.0
-First version of the document released.
 
 ## Legal Information
 This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
