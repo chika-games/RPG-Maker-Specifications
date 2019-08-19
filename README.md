@@ -12,16 +12,7 @@ This repository contains specifications the various file formats used by RPG Mak
 * [License](#license)
 
 ## About the Specifications
-All of the specifications within this repository are written with independence in mind; all relevant information is included, and they make no reference to each other.
-
-Each specification includes a table that specifies its __Version__ and __License__ information.
-
-__Version__ provides the relevant document's version. This field has three potential values:
-* _Researching_ indicates the specification is still being researched and drafted.
-* _Finalizing_ means all relevant research has completed, and the specification is undergoing finalization.
-* A completed specification will have a `major.minor.revision` version format.
-
-__License__ provides a specification's copyright license. All specifications are provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license unless explicitly stated otherwise.
+All specifications within this repository are written with independence in mind; all relevant information is included, and they make no reference to each other. They each cover some aspect of RPG Maker 2000/2003, from file formats to runtime behavior.
 
 ## RPG Maker Config File (RPG_RT.ini)
 The `RPG_RT.ini` file provides basic game information, such as the title.
