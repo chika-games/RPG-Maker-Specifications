@@ -128,18 +128,18 @@ This section details the Map Start Structure in its entirety. In practice, not a
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
-| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the normal starting map. |
-| PartyX | [Party X Tag](#party-x-tag) | Always present. | The party's starting x-position within the starting map. |
-| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The party's starting y-position within the starting map. |
-| BoatMapID | [Boat Map ID Tag](#boat-map-id-tag) | 0 | The ID of the boat map. |
-| BoatX | [Boat X Tag](#boat-x-tag) | 0 | The party's starting x-position within the boat map. |
-| BoatY | [Boat Y Tag](#boat-y-tag) | 0 | The party's starting y-position within the boat map. |
-| ShipMapID | [Ship Map ID Tag](#ship-map-id-tag) | 0 | The ID of the ship map. |
-| ShipX | [Ship X Tag](#ship-x-tag) | 0 | The party's starting x-position within the ship map. |
-| ShipY | [Ship Y Tag](#ship-y-tag) | 0 | The party's starting y-position within the ship map. |
-| AirhipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the airship map. |
-| AirhipX | [Airship X Tag](#airship-x-tag) | 0 | The party's starting x-position within the airship map. |
-| AirhipY | [Airship Y Tag](#airship-y-tag) | 0 | The party's starting y-position within the airship map. |
+| PartyMapID | [Party Map ID Tag](#party-map-id-tag) | Always present. | The ID of the player's starting map. |
+| PartyX | [Party X Tag](#party-x-tag) | Always present. | The player's starting x-position within the starting map. |
+| PartyY | [Party Y Tag](#party-y-tag) | Always present. | The player's starting y-position within the starting map. |
+| SkiffMapID | [Skiff Map ID Tag](#skiff-map-id-tag) | 0 | The ID of the map to spawn the skiff in. |
+| SkiffX | [Skiff X Tag](#skiff-x-tag) | 0 | The skiff's starting x-position within its starting map. |
+| SkiffY | [Skiff Y Tag](#skiff-y-tag) | 0 | The skiff's starting y-position within its starting map. |
+| ShipMapID | [Ship Map ID Tag](#ship-map-id-tag) | 0 | The ID of the map to spawn the ship in. |
+| ShipX | [Ship X Tag](#ship-x-tag) | 0 | The ship's starting x-position within its starting map. |
+| ShipY | [Ship Y Tag](#ship-y-tag) | 0 | The ship's starting y-position within its starting map. |
+| AirshipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the map to spawn the airship in. |
+| AirshipX | [Airship X Tag](#airship-x-tag) | 0 | The airship's starting x-position within its starting map. |
+| AirshipY | [Airship Y Tag](#airship-y-tag) | 0 | The airship's starting y-position within its starting map. |
 
 ## Example Map Hierarchy
 This is an example hierarchy to help illustrate various fields of an LMT file. Notice all maps are children to the root map.
@@ -391,7 +391,7 @@ The coordinates are measured in pixels and begin in the top-left corner of a map
 These tags are used in the [Map Start Structure](#map-start-structure).
 
 #### Party Map ID Tag
-This tag specifies the party's starting map ID.
+This tag specifies the player's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -400,7 +400,7 @@ This tag specifies the party's starting map ID.
 | MapID | VINT | The starting map ID. |
 
 #### Party X Tag
-This tag specifies the party's starting x-position within the starting map.
+This tag specifies the player's starting x-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -409,7 +409,7 @@ This tag specifies the party's starting x-position within the starting map.
 | XPos | VINT | The starting x-position. |
 
 #### Party Y Tag
-This tag specifies the party's starting y-position within the starting map.
+This tag specifies the player's starting y-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -417,17 +417,17 @@ This tag specifies the party's starting y-position within the starting map.
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
-#### Boat Map ID Tag
-This tag specifies the boat map's ID.
+#### Skiff Map ID Tag
+This tag specifies the skiff's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 11. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The boat map ID. |
+| MapID | VINT | The starting map ID. |
 
-#### Boat X Tag
-This tag specifies the starting x-position within the boat map.
+#### Skiff X Tag
+This tag specifies the skiff's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -435,8 +435,8 @@ This tag specifies the starting x-position within the boat map.
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
-#### Boat Y Tag
-This tag specifies the starting y-position within the boat map.
+#### Skiff Y Tag
+This tag specifies the skiff's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -445,16 +445,16 @@ This tag specifies the starting y-position within the boat map.
 | YPos | VINT | The starting y-position. |
 
 #### Ship Map ID Tag
-This tag specifies the ship map's ID.
+This tag specifies the ship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 21. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The ship map ID. |
+| MapID | VINT | The starting map ID. |
 
 #### Ship X Tag
-This tag specifies the starting x-position within the ship map.
+This tag specifies the ship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -463,7 +463,7 @@ This tag specifies the starting x-position within the ship map.
 | XPos | VINT | The starting x-position. |
 
 #### Ship Y Tag
-This tag specifies the starting y-position within the ship map.
+This tag specifies the ship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -472,16 +472,16 @@ This tag specifies the starting y-position within the ship map.
 | YPos | VINT | The starting y-position. |
 
 #### Airship Map ID Tag
-This tag specifies the airship map's ID.
+This tag specifies the airship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 31. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
-| MapID | VINT | The airship map ID. |
+| MapID | VINT | The starting map ID. |
 
 #### Airship X Tag
-This tag specifies the starting x-position within the airship map.
+This tag specifies the airship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -490,7 +490,7 @@ This tag specifies the starting x-position within the airship map.
 | XPos | VINT | The starting x-position. |
 
 #### Airship Y Tag
-This tag specifies the starting y-position within the airship map.
+This tag specifies the airship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
