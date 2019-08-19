@@ -1,7 +1,7 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | 1.0.1 |
+| Version | 1.1.0 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -13,9 +13,9 @@
     * [Complex Data Types](#complex-data-types)
         * [String Type](#string-type)
 * [LMT File Structure](#lmt-file-structure)
-    * [Example Map Hierarchy](#example-map-hierarchy)
 * [Map Info Structure](#map-info-structure)
 * [Map Start Structure](#map-start-structure)
+* [Example Map Hierarchy](#example-map-hierarchy)
 * [Tags](#tags)
    * [Map Info Tags](#map-info-tags)
    * [Map Start Tags](#map-start-tags)
@@ -92,7 +92,7 @@ LMT files can be viewed as having a tag-based structure similar to SWF files. Th
 | MapInfoCount | VINT | The number of [Map Info Structures](#map-info-structure). |
 | MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
 | MapOrderCount | VINT | The number of map orderings. |
-| MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
+| MapOrders | VINT[`MapOrderCount`] | This array holds the hierarchical orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
 | ActiveNode | VINT | For editor use only. The value of this field is the ID of the last active map. Editors may use this to re-open the last active map when opening a project. |
 | MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
@@ -123,18 +123,6 @@ This section details the Map Info Structure in its entirety. In practice, not al
 
 <sup>1</sup> The root map forms the top-most part of the map hierarchy; all maps are children to the root. Additionally, the name of the root map was once used to determine a game's title. However, this is remains a historical artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
-### Example Map Hierarchy
-This is an example hierarchy to help illustrate what the `ParentID` and `Indentation` fields are for. Notice all maps are children to the root map.
-
-```
-. My Game (root; indentation=0)
-+-- Map 1 (parent=0; indentation=1)
-|   +-- Map 2 (parent=1; indentation=2)
-|   |   +-- Map 5 (parent=2; indentation=3)
-|   |   +-- Map 4 (parent=1; indentation=2)
-+-- Map 3 (parent=0; indentation=1)
-```
-
 ## Map Start Structure
 This section details the Map Start Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
 
@@ -152,6 +140,20 @@ This section details the Map Start Structure in its entirety. In practice, not a
 | AirhipMapID | [Airship Map ID Tag](#airship-map-id-tag) | 0 | The ID of the airship map. |
 | AirhipX | [Airship X Tag](#airship-x-tag) | 0 | The party's starting x-position within the airship map. |
 | AirhipY | [Airship Y Tag](#airship-y-tag) | 0 | The party's starting y-position within the airship map. |
+
+## Example Map Hierarchy
+This is an example hierarchy to help illustrate various fields of an LMT file. Notice all maps are children to the root map.
+
+```
+. My Game (root; indentation=0)
++-- Map 1 (parent=0; indentation=1)
+|   +-- Map 2 (parent=1; indentation=2)
+|   |   +-- Map 5 (parent=2; indentation=3)
+|   |   +-- Map 4 (parent=1; indentation=2)
++-- Map 3 (parent=0; indentation=1)
+```
+
+The orderings for these maps should then be [__0__, __1__, __2__, __5__, __4__, __3__].
 
 ## Tags
 All tags have an ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
