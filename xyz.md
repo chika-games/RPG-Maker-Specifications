@@ -1,9 +1,4 @@
 # XYZ Image Specification (XYZ)
-| Key | Value |
-| --- | --- |
-| Version | 2.1.2 |
-| License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
-
 ## Table of Contents
 * Table of Contents
 * [Introduction](#introduction)
@@ -61,32 +56,6 @@ This section details the overall structure of an XYZ file.
 | PixelData<sup>1</sup> | U8[`Width * Height`] | The image's pixel data; these are indexes into the image's `Palette` where each index represents a pixel. |
 
 <sup>1</sup> All of the fields after the `Height` parameter (after the first 8 bytes) is compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm; all fields before this are uncompressed. Libraries such as zlib may be used to decompress this data.
-
-## Document Changes
-### Version 2.1.2
-Rename the "RGB" section to "RGB Type" and fix its entry in the Table of Contents.
-
-### Version 2.1.1
-Remove the "Status" field in the document information table.
-
-### Version 2.1.0
-Rename the "Attribution" section to "Legal Information".
-
-Update some wording.
-
-Use the textual format of CC BY-SA 4.0 rather than the image.
-
-### Version 2.0.2
-Provided a link to the rpgmaker-asset-specs repository in the introduction.
-
-### Version 2.0.1
-Added "(XYZ)" to title.
-
-### Version 2.0.0
-Rewrote the document from scratch.
-
-### Version 1.0.0
-First version of the document released.
 
 ## Legal Information
 This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license. The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
