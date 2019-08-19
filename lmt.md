@@ -1,7 +1,7 @@
 # LCF Map Tree Specification (LMT)
 | Key | Value |
 | --- | --- |
-| Version | 1.0.0 |
+| Version | 1.0.1 |
 | License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
 
 ## Table of Contents
@@ -92,7 +92,7 @@ LMT files can be viewed as having a tag-based structure similar to SWF files. Th
 | MapInfos | [Map Info](#map-info-structure) [`MapInfoCount`] | An array of information for all of a game's maps. |
 | MapOrderCount | VINT | The number of map orderings. |
 | MapOrders | VINT[`MapOrderCount`] | This array holds the orderings for all of a game's maps. Each element corresponds to a map ID, and the orderings are stored from first map to last map. |
-| Active Node | VINT | For editor use only. The value of this field is a map ID. |
+| Active Node | VINT | For editor use only. The value of this field is the ID of the last active map. Editors may use this to re-open the last active map when opening a project. |
 | MapStart | [Map Start](#map-start-structure) | This field holds game start information, such as starting positions. |
 
 ## Map Info Structure
@@ -120,7 +120,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
-<sup>1</sup> Historically, the name of the root map was used to determine the game's title. However, this is remains a historical artifact because game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
+<sup>1</sup> The root map forms the top-most part of the map hierarchy; all maps are children to the root. Additionally, the name of the root map was once used to determine a game's title. However, this is remains a historical artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
 
 ## Map Start Structure
 This section details the Map Start Structure in its entirety. In practice, not all of the listed tags will be present, though the order should be the same. If a tag is missing, then the property it represents should to take on the specified default value.
