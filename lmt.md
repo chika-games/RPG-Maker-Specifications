@@ -118,7 +118,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
 | Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
-| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The map view rectangle. |
+| AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
 
 <sup>1</sup> The root map forms the top-most part of the map hierarchy; all maps are children to the root. Additionally, the name of the root map was once used to determine a game's title. However, this is remains a historical artifact as game titles are now determined by an accompanying INI file (`RPG_RT.ini`).
@@ -364,7 +364,9 @@ This tag specifies the encounter steps for a map.
 | EncounterSteps | VINT | The encounter steps for a map. |
 
 #### Area Rectangle Tag
-This tag specifies the area rectangle for a map's view. Regular maps have a rectangle of [0, 0, 0, 0].
+This tag specifies the boundaries of an area of a map. This only applies to maps with a `MapType` of `Area`; other kinds of maps have a rectangle of [0, 0, 0, 0].
+
+The coordinates are measured in pixels and begin in the top-left corner of a map. For example, an area rectangle of [0, 0, 100, 100] would completely cover a 100x100 map.
 
 | Field | Type | Description |
 | --- | --- | --- |
