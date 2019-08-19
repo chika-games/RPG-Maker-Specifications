@@ -106,9 +106,9 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means this is a top-level map (parent is root). |
 | Indentation | [Indentation Tag](#indentation-tag) | 0 (root); 1 (non-root) | The map's hierarchical indentation; indicates the number of parent maps. `0` is reserved for root maps, `1` is for top-level maps (direct children of the root map), etc. See [Example Map Hierarchy](#example-map-hierarchy). |
 | MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
-| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
-| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For internal editor use only. |
-| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For internal editor use only. |
+| EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last x-position when this map was last edited. |
+| EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last y-position when this map was last edited. |
+| EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For editor use only. |
 | MusicType | [Music Type Tag](#music-type-tag) | Inherit (0) | How music should be played. |
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
 | BackgroundType | [Background Type Tag](#background-type-tag) | Inherit (0) | The type of background to display. |
@@ -220,22 +220,22 @@ This tag specifies the type of map being described.
 | Area | 2 | An area of a map. |
 
 #### Edit Position X Tag
-This tag is for editor use only.
+This tag is for editor use only. This represents the editor's last x-position when a particular map was last edited.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 5. |
 | TagSize | VINT | The size of `EditPosX` measured in bytes. |
-| EditPosX | VINT | The editor x-position. |
+| EditPosX | VINT | The editor's last x-position. |
 
 #### Edit Position Y Tag
-This tag is for editor use only.
+This tag is for editor use only. This represents the editor's last y-position when a particular map was last edited.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 6. |
 | TagSize | VINT | The size of `EditPosY` measured in bytes. |
-| EditPosY | VINT | The editor y-position. |
+| EditPosY | VINT | The editor's last y-position. |
 
 #### Edit Expanded Tag
 This tag is for editor use only.
