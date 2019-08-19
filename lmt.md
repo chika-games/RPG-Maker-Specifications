@@ -116,7 +116,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | Inherit (0) |  |
 | EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | Inherit (0) |  |
 | SaveFlag | [Save Flag Tag](#save-flag-tag) | Inherit (0) |  |
-| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of encounters within the map. |
+| Encounters | [Encounters Tag](#encounters-tag) | An empty array. | An array of enemy encounters within the map. |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25 | The steps for encounters. |
 | AreaRectangle | [Area Rectangle Tag](#area-rectangle-tag) | [0, 0, 0, 0] | The size of a map area measured in pixels. |
 | End | [End Tag](#end-tag) | Always present. | Indicates the end of the map info structure. |
@@ -156,9 +156,9 @@ This is an example hierarchy to help illustrate various fields of an LMT file. N
 The orderings for these maps should then be [__0__, __1__, __2__, __5__, __4__, __3__].
 
 ## Tags
-All tags have an ID followed by a size except for [End Tags](#end-tag) and [Troop Tags](#troop-tag):
+All tags have an ID followed by a size except for [End Tags](#end-tag) and [Monster Group Tags](#monster-group-tag).
 
-This general format should 
+Basic format:
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -345,14 +345,14 @@ This tag specifies the filename of a map's background.
 | False | 2 | The flag is unset. |
 
 #### Encounters Tag
-This tag describes any encounters within a map.
+This tag describes the type of enemy encounters within a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
 | TagID | VINT | TagID is 41. |
 | TagSize | VINT | The total size of the following fields measured in bytes. |
 | EncounterCount | VINT | The number of encounters. |
-| Encounters | [Troop Tag](#troop-tag) [`EncounterCount`] | The troops involved in each encounter. |
+| Encounters | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | The encounters. |
 
 #### Encounter Steps Tag
 This tag specifies the encounter steps for a map.
@@ -546,14 +546,14 @@ This tag specifies the left-right balance for a map's music.
 ### Encounter Tags
 These tags are used within the [Encounters Tag](#encounters-tag).
 
-#### Troop Tag
+#### Monster Group Tag
 | Field | Type | Description |
 | --- | --- | --- |
-| TroopIndex | VINT | The troop's index within an encounter array. |
-| ??? | VINT |   |
-| ??? | VINT |   |
-| TroopID | VINT | The type of troop. |
-| End | [End Tag](#end-tag) | Always present. | Indicates the end of the troop tag. |
+| EncounterIndex | VINT | The position of this encounter within the encounter array starting at `1`. |
+| N/A | VINT | Should be `1`. |
+| GroupBytes | VINT | The size of `GroupID` measured in bytes. |
+| GroupID | VINT | The type of monster group to use. |
+| End | [End Tag](#end-tag) | Indicates the end of the monster group tag. |
 
 ## Document Changes
 ### Version 1.0.0
