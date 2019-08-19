@@ -1,9 +1,4 @@
 # LCF Map Tree Specification (LMT)
-| Key | Value |
-| --- | --- |
-| Version | 2.0.0 |
-| License | [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) |
-
 ## Table of Contents
 * Table of Contents
 * [Introduction](#introduction)
@@ -21,7 +16,6 @@
    * [Map Start Tags](#map-start-tags)
    * [Music Tags](#music-tags)
    * [Encounter Tags](#encounter-tags)
-* [Document Changes](#document-changes)
 * [Legal Information](#legal-information)
 
 ## Introduction
@@ -562,10 +556,6 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 | GroupBytes | VINT | The size of `GroupID` measured in bytes. |
 | GroupID | VINT | The type of monster group to use. |
 | End | [End Tag](#end-tag) | Indicates the end of the monster group tag. |
-
-## Document Changes
-### Version 1.0.0
-First version of the document released.
 
 ## Legal Information
 This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
