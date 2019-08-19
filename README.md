@@ -4,7 +4,6 @@ This repository contains specifications the various file formats used by RPG Mak
 
 ### Table of Contents
 * [Introduction](#introduction)
-* Table of Contents
 * [About The Specifications](#about-the-specifications)
 * [RPG Maker Config File (RPG_RT.ini)](#rpg-maker-config-file-rpg_rtini)
 * [XYZ Images (XYZ)](#xyz-images-xyz)
@@ -22,7 +21,7 @@ __Version__ provides the relevant document's version. This field has three poten
 * _Finalizing_ means all relevant research has completed, and the specification is undergoing finalization.
 * A completed specification will have a `major.minor.revision` version format.
 
-__License__ provides a specification's copyright license. All specifications are provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
+__License__ provides a specification's copyright license. All specifications are provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license unless explicitly stated otherwise.
 
 ## RPG Maker Config File (RPG_RT.ini)
 The `RPG_RT.ini` file provides basic game information, such as the title.
