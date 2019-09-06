@@ -28,6 +28,8 @@ This section describes the various data types that will be used throughout this 
 
 Little-endian byte order is assumed for all types; the least significant byte is stored first, and the most significant byte is stored last.
 
+Digits prefixed with `$` are hexadecimal (base 16). For example, `$FF` corresponds to the number `255` in base 10.
+
 Types may be appended with `[n]` in order to denote a contiguous array of the type with `n` being the number of elements. For example, `U8[4]` denotes an array of four unsigned 8-bit integers.
 
 ### Basic Data Types
@@ -164,7 +166,7 @@ Marks the end of a structure or specific tags. This tag only has an ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 0. |
+| TagID | VINT | TagID is `$0`. |
 
 ---
 
@@ -176,7 +178,7 @@ This tag stores the name of a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 1. |
+| TagID | VINT | TagID is `$1`. |
 | MapName | STRING | The map's name. |
 
 (`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
@@ -186,14 +188,14 @@ This tag stores the ID of a parent map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 2. |
+| TagID | VINT | TagID is `$2`. |
 | TagSize | VINT | The size of `ParentID` measured in bytes. |
 | ParentID | VINT | The parent map's ID. `0` means there is no parent map. |
 
 #### Indentation Tag
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 3. |
+| TagID | VINT | TagID is `$3`. |
 | TagSize | VINT | The size of `Indentation` measured in bytes. |
 | Indentation | VINT | The map's indentation. |
 
@@ -202,7 +204,7 @@ This tag specifies the type of map being described.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 4. |
+| TagID | VINT | TagID is `$4`. |
 | TagSize | VINT | The size of `MapType` measured in bytes. |
 | MapType | VINT | The map's type. Map types are listed below. |
 
@@ -218,7 +220,7 @@ This tag is for editor use only. This represents the editor's last x-position wh
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 5. |
+| TagID | VINT | TagID is `$5`. |
 | TagSize | VINT | The size of `EditPosX` measured in bytes. |
 | EditPosX | VINT | The editor's last x-position. |
 
@@ -227,7 +229,7 @@ This tag is for editor use only. This represents the editor's last y-position wh
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 6. |
+| TagID | VINT | TagID is `$6`. |
 | TagSize | VINT | The size of `EditPosY` measured in bytes. |
 | EditPosY | VINT | The editor's last y-position. |
 
@@ -236,7 +238,7 @@ This tag is for editor use only.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 7. |
+| TagID | VINT | TagID is `$7`. |
 | TagSize | VINT | The size of `EditExpanded` measured in bytes. |
 | EditExpanded | VINT | This field may be treated like a boolean value: false when zero and true when nonzero. |
 
@@ -245,7 +247,7 @@ This tag specifies how music should be played within a map. The default music ty
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 11. |
+| TagID | VINT | TagID is `$11`. |
 | TagSize | VINT | The size of `MusicType` measured in bytes. |
 | MusicType | VINT | The map's music type. Special music types are listed below. |
 
@@ -261,7 +263,7 @@ This tag specifies various music properties for a map. If one of the listed tags
 
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
-| TagID | VINT | Always present. | TagID is 12. |
+| TagID | VINT | Always present. | TagID is `$12`. |
 | TagSize | VINT | Always present. | The total size of the below fields measured in bytes. |
 | MusicName | [Music Name Tag](#music-name-tag) | "(OFF)" | The filename of the music to be played. |
 | MusicFadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0 | The fade time for the music. 0 means no fade. |
@@ -275,7 +277,7 @@ This tag specifies the type of background within a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 21. |
+| TagID | VINT | TagID is `$21`. |
 | TagSize | VINT | The size of `BackgroundType` measured in bytes. |
 | BackgroundType | VINT | The map's background type. Special background types are listed below. |
 
@@ -291,7 +293,7 @@ This tag specifies the filename of a map's background.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 22. |
+| TagID | VINT | TagID is `$22`. |
 | BackgroundName | STRING | The background's filename. |
 
 (`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
@@ -301,7 +303,7 @@ Determines whether or not teleporting out of the map is allowed. For top-level m
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 31. |
+| TagID | VINT | TagID is `$31`. |
 | TagSize | VINT | The size of `TeleportFlag` measured in bytes. |
 | TeleportFlag | VINT | The map's teleport flag. Special values are listed below. |
 
@@ -317,7 +319,7 @@ Determines whether or not escaping out of the map is allowed. For top-level maps
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 32. |
+| TagID | VINT | TagID is `$32`. |
 | TagSize | VINT | The size of `EscapeFlag` measured in bytes. |
 | EscapeFlag | VINT | The map's escape flag. Special values are listed below. |
 
@@ -335,7 +337,7 @@ If `SaveFlag` is set to `Allow`, then a save option will be available in the pau
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 33. |
+| TagID | VINT | TagID is `$33`. |
 | TagSize | VINT | The size of `SaveFlag` measured in bytes. |
 | SaveFlag | VINT | The map's save flag. Special values are listed below. |
 
@@ -351,7 +353,7 @@ This tag describes the type of enemy encounters within a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 41. |
+| TagID | VINT | TagID is `$41`. |
 | TagSize | VINT | The total size of the following fields measured in bytes. |
 | EncounterCount | VINT | The number of encounters. |
 | Encounters | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | The encounters. |
@@ -361,7 +363,7 @@ This tag specifies the encounter steps for a map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 44. |
+| TagID | VINT | TagID is `$44`. |
 | TagSize | VINT | The size of `EncounterSteps` measured in bytes. |
 | EncounterSteps | VINT | The encounter steps for a map. |
 
@@ -372,7 +374,7 @@ The coordinates are measured in pixels and begin in the top-left corner of a map
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 51. |
+| TagID | VINT | TagID is `$51`. |
 | TagSize | VINT | Should be 16. |
 | Left | U32 | The left-coordinate of the rectangle. |
 | Top | U32 | The top-coordinate of the rectangle. |
@@ -389,7 +391,7 @@ This tag specifies the player's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 1. |
+| TagID | VINT | TagID is `$1`. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
 | MapID | VINT | The starting map ID. |
 
@@ -398,7 +400,7 @@ This tag specifies the player's starting x-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 2. |
+| TagID | VINT | TagID is `$2`. |
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
@@ -407,7 +409,7 @@ This tag specifies the player's starting y-position within the starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 3. |
+| TagID | VINT | TagID is `$3`. |
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
@@ -416,7 +418,7 @@ This tag specifies the skiff's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 11. |
+| TagID | VINT | TagID is `$11`. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
 | MapID | VINT | The starting map ID. |
 
@@ -425,7 +427,7 @@ This tag specifies the skiff's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 12. |
+| TagID | VINT | TagID is `$12`. |
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
@@ -434,7 +436,7 @@ This tag specifies the skiff's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 13. |
+| TagID | VINT | TagID is `$13`. |
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
@@ -443,7 +445,7 @@ This tag specifies the ship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 21. |
+| TagID | VINT | TagID is `$21`. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
 | MapID | VINT | The starting map ID. |
 
@@ -452,7 +454,7 @@ This tag specifies the ship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 22. |
+| TagID | VINT | TagID is `$22`. |
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
@@ -461,7 +463,7 @@ This tag specifies the ship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 23. |
+| TagID | VINT | TagID is `$23`. |
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
@@ -470,7 +472,7 @@ This tag specifies the airship's starting map ID.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 31. |
+| TagID | VINT | TagID is `$31`. |
 | TagSize | VINT | The size of `MapID` measured in bytes. |
 | MapID | VINT | The starting map ID. |
 
@@ -479,7 +481,7 @@ This tag specifies the airship's starting x-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 32. |
+| TagID | VINT | TagID is `$32`. |
 | TagSize | VINT | The size of `XPos` measured in bytes. |
 | XPos | VINT | The starting x-position. |
 
@@ -488,7 +490,7 @@ This tag specifies the airship's starting y-position within its starting map.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 33. |
+| TagID | VINT | TagID is `$33`. |
 | TagSize | VINT | The size of `YPos` measured in bytes. |
 | YPos | VINT | The starting y-position. |
 
@@ -502,7 +504,7 @@ This tag specifies the filename of the music to be played in a map. If `MusicNam
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 1. |
+| TagID | VINT | TagID is `$1`. |
 | MusicName | STRING | The music's filename. |
 
 (`STRING` is used here for compactness; it consists of a `VINT` followed by a character array, so the general tag format still applies here.)
@@ -512,7 +514,7 @@ This tag specifies the fade time for a map's music.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 2. |
+| TagID | VINT | TagID is `$2`. |
 | TagSize | VINT | The size of `FadeTime` measured in bytes. |
 | FadeTime | VINT | The music's fade time. |
 
@@ -521,7 +523,7 @@ This tag specifies the volume for a map's music.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 3. |
+| TagID | VINT | TagID is `$3`. |
 | TagSize | VINT | The size of `Volume` measured in bytes. |
 | Volume | VINT | The music's volume. |
 
@@ -530,7 +532,7 @@ This tag specifies the tempo for a map's music.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 4. |
+| TagID | VINT | TagID is `$4`. |
 | TagSize | VINT | The size of `Tempo` measured in bytes. |
 | Tempo | VINT | The music's tempo. |
 
@@ -539,7 +541,7 @@ This tag specifies the left-right balance for a map's music.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| TagID | VINT | TagID is 5. |
+| TagID | VINT | TagID is `$5`. |
 | TagSize | VINT | The size of `Balance` measured in bytes. |
 | Balance | VINT | The music's left-right balance. |
 
