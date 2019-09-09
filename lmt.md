@@ -243,7 +243,9 @@ This tag is for editor use only.
 | EditExpanded | VINT | This field may be treated like a boolean value: false when zero and true when nonzero. |
 
 #### Music Type Tag
-This tag specifies how music should be played within a map. The default music type should be Inherit (0) for top-level maps (maps whose parent is the root map) and Event (1) for all other maps.
+This tag specifies how music should be played within a map.
+
+The default music type should be Event (1) for top-level maps (maps whose parent is the root map) and Inherit (0) for all other maps.
 
 | Field | Type | Description |
 | --- | --- | --- |
