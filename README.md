@@ -18,7 +18,7 @@ All specifications within this repository are written with independence in mind;
 ## File Specifications
 
 ### RPG Maker Config File (RPG_RT.ini)
-The `RPG_RT.ini` file provides basic game information, such as the title.
+The `RPG_RT.ini` file provides basic game information, such as the game's title.
 
 [__Specification__](config.md)
 
