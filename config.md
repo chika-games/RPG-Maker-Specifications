@@ -31,9 +31,9 @@ None of the fields listed below are required and may be omitted; missing fields 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
 | GameTitle | STRING | "Untitled" | Determines the title of the game window. |
-| MapEditMode | UINT | 0 | For editor use only. Indicates the last layer-editing mode used. This may help when re-opening a project; the last selected mode can automatically be re-selected. See [Map Editing Modes](#map-editing-modes). |
-| MapEditZoom | UINT | 0 | For editor use only. Indicates the last zoom level used. This may help when re-opening a project; the last zoom level selected can automatically be re-selected. See [Map Zoom Levels](#map-zoom-levels). |
-| FullPackageFlag | BOOL | false (`0`) | Determines whether or not to skip loading a runtime package (RTP); true (`1`) means do not load. |
+| MapEditMode | UINT | `0` | For editor use only. Indicates the last layer-editing mode used. This may help when re-opening a project; the last selected mode can automatically be re-selected. See [Map Editing Modes](#map-editing-modes). |
+| MapEditZoom | UINT | `0` | For editor use only. Indicates the last zoom level used. This may help when re-opening a project; the last zoom level selected can automatically be re-selected. See [Map Zoom Levels](#map-zoom-levels). |
+| FullPackageFlag | BOOL | `0` (false) | Determines whether or not to skip loading a runtime package (RTP); true (`1`) means do not load. |
 
 ### Map Editing Modes
 | Mode | Value |
