@@ -37,12 +37,14 @@ These types are considered basic as all other data types are constructed using t
 | --- | --- |
 | U8 | An unsigned 8-bit integer. |
 | U32 | An unsigned 32-bit integer. |
-| VINT | An integer of variable size. See [Variable-Size Integers](#variable-size-integers). |
+| VINT | An unsigned integer of variable size. See [Variable-Size Integers](#variable-size-integers). |
 
 #### Variable-Size Integers
-LCF files predominantly use integers of variable size instead of the more common fixed-length formats. These types of integers will only take up the necessary amount of bytes needed in order to encode its value. For example, the value `25` will be represented using a single byte; `123456` will take up two bytes. This helps reduce the overall size of the LCF file.
+LCF files predominantly use 7-bit encoded integers instead of the more common fixed-length formats. These types of integers will only take up the necessary amount of bytes needed in order to encode its value. For example, the value `25` will be represented using a single byte; `123456` will take up two bytes. This helps reduce the overall size of the file.
 
-Below is some pseudocode that reads and decodes these variable-length integers into a fixed-length format:
+More specifically, bytes will contribute up to 7 bits worth of useful information, and the eighth bit will indicate whether or not another byte is to follow.
+
+Below is some pseudocode that reads and decodes these variable-length integers into a fixed-length (`U32`) format:
 ```rust
 u32 read_variable_integer(reader) {
     u32 ret = 0;
