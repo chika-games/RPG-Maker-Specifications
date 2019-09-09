@@ -285,7 +285,7 @@ This tag specifies the type of background within a map.
 | Type | Value | Description |
 | --- | --- | --- |
 | Inherit | 0 | Inherit the background. |
-| TerrainLDB | 1 |  |
+| Terrain | 1 | Use the terrain settings. |
 | Specified | 2 | Background is specified explicitly. |
 
 #### Background Name Tag
