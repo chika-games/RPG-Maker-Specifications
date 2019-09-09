@@ -107,7 +107,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For editor use only. |
 | MusicType | [Music Type Tag](#music-type-tag) | See tag's section. | How music should be played. |
 | Music | [Music Tag](#music-tag) | See [Music Tag](#music-tag) | The music to play and its properties. |
-| BackgroundType | [Background Type Tag](#background-type-tag) | Terrain (1) | The type of background to display. |
+| BackgroundType | [Background Type Tag](#background-type-tag) | See tag's section. | The type of background to display. |
 | BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or an empty string. | The filename of the background to display. `backdrop` is usually the default value editor's use. |
 | TeleportFlag | [Teleport Flag Tag](#teleport-flag-tag) | See [Teleport Flag Tag](#teleport-flag-tag) | Determines whether or not teleporting out of the map is allowed. |
 | EscapeFlag | [Escape Flag Tag](#escape-flag-tag) | See [Escape Flag Tag](#escape-flag-tag) | Determines whether or not escaping out of the map is allowed. |
@@ -276,6 +276,8 @@ This tag specifies various music properties for a map. If one of the listed tags
 
 #### Background Type Tag
 This tag specifies the type of background within a map.
+
+The default value of `BackgroundType` should be Terrain (1) for top-level maps (maps whose parent is the root map) and Inherit (0) for all other maps.
 
 | Field | Type | Description |
 | --- | --- | --- |
