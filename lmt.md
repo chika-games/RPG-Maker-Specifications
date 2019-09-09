@@ -101,7 +101,7 @@ This section details the Map Info Structure in its entirety. In practice, not al
 | MapName | [Map Name Tag](#map-name-tag) | Always present. | The map's name. |
 | ParentID | [Parent ID Tag](#parent-id-tag) | 0 | The ID of a parent map; `0` means this is a top-level map (parent is root). |
 | Indentation | [Indentation Tag](#indentation-tag) | 0 (root); 1 (non-root) | The map's hierarchical indentation; indicates the number of parent maps. `0` is reserved for root maps, `1` is for top-level maps (direct children of the root map), etc. See [Example Map Hierarchy](#example-map-hierarchy). |
-| MapType | [Map Type Tag](#map-type-tag) | Root (0) | The type of map being described. |
+| MapType | [Map Type Tag](#map-type-tag) | Map (1) | The type of map being described. |
 | EditPosX | [Edit Position X Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last x-position when this map was last edited. |
 | EditPosY | [Edit Position Y Tag](#edit-position-x-tag) | 0 | For editor use only. This represents the editor's last y-position when this map was last edited. |
 | EditExpanded | [Edit Expanded Tag](#edit-expanded-tag) | False (0) | For editor use only. |
