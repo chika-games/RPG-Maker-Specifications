@@ -1,6 +1,6 @@
 # RPGMaker 2000/2003 Specifications
 ## Introduction
-This repository contains specifications the various file formats used by RPG Maker 2000/2003, such as XYZ images and LMT map files.
+This repository contains specifications for the various file formats used by RPG Maker 2000/2003, such as XYZ images and LMT map files.
 
 ### Table of Contents
 * [Introduction](#introduction)
