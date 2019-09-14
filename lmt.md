@@ -75,7 +75,7 @@ The `STRING` type represent a length-prepended string of characters. These are u
 | Length | VINT | The length of the string measured in bytes. |
 | Characters | U8[`Length`] | The array of characters that make up the string. |
 
-__Note:__ RPG Maker has no standard encoding for strings. It is up to the implementor's discretion as to which encoding to use. (Newer games will usually use UTF-8; Japanese games will tend to use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
+__Note:__ RPG Maker has no standard encoding for strings. It was originally a Japanese-only engine that got fan-translated before receiving an official English release. It is up to the implementor's discretion as to which encoding to use; Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
 
 ## LMT File Structure
 This section details the overall structure of an LMT file.
