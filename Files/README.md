@@ -16,22 +16,22 @@ The specifications within this directory (`Files`) document the various file for
 ### RPG Maker Config File (RPG_RT.ini)
 The `RPG_RT.ini` file provides basic game information, such as the game window's title.
 
-[__Specification__](Files/config.md)
+[__Specification__](config.md)
 
 ### XYZ Images (XYZ)
 XYZ files are sometimes used by RPG Maker 2003 games to store image data.
 
-[__Specification__](Files/xyz.md)
+[__Specification__](xyz.md)
 
 ### LCF Map Tree (LMT)
 LMT files are used to specify various map properties, map orderings, and game start information.
 
-[__Specification__](Files/lmt.md)
+[__Specification__](lmt.md)
 
 ### LCF Save Data (LSD)
 LSD files are used to store game save data.
 
-[__Specification__](Files/lsd.md) (_Researching_)
+[__Specification__](lsd.md) (_Researching_)
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
