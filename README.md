@@ -1,6 +1,6 @@
-# RPGMaker 2000/2003 Specifications
+# RPG Maker 2003 Specifications
 ## Introduction
-This repository contains specifications for the various file formats used by RPG Maker 2000/2003, such as XYZ images and LMT map files.
+This repository aims to completely document RPG Maker 2003, from its runtime behaviors to its various files formats, such as XYZ images and LMT map files.
 
 ### Table of Contents
 * [Introduction](#introduction)
@@ -13,7 +13,7 @@ This repository contains specifications for the various file formats used by RPG
 * [License](#license)
 
 ## About the Specifications
-All specifications within this repository are written with independence in mind; all relevant information is included, and they make no reference to each other. They each cover some aspect of RPG Maker 2000/2003, from file formats to runtime behavior.
+All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003; all relevant information is included, and they make no reference to each other.
 
 ## File Specifications
 
@@ -23,7 +23,7 @@ The `RPG_RT.ini` file provides basic game information, such as the game's title.
 [__Specification__](config.md)
 
 ### XYZ Images (XYZ)
-XYZ files are used by RPG Maker 2000/2003 to store image data.
+XYZ files are used by RPG Maker 2003 to store image data.
 
 [__Specification__](xyz.md)
 
