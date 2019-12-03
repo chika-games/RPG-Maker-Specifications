@@ -564,8 +564,8 @@ These tags are used within the [Encounters Tag](#encounters-tag).
 | End | [End Tag](#end-tag) | Indicates the end of the monster group tag. |
 
 ## Legal Information
-This document is provided under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license.
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
+This document is licensed under the [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/) license. Copyright (c) Chika Games.
 
-All rights belong to their respective owners.
+The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation. All rights belong to their respective owners.
