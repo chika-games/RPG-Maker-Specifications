@@ -5,43 +5,15 @@ This repository aims to completely document RPG Maker 2003, from its editor and 
 ### Table of Contents
 * [Introduction](#introduction)
 * [About The Specifications](#about-the-specifications)
-* [File Specifications](#file-specifications)
-  * [RPG Maker Config File (RPG_RT.ini)](#rpg-maker-config-file-rpg_rtini)
-  * [XYZ Images (XYZ)](#xyz-images-xyz)
-  * [LCF Map Tree (LMT)](#lcf-map-tree-lmt)
-  * [LCF Save Data (LSD)](#lcf-save-data-lsd)
 * [License](#license)
 
 ## About the Specifications
 All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003m All relevant information should be included, and they make no reference to each other.
 
-Specifications within the `Editor` directory deal with the RPG Maker 2003 editor.
-
-Specifications within the `Runtime` directory deal with the RPG Maker 2003 runtime (`RPG_RT`).
-
-Specifications within the `Files` directory deal with the various custom file formats used by RPG Maker 2003.
-
-## File Specifications
-
-### RPG Maker Config File (RPG_RT.ini)
-The `RPG_RT.ini` file provides basic game information, such as the game's title.
-
-[__Specification__](Files/config.md)
-
-### XYZ Images (XYZ)
-XYZ files are used by RPG Maker 2003 to store image data.
-
-[__Specification__](Files/xyz.md)
-
-### LCF Map Tree (LMT)
-LMT files are used to specify various map properties, map orderings, and game start information.
-
-[__Specification__](Files/lmt.md)
-
-### LCF Save Data (LSD)
-LSD files are used to store save data.
-
-[__Specification__](Files/lsd.md) (_Researching_)
+**Types of Specifications.** Below are the various types of specifications within this repository. Each type can be found in their respective directory.
+* `Editor`: These deal with the RPG Maker 2003 editor.
+* `Runtime`: These deal with the RPG Maker 2003 runtime (`RPG_RT`).
+* [Files](Files/README.md): These deal with the various custom file formats used by RPG Maker 2003.
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
