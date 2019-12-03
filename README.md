@@ -8,7 +8,7 @@ This repository aims to completely document RPG Maker 2003, from its editor and 
 * [License](#license)
 
 ## About the Specifications
-All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003m All relevant information should be included, and they make no reference to each other.
+All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003.
 
 **Types of Specifications.** Below are the various types of specifications within this repository. Each type can be found in their respective directory.
 * `Editor`: These deal with the RPG Maker 2003 editor.
