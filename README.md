@@ -15,11 +15,11 @@ This repository aims to completely document RPG Maker 2003, from its editor and 
 ## About the Specifications
 All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003m All relevant information should be included, and they make no reference to each other.
 
-Specifications within the `Editor Specs` directory deal with the RPG Maker 2003 editor.
+Specifications within the `Editor` directory deal with the RPG Maker 2003 editor.
 
-Specifications within the `Runtime Specs` directory deal with the RPG Maker 2003 runtime (`RPG_RT`).
+Specifications within the `Runtime` directory deal with the RPG Maker 2003 runtime (`RPG_RT`).
 
-Specifications within the `File Specs` directory deal with the various custom file formats used by RPG Maker 2003.
+Specifications within the `Files` directory deal with the various custom file formats used by RPG Maker 2003.
 
 ## File Specifications
 
