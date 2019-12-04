@@ -12,7 +12,7 @@ All specifications within this repository are written with independence in mind 
 
 **Types of Specifications.** Below are the various types of specifications within this repository. Each type can be found in their respective directory.
 * `Editor`: These deal with the RPG Maker 2003 editor.
-* `Runtime`: These deal with the RPG Maker 2003 runtime (`RPG_RT`).
+* [Runtime](Runtime/README.md): These deal with the RPG Maker 2003 runtime (`RPG_RT`).
 * [Files](Files/README.md): These deal with the various custom file formats used by RPG Maker 2003.
 
 ## License
