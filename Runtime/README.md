@@ -2,14 +2,13 @@
 ## Introduction
 The specifications within this directory (`Runtime`) document the behavior of the RPG Maker 2003 runtime (`RPG_RT.exe`).
 
-A general overview of the runtime is available [here](overview.md).
-
 ### Table of Contents
 * [Introduction](#introduction)
 * [Runtime Specifications](#runtime-specifications)
 * [License](#license)
 
 ## Runtime Specifications
+A general overview of the runtime is available [here](overview.md).
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
