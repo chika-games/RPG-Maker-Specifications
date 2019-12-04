@@ -15,9 +15,9 @@ It was written using a form of [Object Pascal](https://en.wikipedia.org/wiki/Obj
 ## Technical Controls
 `F4` and `Alt+Enter` switch between fullscreen and windowed mode.
 
-`F5` toggles the game resolution between 640x480 and 320x240.
+`F5` toggles the resolution between 640x480 and 320x240.
 
-`F12` resets the game and returns it to the main menu.
+`F12` resets the runtime and returns it to the main menu.
 
 ## Legal Information
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
