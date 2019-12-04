@@ -12,6 +12,8 @@
 ## Introduction
 The `RPG_RT.ini` configuation file provides basic game information for RPG Maker 2000 and 2003. This file follows a simple [INI](https://en.wikipedia.org/wiki/INI_file) format.
 
+This file is found within the same directory as the RPG Maker 2003 runtime (`RPG_RT.exe`). This file is not required, and, if not present, the runtime will simply use a set of default values as needed.
+
 ## Data Types
 This section describes the various data types that will be used throughout this specification.
 
