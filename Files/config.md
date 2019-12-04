@@ -28,7 +28,9 @@ This section details the overall structure of an `RPG_RT.ini` file.
 
 The fields should be specified within an "RPG_RT" section. See the [Example Config File](#example-config-file) for a simple example.
 
-None of the fields listed below are required and may be omitted; missing fields will take on a default value. These default values are based on the official RPG Maker runtime.
+None of the fields listed below are required and may be omitted; missing fields will take on a default value. Fields with invalid values will be ignored and the default value will be used.
+
+These default values are based on the official RPG Maker runtime.
 
 | Field | Type | Default Value | Description |
 | --- | --- | --- | --- |
