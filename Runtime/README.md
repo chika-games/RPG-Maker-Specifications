@@ -1,6 +1,6 @@
 # RPG Maker 2003 Runtime Specifications
 ## Introduction
-The specifications within this directory (`Runtime`) document the behavior of the RPG Maker 2003 runtime and any related material.
+The specifications within this directory (`Runtime`) document the behavior of the RPG Maker 2003 runtime (`RPG_RT.exe`).
 
 ### Table of Contents
 * [Introduction](#introduction)
