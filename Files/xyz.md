@@ -36,7 +36,7 @@ These types are considered _primitive_ as all other data types are constructed u
 These types are built using a combination of [Basic Data Types](#basic-data-types).
 
 #### RGB Type
-The `RGB` type represents a color with three channels: red, green, and blue.
+The `RGB` type represents a color with three channels: red, green, and blue, respectively.
 
 | Field | Type | Description |
 | --- | --- | --- |
