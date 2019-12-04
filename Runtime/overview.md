@@ -15,7 +15,7 @@ It was written using a form of [Object Pascal](https://en.wikipedia.org/wiki/Obj
 ## Technical Controls
 `F4` and `Alt+Enter` switch between fullscreen and windowed mode.
 
-`F5` toggles the resolution between 640x480 and 320x240.
+`F5` toggles the resolution between full-size (640 x 480) and half-size (320 x 240).
 
 `F12` resets the runtime and returns it to the main menu.
 
