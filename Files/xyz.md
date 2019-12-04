@@ -13,7 +13,7 @@
 ## Introduction
 The XYZ file format (`.xyz`) is the custom image format used in RPG Maker 2003. This format is palette-based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel. This results is a design that is simple to read and write.
 
-The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) (ZIP) compression algorithm is used to compress image palettes and pixel data.
+The [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm is used to compress image palettes and pixel data.
 
 This specification is part of a larger collection that can be found at the following URL: [https://github.com/chika-games/RPG-Maker-Specifications](https://github.com/chika-games/RPG-Maker-Specifications)
 
