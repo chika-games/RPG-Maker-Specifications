@@ -19,7 +19,7 @@ The `RPG_RT.ini` file provides basic game information, such as the game window's
 [__Specification__](config.md)
 
 ### XYZ Images (XYZ)
-XYZ files are sometimes used by RPG Maker 2003 games to store image data.
+XYZ files are sometimes used by RPG Maker 2003 to store image data.
 
 [__Specification__](xyz.md)
 
