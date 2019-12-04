@@ -10,7 +10,7 @@ This repository aims to completely document RPG Maker 2003, from its editor and 
 ## About the Specifications
 All specifications within this repository are written with independence in mind and cover a specific aspect of RPG Maker 2003.
 
-**Types of Specifications.** Below are the various types of specifications within this repository. Each type can be found in their respective directory.
+**Types of Specifications:** Below are the various types of specifications within this repository. Each type can be found in their respective directory.
 * [Editor](Editor/README.md): These deal with the RPG Maker 2003 editor.
 * [Runtime](Runtime/README.md): These deal with the RPG Maker 2003 runtime (`RPG_RT.exe`).
 * [Files](Files/README.md): These deal with the various custom file formats used by RPG Maker 2003.
