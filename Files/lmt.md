@@ -19,7 +19,7 @@
 * [Legal Information](#legal-information)
 
 ## Introduction
-LCF Map Tree files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 games.
+LCF Map Tree files are used to store map properties, game start information, and map orderings for RPG Maker 2003 games.
 
 This specification is part of a larger collection that can be found at the following URL: [https://github.com/chika-games/RPG-Maker-Specifications](https://github.com/chika-games/RPG-Maker-Specifications)
 
