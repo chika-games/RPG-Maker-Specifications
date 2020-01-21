@@ -1,4 +1,4 @@
-# RPG Maker 2003 Specifications
+# RPG Maker 2000/2003 Specifications
 ## Introduction
 This repository aims to completely document RPG Maker 2003, from its editor and runtime to its various files formats, such as XYZ images and LMT map files.
 
