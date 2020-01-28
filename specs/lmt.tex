@@ -79,9 +79,26 @@ Characters     & \textit{U8{[}Length{]}} & The array of characters that make up 
 \section{LMT File Structure}
 This section details the overall structure of an LMT file.
 
-\subsection{Example Map Hierarchy}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Field} & \textbf{Type}                       & \textbf{Description}                                       \\ \hline
+Signature      & \textit{STRING}                     & The file's signature. Should always be "LcfMapTree".       \\ \hline
+MapInfoCount   & \textit{VINT}                       & The number of info structures present.                     \\ \hline
+MapInfos       & \textit{Map Info{[}MapInfoCount{]}} & An array of map information.                               \\ \hline
+MapOrderCount  & \textit{VINT}                       & The number of map orderings present.                       \\ \hline
+MapOrders      & \textit{VINT{[}MapOrderCount{]}}    & The hierarchical orderings of a game's maps.               \\ \hline
+ActiveNode     & \textit{VINT}                       & For editor use only. The ID of the last active/edited map. \\ \hline
+MapStart       & \textit{Map Start}                  & Game start information, such as starting positions.        \\ \hline
+\end{tabular}
+\end{table}
+
 \section{Map Info Structure}
 \section{Map Start Structure}
+
+\subsection{Example Map Hierarchy}
+Below is an example hierarchy to help illustrate various fields of an LMT file. Notice all maps are children to the root map.
 
 \section{Tags}
 \subsection{Map Info Tags}
