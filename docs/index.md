@@ -4,7 +4,7 @@ layout: default
 
 # RPG Maker 2000/2003 Specifications
 ## Introduction
-This repository aims to completely document the RPG Maker 2000/2003 game engine, from its editor to its runtime.
+This repository aims to completely document the RPG Maker 2000/2003 game engines.
 
 ## About the Specifications
 The specifications within this repository are written with accuracy and generality in mind
