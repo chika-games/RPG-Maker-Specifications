@@ -2,7 +2,7 @@
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=blue&up_message=online&url=https%3A%2F%2Fchika-games.github.io%2FRPG-Maker-Specifications%2F)
 
 ## Introduction
-This repository aims to completely document the RPG Maker 2000/2003 editor and runtime.
+This repository aims to completely document the RPG Maker 2000/2003 editors and runtimes.
 
 ### Table of Contents
 * [Introduction](#introduction)
