@@ -32,3 +32,4 @@ All rights belong to their respective owners.
 ### Editor Specifications
 
 ### Runtime Specifications
+**[Keyboard Shortcuts](./shortcuts.html)**
