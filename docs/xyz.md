@@ -14,45 +14,45 @@ This format is used alongside the more conventional BMP and PNG image formats.
 Little-endian byte order is assumed for all numerical types;
 the least significant byte is stored first, and the most significant byte is stored last.
 
-Types may be appended with *[n]* in order to denote a contiguous array of the type in question, where *n* indicates the number of elements.
-For example, *U8[4]* denotes a contiguous array of four unsigned 8-bit integers.
+Types may be appended with `[n]` to denote a contiguous array of the type in question, where *n* indicates the number of elements.
+For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
 ### Basic Data Types
 The following tables list of the basic data types that will be used within this specification.
 
-| Type | Description                 |
-|:-----|:----------------------------|
-| U8   | An unsigned 8-bit integer.  |
-| U16  | An unsigned 16-bit integer. |
+| Type   | Description                 |
+|:-------|:----------------------------|
+| `U8`   | An unsigned 8-bit integer.  |
+| `U16`  | An unsigned 16-bit integer. |
 
 ### Compound Data Types
 Compound data types consist of a combination of basic data types.
 These correspond to structures and/or records in most programming languages.
 
 #### RGB Type
-The *RGB* types represents a color with three color values: red, green, and blue.
+The `RGB` types represents a color with three color values: red, green, and blue.
 
 | Field | Type | Description                    |
 |:------|:-----|:-------------------------------|
-| Red   | *U8* | The amount/intensity of red.   |
-| Green | *U8* | The amount/intensity of green. |
-| Blue  | *U8* | The amount/intensity of blue.  |
+| Red   | `U8` | The amount/intensity of red.   |
+| Green | `U8` | The amount/intensity of green. |
+| Blue  | `U8` | The amount/intensity of blue.  |
 
 ## XYZ File Structure
 The following table describes the overall structure of an XYZ file.
 
-| Field | Type | Description                                                                   |
-|:------|:-----|:------------------------------------------------------------------------------|
-| Signature     | *U8[4]*                  | The file's signature; this should always be "XYZ1".   |
-| Width         | *U16*                    | The width of the image in pixels.                     |
-| Height        | *U16*                    | The height of the image in pixels.                    |
-| **Palette**   | *RGB[256]*               | The image's color palette.                            |
-| **PixelData** | *U8[Width &ast; Height]* | The image's pixel data.                               |
+| Field     | Type                | Description                                           |
+|:----------|:--------------------|:------------------------------------------------------|
+| Signature | `U8[4]`             | The file's signature; this should always be "XYZ1".   |
+| Width     | `U16`               | The width of the image in pixels.                     |
+| Height    | `U16`               | The height of the image in pixels.                    |
+| Palette   | `RGB[256]`          | The image's color palette.                            |
+| PixelData | `U8[Width * Height]`| The image's pixel data.                               |
 
-Based on the maximum size of a *U16* value, XYZ images have a maximum size of 65535x65535.
+Based on the maximum size of a `U16` value, XYZ images have a maximum size of 65535x65535.
 
 Every value within the `PixelData` array is merely an index into `Palette`.
 That is, starting from the image's top-left and progressing right-down, every pixel is represented by an index into the `Palette`.
 
-**Note: ** The *Palette* and *PixelData* fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
+**Note:** The `Palette` and `PixelData` fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
 In particular, all data after the first eight bytes must be decompressed before use. This can be accomplished using e.g. [zlib](https://www.zlib.net/).
