@@ -7,8 +7,8 @@ layout: default
 The `RPG_RT.ini` configuation file provides basic start-up information for RPG Maker 2000/2003 games.
 This file in [INI](https://en.wikipedia.org/wiki/INI_file) format.
 
-This file is stored within the same directory as the RPG Maker runtime (`RPG_RT.exe`), but is not required:
-if the file is not present or fields are omitted, the runtime will use specific values as defaults.
+This file is stored within the same directory as the RPG Maker runtime (`RPG_RT.exe`) but is not required:
+if the file is not present or fields are omitted, the runtime will use specific default values instead.
 
 ## Data Types
 The following tables list of the data types that will be used within this specification.
