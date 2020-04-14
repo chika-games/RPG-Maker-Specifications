@@ -37,6 +37,8 @@ The following table describes the overall structure of the configuration file.
 | MapEditZoom     | `UINT`   | 0             | The last zoom level used.         |
 | FullPackageFlag | `BOOL`   | 0 (false)     | Skip loading a runtime package.   |
 
+If a field is missing or has an invalid value, then the runtime will use the field's default value.
+
 `GameTitle` determines the title of the runtime's window while playing the game.
 
 `MapEditMode` indicates the last layer-editing mode used when editing the game in the engine's editor.
