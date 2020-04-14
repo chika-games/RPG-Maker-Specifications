@@ -44,8 +44,10 @@ The following table describes the overall structure of the configuration file.
 `MapEditZoom` indicates the last zoom level used when editing the game in the engine's editor.
 
 `FullPackageFlag` determines whether or not the runtime should attempt to load a runtime package before running the game.
-Such runtime packages provide default assets for games to use; games that make use of one will not work properly if not loaded.
+Such runtime packages are installed on the player's machine and provide default assets for games to use;
+games that make use of a runtime package will not work properly if the package is not installed on the user's machine and loaded by the runtime.
+
 If a game does not make use of a runtime package, then `FullPackageFlag` may be set to 1 to allow the runtime to skip loading
-a runtime package, thereby improving startup performance and not requiring the user to have one installed on their machine.
+a runtime package, thereby improving startup performance and not requiring the player to install one.
 
 The official runtime packages for RPG Maker 2000 and RPG Maker 2003 can obtained from the [official website](https://www.rpgmakerweb.com/download/additional/run-time-packages).
