@@ -8,7 +8,7 @@ This repository aims to completely document the RPG Maker 2000/2003 game engine,
 
 ## About the Specifications
 The specifications within this repository are written with accuracy and generality in mind
-and are intended to cover a specific aspect of the RPG engines.
+and are intended to cover a specific aspect of the RPG Maker engines.
 
 However, these specifications are currently **unstable** and are bound to change without warning.
 
