@@ -49,10 +49,10 @@ The following table describes the overall structure of an XYZ file.
 | Palette   | `RGB[256]`          | The image's color palette.                            |
 | PixelData | `U8[Width * Height]`| The image's pixel data.                               |
 
-Based on the maximum size of a `U16` value, XYZ images have a maximum size of 65535x65535.
+**Note:** The `Palette` and `PixelData` fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
+In particular, all data after the first eight bytes must be decompressed before use. This can be accomplished using e.g. [zlib](https://www.zlib.net/).
 
 Every value within the `PixelData` array is merely an index into `Palette`.
 That is, starting from the image's top-left and progressing right-down, every pixel is represented by an index into the `Palette`.
 
-**Note:** The `Palette` and `PixelData` fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
-In particular, all data after the first eight bytes must be decompressed before use. This can be accomplished using e.g. [zlib](https://www.zlib.net/).
+Moreover, due to using `U16` sizes, the maximum size of an XYZ image is 65535x65535 pixels.
