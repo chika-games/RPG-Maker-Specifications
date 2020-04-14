@@ -21,8 +21,13 @@ The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadok
 All rights belong to their respective owners.
 
 ## Specifications
-### General Specifications
+### File Specifications
+**[Config File](./config.html)**
 **[XYZ Images](./xyz.html)**
+**[LCF Database](./ldb.html)**
+**[LCF Map Trees](./lmt.html)**
+**[LCF Map Unit](./lmu.html)**
+**[LCF Save Data](./lsd.html)**
 
 ### Editor Specifications
 

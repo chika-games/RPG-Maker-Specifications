@@ -39,6 +39,8 @@ The `RGB` types represents a color with three color values: red, green, and blue
 | Blue  | `U8` | The amount/intensity of blue.  |
 
 ## XYZ File Structure
+XYZ files are stored in binary format.
+
 The following table describes the overall structure of an XYZ file.
 
 | Field     | Type                | Description                                           |
