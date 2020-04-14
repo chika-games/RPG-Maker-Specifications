@@ -46,6 +46,7 @@ The following table describes the overall structure of the configuration file.
 `FullPackageFlag` determines whether or not the runtime should attempt to load a runtime package before running the game.
 Such runtime packages are installed on the player's machine and provide default assets for games to use;
 games that make use of a runtime package will not work properly if the package is not installed on the user's machine and loaded by the runtime.
+This is done to keep games from distributing the same default assets, potentially reducing the amount of disk-space games take up.
 
 If a game does not make use of a runtime package, then `FullPackageFlag` may be set to 1 to allow the runtime to skip loading
 a runtime package, thereby improving startup performance and not requiring the player to install one.
