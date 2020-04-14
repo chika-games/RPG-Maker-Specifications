@@ -13,10 +13,17 @@ and are intended to cover a specific aspect of the RPG engines.
 However, these specifications are currently **unstable** and are bound to change without warning.
 
 ## License
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+[![CC BY-SA 4.0](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
 All rights belong to their respective owners.
 
 ## Specifications
-### [XYZ Images](./xyz.html)
+### General Specifications
+**[XYZ Images](./xyz.html)**
+
+### Editor Specifications
+
+### Runtime Specifications
