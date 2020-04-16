@@ -28,7 +28,7 @@ These will typically only use the minimum number of bytes needed to encode a par
 For example, _123456_ will be encoded as three bytes. This helps reduce the overall size of LCF files.
 
 As the name implies, only the lower seven bits of an encoded integer will contribute to its overall value;
-the eighth (high) bit is used to determine whether or not the there another byte that follows the current one in memory.
+the eighth (high) bit is used to determine whether or not the there is another byte that should be read and decoded.
 
 Below is some pseudocode for reading and decoding these encoded integers into a fixed-length format (`U32`):
 
