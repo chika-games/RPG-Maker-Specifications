@@ -82,9 +82,8 @@ The following table describes the overall structure of an LMT file.
 | MapStart      | `Map Start`              | Game start information, such as starting positions.       |
 
 All maps are arranged in a hierarchy and are children to the first map in the `MapInfos` array called the root map.
-This root map is not a playable map and exists solely to be the default parent to all maps in the hierarchy.
-
-In older versions of the runtimes, the name of the root map was also used to determine the name of the game window.
+This root map is not meant to be playable and is simply meant to be the default parent to all maps in the hierarchy.
+In older versions of the RPG Maker 2000/2003 runtimes, the name of the root map was also used to determine the name of the game's window.
 This functionality has since been deprecated in favor of a [configuration file](./config.html).
 
 `ActiveNode` is used by the RPG Maker 2000/2003 editors to keep track of the last edited map.
