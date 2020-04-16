@@ -4,7 +4,7 @@ layout: default
 
 # LCF Map Tree File Specification
 ## Introduction
-LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 games.
+LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 (RM2k/3) games.
 
 ## Data Types
 Little-endian byte order is assumed for all numerical types;
@@ -83,15 +83,29 @@ The following table describes the overall structure of an LMT file.
 
 All maps are arranged in a hierarchy and are children to the first map in the `MapInfos` array called the root map.
 This root map is not meant to be playable and is simply meant to be the default parent to all maps in the hierarchy.
-In older versions of the RPG Maker 2000/2003 runtimes, the name of the root map was also used to determine the name of the game's window.
+In older versions of the RM2k/3 runtimes, the name of the root map was also used to determine the name of the game's window.
 This functionality has since been deprecated in favor of a [configuration file](./config.html).
 
-`ActiveNode` is used by the RPG Maker 2000/2003 editors to keep track of the last edited map.
-This allows them to automatically open the last edited map when opening the editor.
-
-### Map Hierarchy
+`ActiveNode` is used by the RM2k/3 editors to keep track of the last edited map.
+This allows them to automatically open the last edited map upon launching the editor.
 
 ## Map Info Structure
+
+### Map Hierarchy
+All maps of an RM2k/3 game are arranged in a parent-child hierarchy where the root map is at the top of the hierarchy.
+Below is an example of such a hierarchy that is intended to help illustrate some of the fields of the `Map Info` structure.
+
+```
+. My Game (root; indentation=0)
++-- Map 1 (parent=0; indentation=1)
+|   +-- Map 2 (parent=1; indentation=2)
+|   |   +-- Map 5 (parent=2; indentation=3)
+|   +-- Map 4 (parent=1; indentation=2)
++-- Map 3 (parent=0; indentation=1)
+```
+
+Notice that the maps are not required to be in sequential order. These arbitrary orderings are what the `MapOrders` field determines.
+Additionally, the ordering of the maps are mainly used by the editors and don't necessarily reflect the actual play order.
 
 ## Map Start Structure
 
