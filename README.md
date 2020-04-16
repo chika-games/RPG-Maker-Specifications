@@ -17,6 +17,6 @@ These specifications are written with accuracy and generality in mind and are in
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). Copyright (c) 2019-2020 Chika Games.
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/). Copyright &#169; 2019-2020 Chika Games.
 
-The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation. All rights belong to their respective owners.
+RPG Maker &#8482;/&#169; Enterbrain, Inc. and Kadokawa Corporation. All rights belong to their respective owners.
