@@ -6,6 +6,8 @@ layout: default
 ## Introduction
 LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 (RM2k/3) games.
 
+These LMT files use a tag-based format similar to the one used in e.g. Adobe SWF files.
+
 ## Data Types
 Little-endian byte order is assumed for all numerical types;
 the least significant byte is stored first, and the most significant byte is stored last.
@@ -13,8 +15,10 @@ the least significant byte is stored first, and the most significant byte is sto
 Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
+These data types are used within the actual structural types that determine the overall the structure of LMT files.
+
 ### Basic Data Types
-The following table lists all of the basic data types that will be used within this specification.
+The following table lists all of the basic data types that make up all other data types.
 
 | Type   | Description                 |
 |:-------|:----------------------------|
@@ -71,15 +75,15 @@ LMT files are stored in binary format.
 
 The following table describes the overall structure of an LMT file.
 
-| Field         | Type                     | Description                                               |
-|:--------------|:-------------------------|:----------------------------------------------------------|
-| Signature     | `STRING`                 | The file's signature; this should always be "LcfMapTree". |
-| MapInfoCount  | `EINT`                   | The number of map info structures present.                |
-| MapInfos      | `Map Info[MapInfoCount]` | An array of map info structures.                          |
-| MapOrderCount | `EINT`                   | The number of map orderings present.                      |
-| MapOrders     | `EINT[MapOrderCount]`    | The hierarchical orderings of a game's maps.              |
-| ActiveNode    | `EINT`                   | The ID of the last active/edited map.                     |
-| MapStart      | `Map Start`              | Game start information, such as starting positions.       |
+| Field         | Type                                            | Description                                               |
+|:--------------|:------------------------------------------------|:----------------------------------------------------------|
+| Signature     | `STRING`                                        | The file's signature; this should always be "LcfMapTree". |
+| MapInfoCount  | `EINT`                                          | The number of map info structures present.                |
+| MapInfos      | [Map Info](#map-info-structure)`[MapInfoCount]` | An array of map info structures.                          |
+| MapOrderCount | `EINT`                                          | The number of map orderings present.                      |
+| MapOrders     | `EINT[MapOrderCount]`                           | The hierarchical orderings of a game's maps.              |
+| ActiveNode    | `EINT`                                          | The ID of the last active/edited map.                     |
+| MapStart      | [Map Start](#map-start-structure)               | Game start information, such as starting positions.       |
 
 All maps are arranged in a hierarchy and are children to the first map in the `MapInfos` array called the root map.
 This root map is not meant to be playable and is simply meant to be the default parent to all maps in the hierarchy.
@@ -90,6 +94,32 @@ This functionality has since been deprecated in favor of a [configuration file](
 This allows them to automatically open the last edited map upon launching the editor.
 
 ## Map Info Structure
+The following table describes the layout of `Map Info` structures.
+
+| Field          | Type                                        | Default Value                                             | Description                                                                                                                    |
+|:---------------|:--------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| MapID          | `VINT`                                      | Always present.                                           | The map's unique ID. `0` is always the root map's ID.                                                                          |
+| MapName        | [Map Name Tag](#map-name-tag)               | Always present.                                           | The map's name.                                                                                                                |
+| ParentID       | [Parent ID Tag](#parent-id-tag)             | 0                                                         | The ID of a map's parent. `0` means it's a top-level map (root is parent).                                                     |
+| Indentation    | [Indentation Tag](#indentation-tag)         | 1 (0 if root)                                             | The map's hierarchical indentation; it indicates how deep it is in the hierarchy. See the [example hierarchy](#map-hierarchy). |
+| MapType        | [Map Type Tag](#map-type-tag)               | Map (1)                                                   | The type of map.                                                                                                               |
+| EditPosX       | [Edit Position X Tag](#edit-position-x-tag) | 0                                                         | The editor's last x-position when the map was last edited.                                                                     |
+| EditPosY       | [Edit Position Y Tag](#edit-position-x-tag) | 0                                                         | The editor's last y-position when the map was last edited.                                                                     |
+| EditExpanded   | [Edit Expanded Tag](#edit-expanded-tag)     | False (0)                                                 | Whether or not the map was expanded in the editor's tree view (children were visible).                                         |
+| MusicType      | [Music Type Tag](#music-type-tag)           | See tag's section.                                        | How map's background music should be played.                                                                                   |
+| Music          | [Music Tag](#music-tag)                     | See tag's section.                                        | The map's background music and its playback settings.                                                                          |
+| BackgroundType | [Background Type Tag](#background-type-tag) | See tag's section.                                        | The type of background to display while in combat.                                                                             |
+| BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or ""                                          | The filename of the combat background.                                                                                         |
+| TeleportFlag   | [Teleport Flag Tag](#teleport-flag-tag)     | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not teleporting out of the map is allowed.                                                               |
+| EscapeFlag     | [Escape Flag Tag](#escape-flag-tag)         | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not escaping out of the map is allowed.                                                                  |
+| SaveFlag       | [Save Flag Tag](#save-flag-tag)             | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not saving is allowed within the map.                                                                    |
+| Encounters     | [Encounters Tag](#encounters-tag)           | An empty array.                                           | All possible (random) combat encounters that can appear within the map.                                                        |
+| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25                                                        | The likelihood of having a random encounter.                                                                                   |
+| AreaRectangle  | [Area Rectangle Tag](#area-rectangle-tag)   | [0, 0, 0, 0]                                              | The size of a map area measured in pixels. |
+| End            | [End Tag](#end-tag)                         | Always present.                                           | Indicates the end of the map info structure. |
+
+**Note:** In practice, not all of the above fields with a tag-based type will be present. This is to help reduce the overall size of LMT files.
+If such a field is missing, then its respective default value provided above should be used in its place.
 
 ### Map Hierarchy
 All maps of an RM2k/3 game are arranged in a parent-child hierarchy where the root map is at the top of the hierarchy.

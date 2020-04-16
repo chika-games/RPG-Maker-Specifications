@@ -17,8 +17,10 @@ the least significant byte is stored first, and the most significant byte is sto
 Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
+These data types are used within the actual structural types that determine the overall the structure of XYZ files.
+
 ### Basic Data Types
-The following table lists all of the basic data types that will be used within this specification.
+The following table lists all of the basic data types that make up all other data types.
 
 | Type  | Description                 |
 |:------|:----------------------------|
