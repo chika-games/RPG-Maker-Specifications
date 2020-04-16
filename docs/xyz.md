@@ -43,13 +43,13 @@ XYZ files are stored in binary format.
 
 The following table describes the overall structure of an XYZ file.
 
-| Field     | Type                | Description                                           |
-|:----------|:--------------------|:------------------------------------------------------|
-| Signature | `U8[4]`             | The file's signature; this should always be "XYZ1".   |
-| Width     | `U16`               | The width of the image in pixels.                     |
-| Height    | `U16`               | The height of the image in pixels.                    |
-| Palette   | `RGB[256]`          | The image's color palette.                            |
-| PixelData | `U8[Width * Height]`| The image's pixel data.                               |
+| Field     | Type                 | Description                                         |
+|:----------|:---------------------|:----------------------------------------------------|
+| Signature | `U8[4]`              | The file's signature; this should always be "XYZ1". |
+| Width     | `U16`                | The width of the image in pixels.                   |
+| Height    | `U16`                | The height of the image in pixels.                  |
+| Palette   | `RGB[256]`           | The image's color palette.                          |
+| PixelData | `U8[Width * Height]` | The image's pixel data.                             |
 
 **Note:** The `Palette` and `PixelData` fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
 All data after the first eight bytes must be decompressed before use. This may be accomplished by using the [zlib](https://www.zlib.net/) library.
