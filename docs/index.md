@@ -24,13 +24,13 @@ All rights belong to their respective owners.
 ### File Specifications
 **[Config File](./config.html)**
 
-**[XYZ Images](./xyz.html)**
+**[XYZ Image](./xyz.html)**
 
-**[LCF Database](./ldb.html)**
-
-**[LCF Map Trees](./lmt.html)**
+**[LCF Map Tree](./lmt.html)**
 
 **[LCF Map Unit](./lmu.html)**
+
+**[LCF Database](./ldb.html)**
 
 **[LCF Save Data](./lsd.html)**
 

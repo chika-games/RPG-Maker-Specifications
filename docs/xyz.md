@@ -14,16 +14,16 @@ This format is used alongside the more conventional BMP and PNG image formats.
 Little-endian byte order is assumed for all numerical types;
 the least significant byte is stored first, and the most significant byte is stored last.
 
-Types may be appended with `[n]` to denote a contiguous array of the type in question, where *n* indicates the number of elements.
+Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
 ### Basic Data Types
-The following tables list of the basic data types that will be used within this specification.
+The following table lists all of the basic data types that will be used within this specification.
 
-| Type   | Description                 |
-|:-------|:----------------------------|
-| `U8`   | An unsigned 8-bit integer.  |
-| `U16`  | An unsigned 16-bit integer. |
+| Type  | Description                 |
+|:------|:----------------------------|
+| `U8`  | An unsigned 8-bit integer.  |
+| `U16` | An unsigned 16-bit integer. |
 
 ### Compound Data Types
 Compound data types consist of a combination of basic data types.
