@@ -10,8 +10,7 @@ These LMT files use a tag-based format similar to the one used in e.g. Adobe SWF
 RM2k/3 games typically only have one LMT file: `RPG_RT.lmt`. This is located within the same directory as the game's executable file.
 
 ## Data Types
-Little-endian byte order is assumed for all numerical types;
-the least significant byte is stored first, and the most significant byte is stored last.
+LMT files use little-endian byte ordering; the least significant byte is stored first, and the most significant byte is stored last.
 
 Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.

@@ -11,8 +11,7 @@ This results is a compact format that's easy to read and write.
 This format is used alongside the more conventional BMP and PNG image formats.
 
 ## Data Types
-Little-endian byte order is assumed for all numerical types;
-the least significant byte is stored first, and the most significant byte is stored last.
+XYZ files use little-endian byte ordering; the least significant byte is stored first, and the most significant byte is stored last.
 
 Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
