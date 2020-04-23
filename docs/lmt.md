@@ -98,7 +98,7 @@ The following table describes the layout of `Map Info` structures.
 
 | Field          | Type                                        | Default Value                                             | Description                                                                                                                    |
 |:---------------|:--------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
-| MapID          | `VINT`                                      | Always present.                                           | The map's unique ID. `0` is always the root map's ID.                                                                          |
+| MapID          | `EINT`                                      | Always present.                                           | The map's unique ID. `0` is always the root map's ID.                                                                          |
 | MapName        | [Map Name Tag](#map-name-tag)               | Always present.                                           | The map's name.                                                                                                                |
 | ParentID       | [Parent ID Tag](#parent-id-tag)             | 0                                                         | The ID of a map's parent. `0` means it's a top-level map (root is parent).                                                     |
 | Indentation    | [Indentation Tag](#indentation-tag)         | 1 (0 if root)                                             | The map's hierarchical indentation; it indicates how deep it is in the hierarchy. See the [example hierarchy](#map-hierarchy). |
@@ -142,9 +142,33 @@ Additionally, the ordering of the maps are mainly used by the editors and don't 
 ## Tags
 
 ### Map Info Tags
+#### Music Tag
+This tag specifies a particular song and its playback properties.
+
+| Field    | Type                                        | Default Value   | Description                                               |
+|:---------|:--------------------------------------------|:----------------|:----------------------------------------------------------|
+| TagID    | `EINT`                                      | Always present. | This should always be 12.                                 |
+| TagSize  | `EINT`                                      | Always present. | The total size of the remaining fields measured in bytes. |
+| Name     | [Music Name Tag](#music-name-tag)           | "(OFF)"         | The filename of the song to play.                         |
+| FadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0               | The fade time for the music; 0 means no fade.             |
+| Volume   | [Music Volume Tag](#music-volume-tag)       | 100             | The volume of the music.                                  |
+| Tempo    | [Music Tempo Tag](#music-tempo-tag)         | 100             | The tempo of the music.                                   |
+| Balance  | [Music Balance Tag](#music-balance-tag)     | 50              | The left-right balance of the music; 50 is centered.      |
+| End      | [End Tag](#end-tag)                         | Always present. | Indicates the end of the music tag.                       |
 
 ### Map Start Tags
 
 ### Music Tags
+These tags are used within the [Music Tag](#music-tag).
+
+#### Music Name Tag
+This tag specifies the filename of a song.
+
+| Field | Type   | Default Value   | Description     |
+|:------|:-------|:----------------|:----------------|
+| TagID | EINT   | This should always be 1.          |
+| Name  | STRING | The filename of the song to play. |
+
+If `Name` is "(OFF)" or an empty string, then no the song is considered empty; no song should play.
 
 ### Encounter Tags
