@@ -5,8 +5,9 @@ layout: default
 # LCF Map Tree File Specification
 ## Introduction
 LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 (RM2k/3) games.
-
 These LMT files use a tag-based format similar to the one used in e.g. Adobe SWF files.
+
+RM2k/3 games typically only have one LMT file: `RPG_RT.lmt`. This is located within the same directory as the game's executable file.
 
 ## Data Types
 Little-endian byte order is assumed for all numerical types;
