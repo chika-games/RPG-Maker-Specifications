@@ -140,10 +140,43 @@ Additionally, the ordering of the maps are mainly used by the editors and don't 
 ## Map Start Structure
 
 ## Tags
+All tags begin with the same basic format below except for the [End Tag](#end-tag) and [Monster Group Tag](#monster-group-tag).
+
+Basic format:
+
+| Field   | Type   | Description                                               |
+|:--------|:-------|:----------------------------------------------------------|
+| TagID   | `EINT` | The tag's semi-unique ID.                                 |
+| TagSize | `EINT` | The size of the tag's remaining fields measured in bytes. |
+
+The `TagID` field identifies tags semi-uniquely; some tags may share an ID, but this is never happens within the same structure/context.
+
+The `TagSize` field measures the total number of bytes the rest of the tag's fields take up.
+This field is occasionally used by other fields and can be used to skip over recognized tags by simply reading or skipping over `TagSize` number of bytes.
+
+### End Tag
+Marks the end of a structure or tag. This tag only has an ID field.
+
+| Field | Type   | Default Value   | Description              |
+|:------|:-------|:----------------|:-------------------------|
+| TagID | `EINT` | Always present. | This should always be 0. |
 
 ### Map Info Tags
+#### Map Name Tag
+This tag provides the name of a map.
+
+| Field   | Type          | Default Value   | Description                                 |
+|:--------|:--------------|:----------------|:--------------------------------------------|
+| TagID   | `EINT`        | Always present. | This should always be 0.                    |
+| TagSize | `EINT`        | Always present. | The length of the map's name in bytes.      |
+| MapName | `U8[TagSize]` | Always present. | The characters that make up the map's name. |
+
+`TagSize` + `MapName` effectively act as a [`STRING`](#string-type) type.
+
 #### Music Tag
 This tag specifies a particular song and its playback properties.
+
+Not all fields with a tag-type may be present; in this case, the provided default value should be used.
 
 | Field    | Type                                        | Default Value   | Description                                               |
 |:---------|:--------------------------------------------|:----------------|:----------------------------------------------------------|
