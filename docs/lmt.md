@@ -96,27 +96,27 @@ This allows them to automatically open the last edited map upon launching the ed
 ## Map Info Structure
 The following table describes the layout of `Map Info` structures.
 
-| Field          | Type                                        | Default Value                                             | Description                                                                                                                    |
-|:---------------|:--------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
-| MapID          | `EINT`                                      | Always present.                                           | The map's unique ID. `0` is always the root map's ID.                                                                          |
-| MapName        | [Map Name Tag](#map-name-tag)               | Always present.                                           | The map's name.                                                                                                                |
-| ParentID       | [Parent ID Tag](#parent-id-tag)             | 0                                                         | The ID of a map's parent. `0` means it's a top-level map (root is parent).                                                     |
-| Indentation    | [Indentation Tag](#indentation-tag)         | 1 (0 if root)                                             | The map's hierarchical indentation; it indicates how deep it is in the hierarchy. See the [example hierarchy](#map-hierarchy). |
-| MapType        | [Map Type Tag](#map-type-tag)               | Map (1)                                                   | The type of map.                                                                                                               |
-| EditPosX       | [Edit Position X Tag](#edit-position-x-tag) | 0                                                         | The editor's last x-position when the map was last edited.                                                                     |
-| EditPosY       | [Edit Position Y Tag](#edit-position-x-tag) | 0                                                         | The editor's last y-position when the map was last edited.                                                                     |
-| EditExpanded   | [Edit Expanded Tag](#edit-expanded-tag)     | False (0)                                                 | Whether or not the map was expanded in the editor's tree view (children were visible).                                         |
-| MusicType      | [Music Type Tag](#music-type-tag)           | See tag's section.                                        | How map's background music should be played.                                                                                   |
-| Music          | [Music Tag](#music-tag)                     | See tag's section.                                        | The map's background music and its playback settings.                                                                          |
-| BackgroundType | [Background Type Tag](#background-type-tag) | See tag's section.                                        | The type of background to display while in combat.                                                                             |
-| BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or ""                                          | The filename of the combat background.                                                                                         |
-| TeleportFlag   | [Teleport Flag Tag](#teleport-flag-tag)     | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not teleporting out of the map is allowed.                                                               |
-| EscapeFlag     | [Escape Flag Tag](#escape-flag-tag)         | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not escaping out of the map is allowed.                                                                  |
-| SaveFlag       | [Save Flag Tag](#save-flag-tag)             | Allow (1) for top-level maps; Inherit (0) for child maps. | Determines whether or not saving is allowed within the map.                                                                    |
-| Encounters     | [Encounters Tag](#encounters-tag)           | An empty array.                                           | All possible (random) combat encounters that can appear within the map.                                                        |
-| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25                                                        | The likelihood of having a random encounter.                                                                                   |
-| AreaRectangle  | [Area Rectangle Tag](#area-rectangle-tag)   | [0, 0, 0, 0]                                              | The size of a map area measured in pixels. |
-| End            | [End Tag](#end-tag)                         | Always present.                                           | Indicates the end of the map info structure. |
+| Field          | Type                                        | Default Value                                               | Description                                                                                                                    |
+|:---------------|:--------------------------------------------|:------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| MapID          | `EINT`                                      | Always present.                                             | The map's unique ID. `0` is always the root map's ID.                                                                          |
+| MapName        | [Map Name Tag](#map-name-tag)               | Always present.                                             | The map's name.                                                                                                                |
+| ParentID       | [Parent ID Tag](#parent-id-tag)             | 0                                                           | The ID of a map's parent. `0` means it's a top-level map (root is parent).                                                     |
+| Indentation    | [Indentation Tag](#indentation-tag)         | 1 (0 if root)                                               | The map's hierarchical indentation; it indicates how deep it is in the hierarchy. See the [example hierarchy](#map-hierarchy). |
+| MapType        | [Map Type Tag](#map-type-tag)               | Map (1)                                                     | The type of map.                                                                                                               |
+| EditPosX       | [Edit Position X Tag](#edit-position-x-tag) | 0                                                           | The editor's last x-position when the map was last edited.                                                                     |
+| EditPosY       | [Edit Position Y Tag](#edit-position-x-tag) | 0                                                           | The editor's last y-position when the map was last edited.                                                                     |
+| EditExpanded   | [Edit Expanded Tag](#edit-expanded-tag)     | False (0)                                                   | Whether or not the map was expanded in the editor's tree view (children were visible).                                         |
+| MusicType      | [Music Type Tag](#music-type-tag)           | Event (1) for top-level maps; Inherit (0) for child maps.   | How map's background music should be played.                                                                                   |
+| Music          | [Music Tag](#music-tag)                     | See tag's section.                                          | The map's background music and its playback settings.                                                                          |
+| BackgroundType | [Background Type Tag](#background-type-tag) | Terrain (1) for top-level maps; Inherit (0) for child maps. | The type of background to display while in combat.                                                                             |
+| BackgroundName | [Background Name Tag](#background-name-tag) | "backdrop" or ""                                            | The filename of the combat background.                                                                                         |
+| TeleportFlag   | [Teleport Flag Tag](#teleport-flag-tag)     | Allow (1) for top-level maps; Inherit (0) for child maps.   | Determines whether or not teleporting out of the map is allowed.                                                               |
+| EscapeFlag     | [Escape Flag Tag](#escape-flag-tag)         | Allow (1) for top-level maps; Inherit (0) for child maps.   | Determines whether or not escaping out of the map is allowed.                                                                  |
+| SaveFlag       | [Save Flag Tag](#save-flag-tag)             | Allow (1) for top-level maps; Inherit (0) for child maps.   | Determines whether or not saving is allowed within the map.                                                                    |
+| Encounters     | [Encounters Tag](#encounters-tag)           | An empty array.                                             | All possible (random) combat encounters that can appear within the map.                                                        |
+| EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25                                                          | The likelihood of having a random encounter.                                                                                   |
+| AreaRectangle  | [Area Rectangle Tag](#area-rectangle-tag)   | [0, 0, 0, 0]                                                | The size of a map area measured in pixels. |
+| End            | [End Tag](#end-tag)                         | Always present.                                             | Indicates the end of the map info structure. |
 
 **Note:** In practice, not all of the above fields with a tag-based type will be present. This is to help reduce the overall size of LMT files.
 If such a field is missing, then its respective default value provided above should be used in its place.
@@ -157,8 +157,8 @@ This field is occasionally used by other fields and can be used to skip over rec
 ### End Tag
 Marks the end of a structure or tag. This tag only has an ID field.
 
-| Field | Type   | Description              |
-|:------|:-------|:-------------------------|
+| Field | Type   | Description            |
+|:------|:-------|:-----------------------|
 | TagID | `EINT` | This will always be 0. |
 
 ### Map Info Tags
@@ -176,11 +176,11 @@ This tag provides the name of a map.
 #### Parent ID Tag
 This tag provides the ID of a map's parent map.
 
-| Field    | Type          | Description                                 |
-|:---------|:--------------|:--------------------------------------------|
-| TagID    | `EINT`        | This will always be 2.                      |
-| TagSize  | `EINT`        | The size of `ParentID` measured in bytes.   |
-| ParentID | `EINT`        | The ID of the map's parent.                 |
+| Field    | Type   | Description                               |
+|:---------|:-------|:------------------------------------------|
+| TagID    | `EINT` | This will always be 2.                    |
+| TagSize  | `EINT` | The size of `ParentID` measured in bytes. |
+| ParentID | `EINT` | The ID of the map's parent.               |
 
 #### Indentation Tag
 This tag provides a map's indentation in the (Map Hierarchy)[#map-hierarchy].
@@ -194,11 +194,11 @@ This tag provides a map's indentation in the (Map Hierarchy)[#map-hierarchy].
 #### Map Type Tag
 This tag provides a map's type.
 
-| Field   | Type   | Description                                      |
-|:--------|:-------|:-------------------------------------------------|
-| TagID   | `EINT` | This will always be 4.                           |
-| TagSize | `EINT` | The size of `MapType` measured in bytes.         |
-| MapType | `EINT` | The map's type. See (Map Type)[#map-type] below. |
+| Field   | Type   | Description                              |
+|:--------|:-------|:-----------------------------------------|
+| TagID   | `EINT` | This will always be 4.                   |
+| TagSize | `EINT` | The size of `MapType` measured in bytes. |
+| MapType | `EINT` | The map's type. See table below.         |
 
 **Map Type**
 | Type | Value | Description       |
@@ -235,6 +235,22 @@ i.e., it's children maps were visible in the (Map Hierarchy)[#map-hierarchy].
 | TagSize      | `EINT` | The size of `EditPosY` measured in bytes.      |
 | EditExpanded | `EINT` | Whether or not the map was expanded in-editor. |
 
+#### Music Type Tag
+This tag specifies how music should be played within a map.
+
+| Field     | Type   | Description                                |
+|:----------|:-------|:-------------------------------------------|
+| TagID     | `EINT` | This will always be 11.                    |
+| TagSize   | `EINT` | The size of `MusicType` measured in bytes. |
+| MusicType | `EINT` | The map's music type. See table below.     |
+
+**Music Type**
+| Type      | Value | Description                           |
+|:----------|:------|:--------------------------------------|
+| Inherit   | 0     | Inherit music type from map's parent. |
+| Event     | 1     | Music provided through events.        |
+| Specified | 2     | Play a specific song.                 |
+
 #### Music Tag
 This tag specifies a particular song and its playback properties.
 
@@ -250,6 +266,22 @@ Not all fields may be present; in this case, the field's default value should be
 | Tempo    | [Music Tempo Tag](#music-tempo-tag)         | 100             | The tempo of the music.                                   |
 | Balance  | [Music Balance Tag](#music-balance-tag)     | 50              | The left-right balance of the music; 50 is centered.      |
 | End      | [End Tag](#end-tag)                         | Always present. | Indicates the end of the music tag.                       |
+
+#### Background Type Tag
+This tag specifies the type of background a map has.
+
+| Field          | Type   | Description                                      |
+|:---------------|:-------|:-------------------------------------------------|
+| TagID          | `EINT` | This will always be 21.                          |
+| TagSize        | `EINT` | The size of `BackgroundType` measured in bytes.  |
+| BackgroundType | `EINT` | The map's background type. See table below.      |
+
+**Background Type**
+| Type      | Value | Description                           |
+|:----------|:------|:--------------------------------------|
+| Inherit   | 0     | Inherit music type from map's parent. |
+| Terrain   | 1     | Use the terrain settings.             |
+| Specified | 2     | Use a specified background image.     |
 
 ### Map Start Tags
 
