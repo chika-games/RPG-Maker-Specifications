@@ -157,30 +157,48 @@ This field is occasionally used by other fields and can be used to skip over rec
 ### End Tag
 Marks the end of a structure or tag. This tag only has an ID field.
 
-| Field | Type   | Default Value   | Description              |
-|:------|:-------|:----------------|:-------------------------|
-| TagID | `EINT` | Always present. | This should always be 0. |
+| Field | Type   | Description              |
+|:------|:-------|:-------------------------|
+| TagID | `EINT` | This will always be 0. |
 
 ### Map Info Tags
 #### Map Name Tag
 This tag provides the name of a map.
 
-| Field   | Type          | Default Value   | Description                                 |
-|:--------|:--------------|:----------------|:--------------------------------------------|
-| TagID   | `EINT`        | Always present. | This should always be 0.                    |
-| TagSize | `EINT`        | Always present. | The length of the map's name in bytes.      |
-| MapName | `U8[TagSize]` | Always present. | The characters that make up the map's name. |
+| Field   | Type          | Description                                 |
+|:--------|:--------------|:--------------------------------------------|
+| TagID   | `EINT`        | This will always be 1.                      |
+| TagSize | `EINT`        | The number of characters in `MapName`.      |
+| MapName | `U8[TagSize]` | The characters that make up the map's name. |
 
 `TagSize` + `MapName` effectively act as a [`STRING`](#string-type) type.
+
+#### Parent ID Tag
+This tag provides the ID of a map's parent map.
+
+| Field    | Type          | Description                                 |
+|:---------|:--------------|:--------------------------------------------|
+| TagID    | `EINT`        | This will always be 2.                      |
+| TagSize  | `EINT`        | The size of `ParentID` measured in bytes.   |
+| ParentID | `EINT`        | The ID of the map's parent.                 |
+
+#### Indentation Tag
+This tag provides a map's indentation in the (Map Hierarchy)[#map-hierarchy].
+
+| Field       | Type          | Description                                  |
+|:------------|:--------------|:---------------------------------------------|
+| TagID       | `EINT`        | This will always be 3.                       |
+| TagSize     | `EINT`        | The size of `Indentation` measured in bytes. |
+| Indentation | `EINT`        | The indentation of the map.                  |
 
 #### Music Tag
 This tag specifies a particular song and its playback properties.
 
-Not all fields with a tag-type may be present; in this case, the provided default value should be used.
+Not all fields may be present; in this case, the field's default value should be used.
 
 | Field    | Type                                        | Default Value   | Description                                               |
 |:---------|:--------------------------------------------|:----------------|:----------------------------------------------------------|
-| TagID    | `EINT`                                      | Always present. | This should always be 12.                                 |
+| TagID    | `EINT`                                      | Always present. | This will always be 12.                                   |
 | TagSize  | `EINT`                                      | Always present. | The total size of the remaining fields measured in bytes. |
 | Name     | [Music Name Tag](#music-name-tag)           | "(OFF)"         | The filename of the song to play.                         |
 | FadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0               | The fade time for the music; 0 means no fade.             |
@@ -199,7 +217,7 @@ This tag specifies the filename of a song.
 
 | Field | Type   | Default Value   | Description     |
 |:------|:-------|:----------------|:----------------|
-| TagID | EINT   | This should always be 1.          |
+| TagID | EINT   | This will always be 1.            |
 | Name  | STRING | The filename of the song to play. |
 
 If `Name` is "(OFF)" or an empty string, then no the song is considered empty; no song should play.
