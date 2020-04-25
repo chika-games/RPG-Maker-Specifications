@@ -216,6 +216,25 @@ This specifies the editor's last x-position when a particular map was previously
 | TagSize  | `EINT` | The size of `EditPosX` measured in bytes. |
 | EditPosX | `EINT` | The editor's last x-position.             |
 
+#### Edit Position Y Tag
+This specifies the RM2k/3 editor's last y-position when a particular map was previously edited.
+
+| Field    | Type   | Description                               |
+|:---------|:-------|:------------------------------------------|
+| TagID    | `EINT` | This will always be 6.                    |
+| TagSize  | `EINT` | The size of `EditPosY` measured in bytes. |
+| EditPosY | `EINT` | The editor's last y-position.             |
+
+#### Edit Expanded Tag
+This specifies whether or not a map was previously "expanded" within the the RM2k/3 editor;
+i.e., it's children maps were visible in the (Map Hierarchy)[#map-hierarchy].
+
+| Field        | Type   | Description                                    |
+|:-------------|:-------|:-----------------------------------------------|
+| TagID        | `EINT` | This will always be 7.                         |
+| TagSize      | `EINT` | The size of `EditPosY` measured in bytes.      |
+| EditExpanded | `EINT` | Whether or not the map was expanded in-editor. |
+
 #### Music Tag
 This tag specifies a particular song and its playback properties.
 
