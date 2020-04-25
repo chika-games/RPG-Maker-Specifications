@@ -191,6 +191,31 @@ This tag provides a map's indentation in the (Map Hierarchy)[#map-hierarchy].
 | TagSize     | `EINT`        | The size of `Indentation` measured in bytes. |
 | Indentation | `EINT`        | The indentation of the map.                  |
 
+#### Map Type Tag
+This tag provides a map's type.
+
+| Field   | Type   | Description                                      |
+|:--------|:-------|:-------------------------------------------------|
+| TagID   | `EINT` | This will always be 4.                           |
+| TagSize | `EINT` | The size of `MapType` measured in bytes.         |
+| MapType | `EINT` | The map's type. See (Map Type)[#map-type] below. |
+
+**Map Type**
+| Type | Value | Description       |
+|:-----|:------|:------------------|
+| Root | 0     | The root map.     |
+| Map  | 1     | A regular map.    |
+| Area | 2     | An area of a map. |
+
+#### Edit Position X Tag
+This specifies the editor's last x-position when a particular map was previously edited.
+
+| Field    | Type   | Description                               |
+|:---------|:-------|:------------------------------------------|
+| TagID    | `EINT` | This will always be 5.                    |
+| TagSize  | `EINT` | The size of `EditPosX` measured in bytes. |
+| EditPosX | `EINT` | The editor's last x-position.             |
+
 #### Music Tag
 This tag specifies a particular song and its playback properties.
 
