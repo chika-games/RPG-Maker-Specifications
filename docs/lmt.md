@@ -193,7 +193,7 @@ The `TagSize` field measures the total number of bytes the rest of the tag's fie
 This field is occasionally used by other fields and can be used to skip over recognized tags by simply reading or skipping over `TagSize` number of bytes.
 
 ### End Tag
-Marks the end of a structure or tag when there are no more relevant fields present.
+Marks the end of a structure, tag, or `LIST`.
 
 This tag only has an ID field.
 
