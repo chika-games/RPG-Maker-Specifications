@@ -76,7 +76,7 @@ This type will always be followed by another type which indicates the type of el
 
 This is essentially an array where all elements are preceded by their index in the list and followed by an [End Tag](#end-tag).
 
-For example, suppose `L` is of type `LIST U8` with the elements [25, 50, 75]. When stored in an LMT file, `L` is stored as follows:
+For example, suppose `L` is of type `LIST U8` with the elements [25, 50, 75]. When stored in an LMT file, `L` would be laid out as follows:
 
 ```
 0 25 0   1 50 0   2 75 0
