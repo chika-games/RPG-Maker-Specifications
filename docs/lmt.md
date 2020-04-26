@@ -601,3 +601,15 @@ This tag specifies the left-right balance a song should be played with.
 A value of 50 is centered, 0 is left-balance only, and 100 is right-balance only.
 
 ### Encounter Tags
+#### Monster Group Tag
+This tag provides information about a particular random encounter.
+
+| Field          | Type                | Description                                                                  |
+|:---------------|:--------------------|:-----------------------------------------------------------------------------|
+| EncounterIndex | `EINT`              | The index of this encounter in its map's random encounter array.             |
+| Padding1       | `EINT`              | This should always be 1.                                                     |
+| Padding2       | `EINT`              | This should always be 1.                                                     |
+| GroupID        | `EINT`              | The ID of the monster group that will be attacking in this random encounter. |
+| End            | [End Tag](#end-tag) | Indicates the end of the tag.                                                |
+
+For ease, the `End` field is just another `EINT` field that should always have a value of 0.
