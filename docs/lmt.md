@@ -407,6 +407,131 @@ whereas [0, 0, 50, 50] would only cover the top-left quarter of said map.
 | BottomCoord | `U32`  | The bottom-coordinate of the area rectangle.                           |
 
 ### Map Start Tags
+These tags are used by the [Map Start Structure](#map-start-structure).
+
+#### Party Map ID Tag
+This tag specifies the ID of the map the player should initially spawn in when starting a new game.
+
+| Field    | Type   | Description                                             |
+|:---------|:-------|:--------------------------------------------------------|
+| TagID    | `EINT` | This will always be 1.                                  |
+| TagSize  | `EINT` | The size of `PartyMap` measured in bytes.               |
+| PartyMap | `EINT` | The ID of the map the player should initially spawn in. |
+
+#### Party X Tag
+This tag specifies the x-position the player should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                          |
+|:--------|:-------|:-----------------------------------------------------|
+| TagID   | `EINT` | This will always be 2.                               |
+| TagSize | `EINT` | The size of `PartyX` measured in bytes.              |
+| PartyX  | `EINT` | The x-position the player should initially spawn at. |
+
+`PartyX` is measured in map tiles.
+
+#### Party Y Tag
+This tag specifies the y-position the player should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                          |
+|:--------|:-------|:-----------------------------------------------------|
+| TagID   | `EINT` | This will always be 3.                               |
+| TagSize | `EINT` | The size of `PartyY` measured in bytes.              |
+| PartyY  | `EINT` | The y-position the player should initially spawn at. |
+
+`PartyY` is measured in map tiles.
+
+#### Skiff Map ID Tag
+This tag specifies the ID of the map the skiff vehicle should initially spawn in when starting a new game.
+
+| Field    | Type   | Description                                                    |
+|:---------|:-------|:---------------------------------------------------------------|
+| TagID    | `EINT` | This will always be 11.                                        |
+| TagSize  | `EINT` | The size of `SkiffMap` measured in bytes.                      |
+| SkiffMap | `EINT` | The ID of the map the skiff vehicle should initially spawn in. |
+
+#### Skiff X Tag
+This tag specifies the x-position the skiff vehicle should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                                 |
+|:--------|:-------|:------------------------------------------------------------|
+| TagID   | `EINT` | This will always be 12.                                     |
+| TagSize | `EINT` | The size of `SkiffX` measured in bytes.                     |
+| SkiffX  | `EINT` | The x-position the skiff vehicle should initially spawn at. |
+
+`SkiffX` is measured in map tiles.
+
+#### Skiff Y Tag
+This tag specifies the y-position the skiff vehicle should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                                 |
+|:--------|:-------|:------------------------------------------------------------|
+| TagID   | `EINT` | This will always be 13.                                     |
+| TagSize | `EINT` | The size of `SkiffY` measured in bytes.                     |
+| SkiffY  | `EINT` | The y-position the skiff vehicle should initially spawn at. |
+
+`SkiffY` is measured in map tiles.
+
+#### Ship Map ID Tag
+This tag specifies the ID of the map the ship vehicle should initially spawn in when starting a new game.
+
+| Field   | Type   | Description                                                   |
+|:--------|:-------|:--------------------------------------------------------------|
+| TagID   | `EINT` | This will always be 21.                                       |
+| TagSize | `EINT` | The size of `ShipMap` measured in bytes.                      |
+| ShipMap | `EINT` | The ID of the map the ship vehicle should initially spawn in. |
+
+#### Ship X Tag
+This tag specifies the x-position the ship vehicle should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                                |
+|:--------|:-------|:-----------------------------------------------------------|
+| TagID   | `EINT` | This will always be 22.                                    |
+| TagSize | `EINT` | The size of `ShipX` measured in bytes.                     |
+| ShipX   | `EINT` | The x-position the ship vehicle should initially spawn at. |
+
+`ShipX` is measured in map tiles.
+
+#### Ship Y Tag
+This tag specifies the y-position the ship vehicle should initially spawn at when starting a new game.
+
+| Field   | Type   | Description                                                |
+|:--------|:-------|:-----------------------------------------------------------|
+| TagID   | `EINT` | This will always be 23.                                    |
+| TagSize | `EINT` | The size of `ShipY` measured in bytes.                     |
+| ShipY   | `EINT` | The y-position the ship vehicle should initially spawn at. |
+
+`ShipY` is measured in map tiles.
+
+#### Airship Map ID Tag
+This tag specifies the ID of the map the airship vehicle should initially spawn in when starting a new game.
+
+| Field      | Type   | Description                                                      |
+|:-----------|:-------|:-----------------------------------------------------------------|
+| TagID      | `EINT` | This will always be 31.                                          |
+| TagSize    | `EINT` | The size of `AirshipMap` measured in bytes.                      |
+| AirshipMap | `EINT` | The ID of the map the airship vehicle should initially spawn in. |
+
+#### Airship X Tag
+This tag specifies the x-position the airship vehicle should initially spawn at when starting a new game.
+
+| Field    | Type   | Description                                                   |
+|:---------|:-------|:--------------------------------------------------------------|
+| TagID    | `EINT` | This will always be 32.                                       |
+| TagSize  | `EINT` | The size of `AirshipX` measured in bytes.                     |
+| AirshipX | `EINT` | The x-position the airship vehicle should initially spawn at. |
+
+`AirshipX` is measured in map tiles.
+
+#### Airship Y Tag
+This tag specifies the y-position the airship vehicle should initially spawn at when starting a new game.
+
+| Field    | Type   | Description                                                   |
+|:---------|:-------|:--------------------------------------------------------------|
+| TagID    | `EINT` | This will always be 33.                                       |
+| TagSize  | `EINT` | The size of `AirshipY` measured in bytes.                     |
+| AirshipY | `EINT` | The y-position the airship vehicle should initially spawn at. |
+
+`AirshipY` is measured in map tiles.
 
 ### Music Tags
 These tags are used by the [Music Tag](#music-tag).
