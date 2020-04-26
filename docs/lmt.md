@@ -70,19 +70,20 @@ this is typically based on the operating system's current locale. Japanese games
 | Length | `EINT`       | The length of the string in bytes.      |
 | Chars  | `U8[Length]` | The characters that make up the string. |
 
-#### LIST<T> Type
-The `LIST<T>` type represents an list of elements of type `T`.
+#### LIST Type
+The `LIST` type represents a list of elements.
+This type will always be followed by another type which indicates the type of elements being stored.
 
-This is essentially an array where indices are stored in front of their respective element in memory and with a 0 after.
+This is essentially an array where all elements are preceded by their index in the list and followed by an [End Tag](#end-tag).
 
-For example, suppose `L` is of type `LIST<U8>` with the elements [25, 50, 75]. When stored in an LMT file, `L` would be stored as:
+For example, suppose `L` is of type `LIST U8` with the elements [25, 50, 75]. When stored in an LMT file, `L` would be stored as:
 
 ```
 0 25 0   1 50 0   2 75 0
 ```
 
-Notice how the index of each element is stored directly in front of the element.
-The 0 after each element can be treated as an [End Tag](#end-tag) that indicates the "end" of an element.
+Notice how the index of each element is stored directly in front of the element,
+and that the [End Tag](#end-tag) is stored simply as a 0.
 
 ## LCF Map Tree File Structure
 LMT files are stored in binary format.
@@ -393,12 +394,12 @@ This tag specifies whether or not saving is allowed within a map.
 #### Encounters Tag
 This tag describes the types of random enemy encounters possible within a map.
 
-| Field          | Type                                            | Description                                         |
-|:---------------|:------------------------------------------------|:----------------------------------------------------|
-| TagID          | `EINT`                                          | This will always be 41.                             |
-| TagSize        | `EINT`                                          | The size of the remaining fields measured in bytes. |
-| EncounterCount | `EINT`                                          | The number of random encounters in `Encounters`.    |
-| Encounters     | `LIST<[Monster Group Tag](#monster-group-tag)>` | List of random encounters. |
+| Field          | Type                                           | Description                                         |
+|:---------------|:-----------------------------------------------|:----------------------------------------------------|
+| TagID          | `EINT`                                         | This will always be 41.                             |
+| TagSize        | `EINT`                                         | The size of the remaining fields measured in bytes. |
+| EncounterCount | `EINT`                                         | The number of random encounters in `Encounters`.    |
+| Encounters     | `LIST` [Monster Group Tag](#monster-group-tag) | List of random encounters. |
 
 #### Encounter Steps Tag
 This tag specifies the number of steps between, or rarity of, random encounters.
