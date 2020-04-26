@@ -344,6 +344,42 @@ This tag specifies whether or not saving is allowed within a map.
 | Allow   | 1     | Allow saving.                           |
 | Forbid  | 2     | Forbid saving.                          |
 
+#### Encounters Tag
+This tag describes the types of random enemy encounters possible within a map.
+
+| Field          | Type   | Description                                         |
+|:---------------|:-------|:----------------------------------------------------|
+| TagID          | `EINT` | This will always be 41.                             |
+| TagSize        | `EINT` | The size of the remaining fields measured in bytes. |
+| EncounterCount | `EINT` | The number of random encounters.                    |
+| Encounters     | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | Array of random encounter descriptions. |
+
+#### Encounter Steps Tag
+This tag specifies the number of steps between, or rarity of, random encounters.
+
+| Field          | Type   | Description                                     |
+|:---------------|:-------|:------------------------------------------------|
+| TagID          | `EINT` | This will always be 44.                         |
+| TagSize        | `EINT` | The size of `EncounterSteps` measured in bytes. |
+| EncounterSteps | `EINT` | The number of steps between random encounters.  |
+
+#### Area Rectangle Tag
+This tag specifies the boundaries of a map's area.
+This tag only affects maps whose `MapType` is `Area`.
+
+The coordinates are measured in pixels and begin in the top-left corner of a map.
+For example, an area rectangle of [0, 0, 100, 100] would completely cover a 100x100 map,
+whereas [0, 0, 50, 50] would only cover the top-left quarter of said map.
+
+| Field       | Type   | Description                                                            |
+|:------------|:-------|:-----------------------------------------------------------------------|
+| TagID       | `EINT` | This will always be 51.                                                |
+| TagSize     | `EINT` | The size of the remaining fields measured in bytes. This should be 16. |
+| LeftCoord   | `U32`  | The left-coordinate of the area rectangle.                             |
+| TopCoord    | `U32`  | The top-coordinate of the area rectangle.                              |
+| RightCoord  | `U32`  | The right-coordinate of the area rectangle.                            |
+| BottomCoord | `U32`  | The bottom-coordinate of the area rectangle.                           |
+
 ### Map Start Tags
 
 ### Music Tags
