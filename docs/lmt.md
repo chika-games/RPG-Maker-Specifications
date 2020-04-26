@@ -162,6 +162,8 @@ Marks the end of a structure or tag. This tag only has an ID field.
 | TagID | `EINT` | This will always be 0. |
 
 ### Map Info Tags
+These tags are used within the [Map Info Structure](#map-info-structure).
+
 #### Map Name Tag
 This tag provides the name of a map.
 
@@ -171,7 +173,7 @@ This tag provides the name of a map.
 | TagSize | `EINT`        | The number of characters in `MapName`.      |
 | MapName | `U8[TagSize]` | The characters that make up the map's name. |
 
-`TagSize` + `MapName` effectively act as a [`STRING`](#string-type) type.
+`TagSize` + `MapName` essentially act as a [`STRING`](#string-type) type.
 
 #### Parent ID Tag
 This tag provides the ID of a map's parent map.
@@ -282,6 +284,65 @@ This tag specifies the type of background a map has.
 | Inherit   | 0     | Inherit music type from map's parent. |
 | Terrain   | 1     | Use the terrain settings.             |
 | Specified | 2     | Use a specified background image.     |
+
+#### Background Name Tag
+This tag provides the filename of a map's background image.
+
+| Field          | Type          | Description                                        |
+|:---------------|:--------------|:---------------------------------------------------|
+| TagID          | `EINT`        | This will always be 22.                            |
+| TagSize        | `EINT`        | The number of characters in `BackgroundName`.      |
+| BackgroundName | `U8[TagSize]` | The characters that make up the background's name. |
+
+`TagSize` + `BackgroundName` essentially act as a [`STRING`](#string-type) type.
+
+#### Teleport Flag Tag
+This tag specifies whether or not teleporting is allowed within a map.
+
+| Field        | Type   | Description                                               |
+|:-------------|:-------|:----------------------------------------------------------|
+| TagID        | `EINT` | This will always be 31.                                   |
+| TagSize      | `EINT` | The size of `TeleportFlag` measured in bytes.             |
+| TeleportFlag | `EINT` | Whether or not teleportation is allowed. See table below. |
+
+**Teleport Flag Values**
+| Type    | Value | Description                             |
+|:--------|:------|:----------------------------------------|
+| Inherit | 0     | Inherit flag's value from map's parent. |
+| Allow   | 1     | Allow teleportation.                    |
+| Forbid  | 2     | Forbid teleportation.                   |
+
+#### Escape Flag Tag
+This tag specifies whether or not escaping is allowed within a map.
+
+| Field      | Type   | Description                                          |
+|:-----------|:-------|:-----------------------------------------------------|
+| TagID      | `EINT` | This will always be 32.                              |
+| TagSize    | `EINT` | The size of `EscapeFlag` measured in bytes.          |
+| EscapeFlag | `EINT` | Whether or not escaping is allowed. See table below. |
+
+**Escape Flag Values**
+| Type    | Value | Description                             |
+|:--------|:------|:----------------------------------------|
+| Inherit | 0     | Inherit flag's value from map's parent. |
+| Allow   | 1     | Allow escaping.                         |
+| Forbid  | 2     | Forbid escaping.                        |
+
+#### Save Flag Tag
+This tag specifies whether or not saving is allowed within a map.
+
+| Field    | Type   | Description                                        |
+|:---------|:-------|:---------------------------------------------------|
+| TagID    | `EINT` | This will always be 33.                            |
+| TagSize  | `EINT` | The size of `SaveFlag` measured in bytes.          |
+| SaveFlag | `EINT` | Whether or not saving is allowed. See table below. |
+
+**Save Flag Values**
+| Type    | Value | Description                             |
+|:--------|:------|:----------------------------------------|
+| Inherit | 0     | Inherit flag's value from map's parent. |
+| Allow   | 1     | Allow saving.                           |
+| Forbid  | 2     | Forbid saving.                          |
 
 ### Map Start Tags
 
