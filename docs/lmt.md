@@ -229,6 +229,7 @@ This tag provides a map's type.
 | MapType | `EINT` | The map's type. See table below.         |
 
 **Map Type**
+
 | Type | Value | Description       |
 |:-----|:------|:------------------|
 | Root | 0     | The root map.     |
@@ -273,6 +274,7 @@ This tag specifies how music should be played within a map.
 | MusicType | `EINT` | The map's music type. See table below.     |
 
 **Music Type**
+
 | Type      | Value | Description                           |
 |:----------|:------|:--------------------------------------|
 | Inherit   | 0     | Inherit music type from map's parent. |
@@ -305,6 +307,7 @@ This tag specifies the type of background a map has.
 | BackgroundType | `EINT` | The map's background type. See table below.      |
 
 **Background Type**
+
 | Type      | Value | Description                           |
 |:----------|:------|:--------------------------------------|
 | Inherit   | 0     | Inherit music type from map's parent. |
@@ -332,6 +335,7 @@ This tag specifies whether or not teleporting is allowed within a map.
 | TeleportFlag | `EINT` | Whether or not teleportation is allowed. See table below. |
 
 **Teleport Flag Values**
+
 | Type    | Value | Description                             |
 |:--------|:------|:----------------------------------------|
 | Inherit | 0     | Inherit flag's value from map's parent. |
@@ -348,6 +352,7 @@ This tag specifies whether or not escaping is allowed within a map.
 | EscapeFlag | `EINT` | Whether or not escaping is allowed. See table below. |
 
 **Escape Flag Values**
+
 | Type    | Value | Description                             |
 |:--------|:------|:----------------------------------------|
 | Inherit | 0     | Inherit flag's value from map's parent. |
@@ -364,6 +369,7 @@ This tag specifies whether or not saving is allowed within a map.
 | SaveFlag | `EINT` | Whether or not saving is allowed. See table below. |
 
 **Save Flag Values**
+
 | Type    | Value | Description                             |
 |:--------|:------|:----------------------------------------|
 | Inherit | 0     | Inherit flag's value from map's parent. |
