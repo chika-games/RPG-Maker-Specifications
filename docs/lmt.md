@@ -82,7 +82,7 @@ The following table describes the overall structure of an LMT file.
 | MapInfos      | [Map Info](#map-info-structure)`[MapInfoCount]` | An array of map info structures.                          |
 | MapOrderCount | `EINT`                                          | The number of map orderings present.                      |
 | MapOrders     | `EINT[MapOrderCount]`                           | The hierarchical orderings of a game's maps.              |
-| ActiveNode    | `EINT`                                          | The ID of the last active/edited map.                     |
+| ActiveNode    | `EINT`                                          | The ID of the last saved/edited map.                      |
 | MapStart      | [Map Start](#map-start-structure)               | Game start information, such as starting positions.       |
 
 All maps are arranged in a hierarchy and are children to the first map in the `MapInfos` array called the root map.
@@ -90,11 +90,14 @@ This root map is not meant to be playable and is simply meant to be the default 
 In older versions of the RM2k/3 runtimes, the name of the root map was also used to determine the name of the game's window.
 This functionality has since been deprecated in favor of a [configuration file](./config.html).
 
-`ActiveNode` is used by the RM2k/3 editors to keep track of the last edited map.
-This allows them to automatically open the last edited map upon launching the editor.
+`ActiveNode` is used by the RM2k/3 editors to keep track of the last saved/edited map.
+This allows them to automatically open the last edited map when launching.
 
 ## Map Info Structure
 The following table describes the layout of `Map Info` structures.
+
+**Note:** In practice, not all of this structure's tag-based fields will be present. This is presumably to reduce the overall size of LMT files.
+If such a field is missing, then its respective default value should be used.
 
 | Field          | Type                                        | Default Value                                               | Description                                                                                                                    |
 |:---------------|:--------------------------------------------|:------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
@@ -116,10 +119,7 @@ The following table describes the layout of `Map Info` structures.
 | Encounters     | [Encounters Tag](#encounters-tag)           | An empty array.                                             | All possible (random) combat encounters that can appear within the map.                                                        |
 | EncounterSteps | [Encounter Steps Tag](#encounter-steps-tag) | 25                                                          | The likelihood of having a random encounter.                                                                                   |
 | AreaRectangle  | [Area Rectangle Tag](#area-rectangle-tag)   | [0, 0, 0, 0]                                                | The size of a map area measured in pixels. |
-| End            | [End Tag](#end-tag)                         | Always present.                                             | Indicates the end of the map info structure. |
-
-**Note:** In practice, not all of the above fields with a tag-based type will be present. This is to help reduce the overall size of LMT files.
-If such a field is missing, then its respective default value provided above should be used in its place.
+| End            | [End Tag](#end-tag)                         | Always present.                                             | Indicates the end of the structure. |
 
 ### Map Hierarchy
 All maps of an RM2k/3 game are arranged in a parent-child hierarchy where the root map is at the top of the hierarchy.
@@ -138,6 +138,30 @@ Notice that the maps are not required to be in sequential order. These arbitrary
 Additionally, the ordering of the maps are mainly used by the editors and don't necessarily reflect the actual play order.
 
 ## Map Start Structure
+The following table describes the layout of the `Map Start` structure.
+This structure specifies the maps and positions the player and vehicles should spawn at when a new game is created.
+
+**Note:** In practice, not all of this structure's tag-based fields will be present.
+This happens when the player or vehicles were not given a starting position within the game (i.e. they're not used in-game).
+If the player (Party) is not assigned a starting position, the RM2k/3 runtime will crash with an error when attempting to play.
+
+All x and y positions are measured in map tiles.
+
+| Field        | Type                                      | Description                                                                                                                    |
+|:-------------|:------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+| PartyMapID   | [Party Map ID Tag](#party-map-id-tag)     | The ID of the map the player should initially spawn in.          |
+| PartyX       | [Party X Tag](#party-x-tag)               | The x-position the player should spawn at in their starting map. |
+| PartyY       | [Party Y Tag](#party-y-tag)               | The y-position the player should spawn at in their starting map. |
+| SkiffMapID   | [Skiff Map ID Tag](#skiff-map-id-tag)     | The ID of the map the skiff vehicle should initially spawn in.   |
+| SkiffX       | [Skiff X Tag](#skiff-x-tag)               | The x-position the skiff should spawn at in its starting map.    |
+| SkiffY       | [Skiff Y Tag](#skiff-y-tag)               | The y-position the skiff should spawn at in its starting map.    |
+| ShipMapID    | [Ship Map ID Tag](#ship-map-id-tag)       | The ID of the map the ship vehicle should initially spawn in.    |
+| ShipX        | [Ship X Tag](#ship-x-tag)                 | The x-position the ship should spawn at in its starting map.     |
+| ShipY        | [Ship Y Tag](#ship-y-tag)                 | The y-position the ship should spawn at in its starting map.     |
+| AirshipMapID | [Airship Map ID Tag](#airship-map-id-tag) | The ID of the map the airship vehicle should initially spawn in. |
+| AirshipX     | [Airship X Tag](#airship-x-tag)           | The x-position the airship should spawn at in its starting map.  |
+| AirshipY     | [Airship Y Tag](#airship-y-tag)           | The y-position the airship should spawn at in its starting map.  |
+| End          | [End Tag](#end-tag)                       | Indicates the end of the structure.                              |
 
 ## Tags
 All tags begin with the same basic format below except for the [End Tag](#end-tag) and [Monster Group Tag](#monster-group-tag).
@@ -155,7 +179,9 @@ The `TagSize` field measures the total number of bytes the rest of the tag's fie
 This field is occasionally used by other fields and can be used to skip over recognized tags by simply reading or skipping over `TagSize` number of bytes.
 
 ### End Tag
-Marks the end of a structure or tag. This tag only has an ID field.
+Marks the end of a structure or tag when there are no more relevant fields present.
+
+This tag only has an ID field.
 
 | Field | Type   | Description            |
 |:------|:-------|:-----------------------|
