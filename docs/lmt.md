@@ -173,7 +173,7 @@ This tag provides the name of a map.
 | TagSize | `EINT`        | The number of characters in `MapName`.      |
 | MapName | `U8[TagSize]` | The characters that make up the map's name. |
 
-`TagSize` + `MapName` essentially act as a [`STRING`](#string-type) type.
+`TagSize` + `MapName` essentially acts as a [`STRING`](#string-type) type.
 
 #### Parent ID Tag
 This tag provides the ID of a map's parent map.
@@ -294,7 +294,7 @@ This tag provides the filename of a map's background image.
 | TagSize        | `EINT`        | The number of characters in `BackgroundName`.      |
 | BackgroundName | `U8[TagSize]` | The characters that make up the background's name. |
 
-`TagSize` + `BackgroundName` essentially act as a [`STRING`](#string-type) type.
+`TagSize` + `BackgroundName` essentially acts as a [`STRING`](#string-type) type.
 
 #### Teleport Flag Tag
 This tag specifies whether or not teleporting is allowed within a map.
@@ -386,13 +386,16 @@ whereas [0, 0, 50, 50] would only cover the top-left quarter of said map.
 These tags are used within the [Music Tag](#music-tag).
 
 #### Music Name Tag
-This tag specifies the filename of a song.
+This tag provides the name of a map.
 
-| Field | Type   | Default Value   | Description     |
-|:------|:-------|:----------------|:----------------|
-| TagID | EINT   | This will always be 1.            |
-| Name  | STRING | The filename of the song to play. |
+| Field     | Type          | Description                                  |
+|:----------|:--------------|:---------------------------------------------|
+| TagID     | `EINT`        | This will always be 1.                       |
+| TagSize   | `EINT`        | The number of characters in `MusicName`.     |
+| MusicName | `U8[TagSize]` | The characters that make up the song's name. |
 
-If `Name` is "(OFF)" or an empty string, then no the song is considered empty; no song should play.
+If `MusicName` is "(OFF)" or an empty string, then the song is considered empty and no song should play.
+
+`TagSize` + `MusicName` essentially acts as a [`STRING`](#string-type) type.
 
 ### Encounter Tags
