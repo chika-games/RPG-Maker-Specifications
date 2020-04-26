@@ -10,7 +10,7 @@ This repository aims to completely document the RPG Maker 2000/2003 editors and 
 * [License](#license)
 
 ## About the Specifications
-All specifications are published on the [**website**](https://chika-games.github.io/RPG-Maker-Specifications/).
+__All specifications are published on the [website](https://chika-games.github.io/RPG-Maker-Specifications/).__
 
 These specifications are written with accuracy and generality in mind and are intended to cover a specific aspect of the RPG Maker engines.
 
