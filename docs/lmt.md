@@ -74,12 +74,12 @@ this is typically based on the operating system's current locale. Japanese games
 The `LIST` type represents a list of elements.
 This type will always be followed by another type which indicates the type of elements being stored.
 
-This is essentially an array where all elements are preceded by their index in the list and followed by an [End Tag](#end-tag).
+This is essentially an array where all elements are preceded by their 1-based index and followed by an [End Tag](#end-tag).
 
-For example, suppose `L` is of type `LIST U8` with the elements [25, 50, 75]. When stored in an LMT file, `L` would be laid out as follows:
+For example, suppose `L` is of type `LIST U8` with the elements [0, 25, 50, 75, 100]. When stored in an LMT file, `L` would be laid out as follows:
 
 ```
-0 25 0   1 50 0   2 75 0
+1 0 0   2 25 0   3 50 0   4 75 0   5 100 0
 ```
 
 Notice how the index of each element is stored directly in front of the element,
