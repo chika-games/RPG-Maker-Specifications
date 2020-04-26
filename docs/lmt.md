@@ -352,7 +352,7 @@ This tag describes the types of random enemy encounters possible within a map.
 | TagID          | `EINT` | This will always be 41.                             |
 | TagSize        | `EINT` | The size of the remaining fields measured in bytes. |
 | EncounterCount | `EINT` | The number of random encounters.                    |
-| Encounters     | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | Array of random encounter descriptions. |
+| Encounters     | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | Array of random encounters. |
 
 #### Encounter Steps Tag
 This tag specifies the number of steps between, or rarity of, random encounters.
@@ -383,10 +383,10 @@ whereas [0, 0, 50, 50] would only cover the top-left quarter of said map.
 ### Map Start Tags
 
 ### Music Tags
-These tags are used within the [Music Tag](#music-tag).
+These tags are used by the [Music Tag](#music-tag).
 
 #### Music Name Tag
-This tag provides the name of a map.
+This tag provides the filename of a song.
 
 | Field     | Type          | Description                                  |
 |:----------|:--------------|:---------------------------------------------|
@@ -397,5 +397,50 @@ This tag provides the name of a map.
 If `MusicName` is "(OFF)" or an empty string, then the song is considered empty and no song should play.
 
 `TagSize` + `MusicName` essentially acts as a [`STRING`](#string-type) type.
+
+#### Music Fade Time Tag
+This tag provides the amount of time a song should fade-in for, measured in milliseconds.
+
+| Field    | Type   | Description                                             |
+|:---------|:-------|:--------------------------------------------------------|
+| TagID    | `EINT` | This will always be 2.                                  |
+| TagSize  | `EINT` | The size of `FadeTime` measured in bytes.               |
+| FadeTime | `EINT` | The number of milliseconds the song should fade in for. |
+
+The value of `FadeTime` ranges from 0 ms to 10000 ms (i.e. 0 to 10 seconds).
+
+#### Music Volume Tag
+This tag specifies the volume a song should be played at.
+
+| Field   | Type   | Description                             |
+|:--------|:-------|:----------------------------------------|
+| TagID   | `EINT` | This will always be 3.                  |
+| TagSize | `EINT` | The size of `Volume` measured in bytes. |
+| Volume  | `EINT` | The volume the song should play at.     |
+
+`Volume` is an integer percentage and ranges from 0% to 100%.
+
+#### Music Tempo Tag
+This tag specifies the tempo a song should be played at.
+
+| Field   | Type   | Description                            |
+|:--------|:-------|:---------------------------------------|
+| TagID   | `EINT` | This will always be 4.                 |
+| TagSize | `EINT` | The size of `Tempo` measured in bytes. |
+| Tempo   | `EINT` | The tempo the song should play at.     |
+
+`Tempo` is an integer percentage and ranges from 0% to 150%.
+
+#### Music Balance Tag
+This tag specifies the left-right balance a song should be played with.
+
+| Field   | Type   | Description                                       |
+|:--------|:-------|:--------------------------------------------------|
+| TagID   | `EINT` | This will always be 5.                            |
+| TagSize | `EINT` | The size of `Balance` measured in bytes.          |
+| Balance | `EINT` | The left-right balance the song should play with. |
+
+`Balance` is an integer that ranges from 0 to 100.
+A value of 50 is centered, 0 is left-balance only, and 100 is right-balance only.
 
 ### Encounter Tags
