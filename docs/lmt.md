@@ -70,6 +70,20 @@ this is typically based on the operating system's current locale. Japanese games
 | Length | `EINT`       | The length of the string in bytes.      |
 | Chars  | `U8[Length]` | The characters that make up the string. |
 
+#### LIST<T> Type
+The `LIST<T>` type represents an list of elements of type `T`.
+
+This is essentially an array where indices are stored in front of their respective element in memory and with a 0 after.
+
+For example, suppose `L` is of type `LIST<U8>` with the elements [25, 50, 75]. When stored in an LMT file, `L` would be stored as:
+
+```
+0 25 0   1 50 0   2 75 0
+```
+
+Notice how the index of each element is stored directly in front of the element.
+The 0 after each element can be treated as an [End Tag](#end-tag) that indicates the "end" of an element.
+
 ## LCF Map Tree File Structure
 LMT files are stored in binary format.
 
@@ -164,7 +178,7 @@ All x and y positions are measured in map tiles.
 | End          | [End Tag](#end-tag)                       | Indicates the end of the structure.                              |
 
 ## Tags
-All tags begin with the same basic format below except for the [End Tag](#end-tag) and [Monster Group Tag](#monster-group-tag).
+All tags begin with the same basic format below except for the [End Tag](#end-tag).
 
 Basic format:
 
@@ -379,12 +393,12 @@ This tag specifies whether or not saving is allowed within a map.
 #### Encounters Tag
 This tag describes the types of random enemy encounters possible within a map.
 
-| Field          | Type   | Description                                         |
-|:---------------|:-------|:----------------------------------------------------|
-| TagID          | `EINT` | This will always be 41.                             |
-| TagSize        | `EINT` | The size of the remaining fields measured in bytes. |
-| EncounterCount | `EINT` | The number of random encounters.                    |
-| Encounters     | [Monster Group Tag](#monster-group-tag) [`EncounterCount`] | Array of random encounters. |
+| Field          | Type                                            | Description                                         |
+|:---------------|:------------------------------------------------|:----------------------------------------------------|
+| TagID          | `EINT`                                          | This will always be 41.                             |
+| TagSize        | `EINT`                                          | The size of the remaining fields measured in bytes. |
+| EncounterCount | `EINT`                                          | The number of random encounters in `Encounters`.    |
+| Encounters     | `LIST<[Monster Group Tag](#monster-group-tag)>` | List of random encounters. |
 
 #### Encounter Steps Tag
 This tag specifies the number of steps between, or rarity of, random encounters.
@@ -602,14 +616,10 @@ A value of 50 is centered, 0 is left-balance only, and 100 is right-balance only
 
 ### Encounter Tags
 #### Monster Group Tag
-This tag provides information about a particular random encounter.
+This tag provides the ID of a monster group to be used in a random encounter.
 
-| Field          | Type                | Description                                                                  |
-|:---------------|:--------------------|:-----------------------------------------------------------------------------|
-| EncounterIndex | `EINT`              | The index of this encounter in its map's random encounter array.             |
-| Padding1       | `EINT`              | This should always be 1.                                                     |
-| Padding2       | `EINT`              | This should always be 1.                                                     |
-| GroupID        | `EINT`              | The ID of the monster group that will be attacking in this random encounter. |
-| End            | [End Tag](#end-tag) | Indicates the end of the tag.                                                |
-
-For ease, the `End` field is just another `EINT` field that should always have a value of 0.
+| Field   | Type                | Description                                                                          |
+|:--------|:--------------------|:-------------------------------------------------------------------------------------|
+| TagID   | `EINT`              | This will always be 1.                                                               |
+| TagSize | `EINT`              | The size of `GroupID` measured in bytes.                                             |
+| GroupID | `EINT`              | The ID of the monster group that will be attacking in a particular random encounter. |
