@@ -52,8 +52,8 @@ The following table describes the overall structure of an XYZ file.
 | Palette   | `RGB[256]`           | The image's color palette.                          |
 | PixelData | `U8[Width * Height]` | The image's pixel data.                             |
 
-**Note:** The `Palette` and `PixelData` fields are compressed using the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression algorithm.
-All data after the first eight bytes must be decompressed before use. This may be accomplished by using the [zlib](https://www.zlib.net/) library.
+**Note:** The `Palette` and `PixelData` fields are compressed using the [zlib](https://en.wikipedia.org/wiki/Zlib) compression algorithm;
+all data after the first eight bytes must be decompressed before use. This may be accomplished by using the [zlib](https://www.zlib.net/) library.
 
 Every value within the `PixelData` array is merely an index into `Palette`.
 That is, starting from the image's top-left and progressing right-down, every pixel is represented by an index into the `Palette`.
