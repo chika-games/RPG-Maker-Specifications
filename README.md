@@ -2,7 +2,7 @@
 ![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=blue&up_message=online&url=https%3A%2F%2Fchikasoft.github.io%2FRPG-Maker-Specifications%2F)
 
 ## Introduction
-This repository aims to completely document the RPG Maker 2000/2003 editors and runtimes.
+This repository aims to completely document the RPG Maker 2000/2003 (RM2k/3) editors and runtimes.
 
 ### Table of Contents
 * [Introduction](#introduction)
@@ -12,7 +12,7 @@ This repository aims to completely document the RPG Maker 2000/2003 editors and 
 ## About the Specifications
 __All specifications are published on the [website](https://chikasoft.github.io/RPG-Maker-Specifications/).__
 
-These specifications are written with accuracy and generality in mind and are intended to cover a specific aspect of the RPG Maker engines.
+These specifications are written with accuracy and generality in mind and each is intended to cover a specific aspect of the RM2k/3 engines.
 
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
