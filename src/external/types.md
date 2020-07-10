@@ -114,6 +114,19 @@ When stored in an Lcf file, `L` should be laid out as follows:
 
 Notice how the elements are stored in their usual way while being sandwiched between their 1-based index and an end tag (`0`).
 
+### DATE Type
+The `DATE` type represents a date and time.
+
+This type corresponds to the `TDateTime` type found in Delphi and other Pascal variants.
+
+| Field  | Type  | Description                                |
+|:-------|:------|:-------------------------------------------|
+| Date   | `F64` | The numeric encoding of the date and time. |
+
+The `Date` field is stored such that the integral part is for days and the fractional part is for the time.
+
+**Note:** Timezone and other considerations are ignored; `DATE` only stores raw day and time values.
+
 ### RGB Type
 The `RGB` types represents a color with three color values: red, green, and blue.
 
