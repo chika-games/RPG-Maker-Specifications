@@ -13,7 +13,7 @@
 
 -----------
 
-* [External Files](external/external.md)
+* [External File Formats](external/external.md)
 	* [Byte Order & Data Types](external/types.md)
 	* [Config File](external/config.md)
 	* [XYZ Images](external/xyz.md)
