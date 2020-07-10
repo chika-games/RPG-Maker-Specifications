@@ -72,7 +72,7 @@ This is essentially an array where all elements are preceded by their 1-based in
 
 For example, suppose `L` is of type `LIST U8` with the elements 0, 25, 50, 75, and 100. When stored in an LSD file, `L` would be laid out as follows:
 
-```
+```text
 1 0 0   2 25 0   3 50 0   4 75 0   5 100 0
 ```
 
@@ -134,7 +134,7 @@ If such a field is missing, then its respective default value should be used.
 All maps of an RM2k/3 game are arranged in a parent-child hierarchy where the root map is at the top of the hierarchy.
 Below is an example of such a hierarchy that is intended to help illustrate some of the fields of the `Map Info` structure.
 
-```
+```text
 . My Game (root; indentation=0)
 +-- Map 1 (parent=0; indentation=1)
 |   +-- Map 2 (parent=1; indentation=2)
