@@ -72,7 +72,7 @@ This is essentially an array where all elements are preceded by their 1-based in
 
 For example, suppose `L` is of type `LIST U8` with the elements 0, 25, 50, 75, and 100. When stored in an LSD file, `L` would be laid out as follows:
 
-`1 0 0   2 25 0   3 50 0   4 75 0   5 100 0`
+<pre>1 0 0   2 25 0   3 50 0   4 75 0   5 100 0</pre>
 
 Notice how the index of each element is stored directly in front of the element's data,
 and that the [End Tag](#end-tag) is stored as 0.
