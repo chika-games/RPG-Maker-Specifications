@@ -1,6 +1,6 @@
 # Unofficial RPG Maker 2000/2003 Specifications
-![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=blue&up_message=online&url=https%3A%2F%2Fchikasoft.github.io%2FRPG-Maker-Specifications%2F)
-![Travis (.org)](https://img.shields.io/travis/chikasoft/RPG-Maker-Specifications?style=for-the-badge)
+[![Website](https://img.shields.io/website?down_color=lightgrey&down_message=offline&style=for-the-badge&up_color=blue&up_message=online&url=https%3A%2F%2Fchikasoft.github.io%2FRPG-Maker-Specifications%2F)](https://chikasoft.github.io/RPG-Maker-Specifications/)
+[![Travis (.org)](https://img.shields.io/travis/chikasoft/RPG-Maker-Specifications?style=for-the-badge)](https://travis-ci.com/github/chikasoft/RPG-Maker-Specifications)
 
 ## Introduction
 This repository aims to completely document the RPG Maker 2000/2003 (RM2k/3) editors and runtimes.
