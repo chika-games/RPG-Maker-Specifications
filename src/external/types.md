@@ -103,3 +103,12 @@ When stored in an Lcf file, `L` should be laid out as follows:
 ```
 
 Notice how the elements are stored in their usual way while being sandwiched between their 1-based index and an end tag (`0`).
+
+### RGB Type
+The `RGB` types represents a color with three color values: red, green, and blue.
+
+| Field | Type | Description                    |
+|:------|:-----|:-------------------------------|
+| Red   | `U8` | The amount/intensity of red.   |
+| Green | `U8` | The amount/intensity of green. |
+| Blue  | `U8` | The amount/intensity of blue.  |
