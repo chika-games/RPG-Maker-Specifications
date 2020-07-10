@@ -7,7 +7,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/
 The RPG Maker trademark and copyright are property of Enterbrain, Inc. and Kadokawa Corporation.
 All rights belong to their respective owners.
 
-This project is a community effort and is in no way affiliated with Enterbrain, Inc. nor Kadokawa Corporation.
+This project is a community effort and is in no way affiliated with Enterbrain nor Kadokawa Corporation.
 
 > THIS PUBLICATION AND THE INFORMATION HEREIN IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
 INCLUDING BUT NOT LIMITED TO ANY AND ALL WARRANTIES OF MERCHANTABILITY,
