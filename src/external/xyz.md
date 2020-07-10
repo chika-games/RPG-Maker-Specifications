@@ -1,6 +1,6 @@
 # XYZ Image Specification
 ## Introduction
-The XYZ image format (`.xyz`) is a custom image format used by RPG Maker 2000/2003 (RM2k/3).
+The XYZ image format (`.xyz`) is a custom image format used by the RM2k/3 Editor and Runtime.
 This format is palette-based and stores three 8-bit color channels (red, green, and blue) for a total of 24 bits per pixel.
 
 RM2k/3 uses this format used alongside more conventional formats, such as BMP and PNG.

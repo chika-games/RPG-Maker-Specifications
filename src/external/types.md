@@ -5,7 +5,7 @@ the least significant byte is stored first, and the most significant byte is sto
 For example, the 32-bit integer `0x456E7120` would be stored as `20 71 6E`.
 
 # Data Types
-These are all of the data types that may be present within the external files of RPG Maker 2000/2003 (RM2k/3).
+These are all of the data types that may be present within the external files of RM2k/3.
 
 All types may be appended with `[n]` to denote a contiguous array of said type, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
