@@ -19,10 +19,20 @@ Signed integers are represented in the usual two's complement format.
 | Type   | Description                                                                |
 |:-------|:---------------------------------------------------------------------------|
 | `U8`   | An unsigned 8-bit integer.                                                 |
+| `U16`  | An unsigned 16-bit integer.                                                |
 | `U32`  | An unsigned 32-bit integer.                                                |
-| `I32`  | A signed 32-bit integer.                                                   |
 | `BOOL` | An unsigned 8-bit integer acting as a boolean (`0` is false; `1` is true). |
+| `FLAG` | An unsigned 8-bit integer that acts as a flag/toggle.                      |
 | `EINT` | A 7-bit encoded integer. See [Encoded Integers](#encoded-integers)         |
+
+#### Flag Values
+`FLAG` fields may have the following values.
+
+| Type    | Value | Description                             |
+|:--------|:------|:----------------------------------------|
+| Inherit | 0     | Inherit flag's value from map's parent. |
+| Allow   | 1     | Allow/enable flag.                      |
+| Forbid  | 2     | Forbid/disable flag.                    |
 
 #### Encoded Integers
 Lcf files make extensive use of 7-bit encoded integers to cut down on file size.
@@ -34,8 +44,8 @@ For example, `123456` will only take up three bytes.
 Only the lower seven bits of an encoded integer will contribute to its overall value;
 the eighth (high) bit is used to determine whether or not the there is another byte that should be read, decoded, and added to the overall value.
 
-Below is some pseudocode for reading and decoding these encoded integers into an `I32` integer. Note, however, that the provided code
-reads until done which may not be very efficient if the exact size of the integer in bytes is known.
+Below is some pseudocode for reading and decoding these encoded integers into a 32-bit signed integer.
+Note, however, that the provided code makes no assumption on the size of the `EINT` which may not be very efficient if the exact size of the `EINT` in bytes is known.
 
 ```rust,ignore
 i32 read_encoded_integer(reader) {

@@ -1,11 +1,13 @@
 # Common Tags
-Listed are various tags that are shared between the different Lcf file formats.
+Below are various tags that are shared between the different LCF file formats.
+
+For more information on tags, please consult the [LCF page](lcf.md).
 
 ## End Tag
 Marks the end of a structure, tag, or [LIST](types.md#list-type).
 
 This tag only has an ID field. Because of this, when stored in a binary file,
-this tag will merely be an single zero-valued byte.
+this tag will be stored as a `U8` with a value of `0`.
 
 | Field | Type   | Description            |
 |:------|:-------|:-----------------------|

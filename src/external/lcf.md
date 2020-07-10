@@ -1,8 +1,8 @@
-# Lcf Files
-Many of the external files used by RM2k/3 follow a custom binary format called Lcf.
+# LCF Files
+Many of the external files used by RM2k/3 follow a custom binary format called LCF.
 This format uses a tag system for storing its contents, similar to Adobe SWF files.
 
-Specifically, all Lcf files contain some sort of header data (signature, date, etc.)
+Specifically, all LCF files contain some sort of header data (signature, date, etc.)
 followed by a series of tagged data blocks. All tags - except the [End Tag](common_tags.md#end-tag) - share the same format.
 This structure allows tags to be easily inserted, removed, and/or modified.
 
