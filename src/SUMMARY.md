@@ -13,9 +13,10 @@
 -----------
 
 * [External Files](external/external.md)
+	* [Data Types](external/types.md)
 	* [Config File](external/config.md)
 	* [XYZ Images](external/xyz.md)
-	* [Lcf Files (Data Types & Tag Format)](external/lcf.md)
+	* [Lcf Files (Tag Format)](external/lcf.md)
 		* [Lcf Map Tree](external/lmt.md)
 		* [Lcf Save Data](external/lsd.md)
 

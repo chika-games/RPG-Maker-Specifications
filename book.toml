@@ -9,12 +9,8 @@ description = "Unofficial specifications for the RPG Maker 2000/2003 editors and
 [preprocessor.links]
 [preprocessor.index]
 
-[preprocessor.mathjax]
-renderers = ["html"]
-
 [output.html]
 curly-quotes = true
-mathjax-support = true
 default-theme = "navy"
 git-repository-url = "https://github.com/chikasoft/RPG-Maker-Specifications"
 
