@@ -7,7 +7,6 @@ title = "Unofficial RPG Maker 2000/2003 Specifications"
 description = "Unofficial specifications for the RPG Maker 2000/2003 editors and runtimes."
 
 [build]
-build-dir = "docs"
 create-missing = false
 
 [rust]
