@@ -10,7 +10,7 @@ and their library of games is plentiful, including popular games such as Yume Ni
 
 ## About the Specifications
 The specifications within this project aim to be accurate and comprehensive. Each covers a specific aspect of RM2k and RM2k3.
-These specifications are written in a technical style and are intended for developers and modders.
+These specifications are written in a technical style and are intended for developers, modders, and plugin makers.
 
 **Note:** This project is in a draft state! All information is subject to change without notice.
 
