@@ -74,6 +74,7 @@ When present within a tag of an Lcf file, the string's length will not be presen
 be used as the string's length. This further cuts down on the overall size of Lcf files.
 
 When present within a text file, this type is simply a sequence of characters with no explicit length.
+For an example, see the `GameTitle` field of the [configuration file](config.md).
 
 **Note:** Strings have no standard encoding, and it is the runtime's duty to determine an appropriate encoding.
 This is typically based on the operating system's current locale. (Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
