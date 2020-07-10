@@ -3,6 +3,7 @@
 LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RM2k/3 games.
 
 RM2k/3 games have a single LMT file: `RPG_RT.lmt`. This should always be located within the same directory as the RM2k/3 Runtime (i.e. `RPG_RT.exe`).
+This file is used in both the RM2k/3 Editors and Runtimes.
 
 ## LCF Map Tree File Structure
 LMT files are stored in binary format.
