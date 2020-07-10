@@ -5,7 +5,7 @@ the least significant byte is stored first, and the most significant byte is sto
 For example, the 32-bit integer `0x456E7120` would be stored as `20 71 6E`.
 
 # Data Types
-These are all of the data types that may be present within one of RPG Maker 2000/2003's external files.
+These are all of the data types that may be present within the external files of RPG Maker 2000/2003 (RM2k/3).
 
 All types may be appended with `[n]` to denote a contiguous array of said type, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
@@ -16,12 +16,13 @@ These are the basic data types that will be taken as primitive. The reader is as
 ### Integer Types
 Signed integers are represented in the usual two's complement format.
 
-| Type   | Description                                                        |
-|:-------|:-------------------------------------------------------------------|
-| `U8`   | An unsigned 8-bit integer.                                         |
-| `U32`  | An unsigned 32-bit integer.                                        |
-| `I32`  | A signed 32-bit integer.                                           |
-| `EINT` | A 7-bit encoded integer. See [Encoded Integers](#encoded-integers) |
+| Type   | Description                                                                |
+|:-------|:---------------------------------------------------------------------------|
+| `U8`   | An unsigned 8-bit integer.                                                 |
+| `U32`  | An unsigned 32-bit integer.                                                |
+| `I32`  | A signed 32-bit integer.                                                   |
+| `BOOL` | An unsigned 8-bit integer acting as a boolean (`0` is false; `1` is true). |
+| `EINT` | A 7-bit encoded integer. See [Encoded Integers](#encoded-integers)         |
 
 #### Encoded Integers
 Lcf files make extensive use of 7-bit encoded integers to cut down on file size.
@@ -72,8 +73,14 @@ The `STRING` type represents a length-prepended string of characters. These are 
 When present within a tag of an Lcf file, the string's length will not be present. Instead, the tag's size field should
 be used as the string's length. This further cuts down on the overall size of Lcf files.
 
+When present within a text file, this type is simply a sequence of characters with no explicit length.
+
 **Note:** Strings have no standard encoding, and it is the runtime's duty to determine an appropriate encoding.
 This is typically based on the operating system's current locale. (Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
+
+This is likely due to RM2k/3 originally being a Japanese-only engine; Shift_JIS was assumed to be the encoding of choice.
+This has resulted in various different encodings being used across RM2k/3 games, although UTF-8 has become dominant for modern games,
+and the engine did get an official English port over a decade after release.
 
 | Field  | Type         | Description                             |
 |:-------|:-------------|:----------------------------------------|
