@@ -12,7 +12,7 @@ The following table describes the overall structure of an LMT file.
 
 | Field         | Type                                            | Description                                               |
 |:--------------|:------------------------------------------------|:----------------------------------------------------------|
-| Signature     | `STRING`                                        | The file's signature; this should always be `LcfMapTree`. |
+| Signature     | `STRING`                                        | The file's signature; this should always be "LcfMapTree". |
 | MapInfoCount  | `EINT`                                          | The number of map info structures present.                |
 | MapInfos      | [Map Info](#map-info-structure)`[MapInfoCount]` | An array of map info structures.                          |
 | MapOrderCount | `EINT`                                          | The number of map orderings present.                      |

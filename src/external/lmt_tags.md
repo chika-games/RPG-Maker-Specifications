@@ -108,7 +108,7 @@ Not all fields may be present; the specified default value should be used in pla
 |:---------|:--------------------------------------------|:----------------|:----------------------------------------------------------|
 | TagID    | `EINT`                                      | Always present. | This will always be 12.                                   |
 | TagSize  | `EINT`                                      | Always present. | The total size of the remaining fields measured in bytes. |
-| Name     | [Music Name Tag](#music-name-tag)           | `(OFF)`         | The filename of the song to play.                         |
+| Name     | [Music Name Tag](#music-name-tag)           | "(OFF)"         | The filename of the song to play.                         |
 | FadeTime | [Music Fade Time Tag](#music-fade-time-tag) | 0               | The fade time for the music; 0 means no fade.             |
 | Volume   | [Music Volume Tag](#music-volume-tag)       | 100             | The volume of the music.                                  |
 | Tempo    | [Music Tempo Tag](#music-tempo-tag)         | 100             | The tempo of the music.                                   |
@@ -344,7 +344,7 @@ This tag provides the filename of a song.
 | TagSize   | `EINT`        | The number of characters in `MusicName`.     |
 | MusicName | `U8[TagSize]` | The characters that make up the song's name. |
 
-If `MusicName` is `(OFF)` or an empty string, then the song is considered empty and no song should play.
+If `MusicName` is "(OFF)" or an empty string, then the song is considered empty and no song should play.
 
 `TagSize` + `MusicName` make a [`STRING`](#string-type).
 

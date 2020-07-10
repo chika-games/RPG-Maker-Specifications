@@ -15,7 +15,7 @@ The fields are in no particular order and may be omitted.
 
 | Field           | Type     | Default Value | Description                       |
 |:----------------|:---------|:--------------|:----------------------------------|
-| GameTitle       | `STRING` | `Untitled`    | The title of the game's window.   |
+| GameTitle       | `STRING` | "Untitled"    | The title of the game's window.   |
 | MapEditMode     | `UINT`   | `0`           | The last layer-editing mode used. |
 | MapEditZoom     | `UINT`   | `0`           | The last zoom level used.         |
 | FullPackageFlag | `BOOL`   | `0`           | Skip loading a runtime package.   |
