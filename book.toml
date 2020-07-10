@@ -6,6 +6,19 @@ src = "src"
 title = "Unofficial RPG Maker 2000/2003 Specifications"
 description = "Unofficial specifications for the RPG Maker 2000/2003 editors and runtimes."
 
+[preprocessor.links]
+[preprocessor.index]
+
+[preprocessor.mathjax]
+renderers = ["html"]
+
+[output.html]
+curly-quotes = true
+mathjax-support = true
+default-theme = "navy"
+git-repository-icon = "fa-github"
+git-repository-url = "https://github.com/chikasoft/RPG-Maker-Specifications"
+
 [output.html.fold]
 enable = true
 level = 0
