@@ -14,6 +14,10 @@ __All specifications are published on the [website](https://chikasoft.github.io/
 
 These specifications are written with accuracy and generality in mind and each is intended to cover a specific aspect of the RM2k/3 engines.
 
+## Building
+Building the site requires [mdBook](https://github.com/rust-lang/mdBook).
+Please visit the mdBook project page for instructions on how to install it and build this project.
+
 ## License
 [![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
