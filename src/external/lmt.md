@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # LCF Map Tree File Specification
 ## Introduction
 LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 (RM2k/3) games.

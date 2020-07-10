@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # LCF Save Data File Specification
 ## Introduction
 LCF Save Data (LSD) files are used to store save data for RPG Maker 2000/2003 (RM2k/3) games.

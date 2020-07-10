@@ -16,7 +16,6 @@ renderers = ["html"]
 curly-quotes = true
 mathjax-support = true
 default-theme = "navy"
-git-repository-icon = "fa-github"
 git-repository-url = "https://github.com/chikasoft/RPG-Maker-Specifications"
 
 [output.html.fold]

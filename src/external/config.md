@@ -1,7 +1,3 @@
----
-layout: default
----
-
 # Configuration File Specification
 ## Introduction
 The `RPG_RT.ini` configuation file provides basic start-up information for RPG Maker 2000/2003 games.
