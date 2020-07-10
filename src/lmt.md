@@ -7,18 +7,16 @@ layout: default
 LCF Map Tree (LMT) files are used to store map properties, game start information, and map orderings for RPG Maker 2000/2003 (RM2k/3) games.
 LMT files use a tag-based format similar to the one used in e.g. Adobe SWF files. This allows for easy reading and writing.
 
-RM2k/3 games typically only have one LMT file: `RPG_RT.lmt`. This is located within the same directory as the game's executable file (`RPG_RT.exe`).
+RM2k/3 games typically only have one LMT file: `RPG_RT.lmt`. This should be located within the same directory as the game's executable file (`RPG_RT.exe`).
 
 ## Data Types
 LMT files use little-endian byte ordering; the least significant byte is stored first, and the most significant byte is stored last.
 
-Types may be appended with `[n]` to denote a contiguous array of the type in question, where `n` indicates the number of elements.
+Types may be appended with `[n]` to denote a contiguous array of said type, where `n` indicates the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
-These data types are used within the actual structural types that determine the overall the structure of LMT files.
-
 ### Basic Data Types
-The following table lists all of the basic data types that make up all other data types.
+The following table lists all of the basic data types that are taken as primitive and assumed to be understood herein.
 
 | Type   | Description                 |
 |:-------|:----------------------------|
@@ -62,28 +60,28 @@ These correspond to structures and/or records in most programming languages.
 #### STRING Type
 The `STRING` type represents a length-prepended string of characters. These are used for all textual data.
 
-**Note:** Strings have no standard encoding. It is up to the runtime's discretion as to which encoding to use;
-this is typically based on the operating system's current locale. Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
+**Note:** Strings have no standard encoding. It is the runtime's duty to determine an appropriate encoding.
+This is typically based on the operating system's current locale. Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).
 
 | Field  | Type         | Description                             |
 |:-------|:-------------|:----------------------------------------|
 | Length | `EINT`       | The length of the string in bytes.      |
-| Chars  | `U8[Length]` | The characters that make up the string. |
+| Data   | `U8[Length]` | The characters that make up the string. |
 
 #### LIST Type
-The `LIST` type represents a list of elements.
+The `LIST` type represents an ordered list of elements.
 This type will always be followed by another type which indicates the type of elements being stored.
 
 This is essentially an array where all elements are preceded by their 1-based index and followed by an [End Tag](#end-tag).
 
-For example, suppose `L` is of type `LIST U8` with the elements [0, 25, 50, 75, 100]. When stored in an LMT file, `L` would be laid out as follows:
+For example, suppose `L` is of type `LIST U8` with the elements 0, 25, 50, 75, and 100. When stored in an LSD file, `L` would be laid out as follows:
 
 ```
 1 0 0   2 25 0   3 50 0   4 75 0   5 100 0
 ```
 
-Notice how the index of each element is stored directly in front of the element,
-and that the [End Tag](#end-tag) is stored simply as a 0.
+Notice how the index of each element is stored directly in front of the element's data,
+and that the [End Tag](#end-tag) is stored as 0.
 
 ## LCF Map Tree File Structure
 LMT files are stored in binary format.
