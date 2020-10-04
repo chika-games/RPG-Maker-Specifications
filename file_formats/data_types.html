@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Data Types - Unofficial RPG Maker 2000/2003 Specifications</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Unofficial specifications for the RPG Maker 2000/2003 editors and runtimes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item "><a href="../TERMINOLOGY.html"><strong aria-hidden="true">2.</strong> Terminology</a></li><li class="spacer"></li><li class="chapter-item "><a href="../editor/editor.html"><strong aria-hidden="true">3.</strong> Editor</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/project_management.html"><strong aria-hidden="true">3.1.</strong> Project Management</a></li><li class="chapter-item "><a href="../editor/map_editing.html"><strong aria-hidden="true">3.2.</strong> Map Editing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/map_hierarchy.html"><strong aria-hidden="true">3.2.1.</strong> Map Hierarchy</a></li><li class="chapter-item "><a href="../editor/tile_viewer.html"><strong aria-hidden="true">3.2.2.</strong> Tile Viewer</a></li><li class="chapter-item "><a href="../editor/map_editor.html"><strong aria-hidden="true">3.2.3.</strong> Map Editor</a></li></ol></li><li class="chapter-item "><a href="../editor/menus.html"><strong aria-hidden="true">3.3.</strong> Menus</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/database.html"><strong aria-hidden="true">3.3.1.</strong> Database</a></li><li class="chapter-item "><a href="../editor/resource_manager.html"><strong aria-hidden="true">3.3.2.</strong> Resource Manager</a></li><li class="chapter-item "><a href="../editor/listen_to_music.html"><strong aria-hidden="true">3.3.3.</strong> Listen to Music</a></li><li class="chapter-item "><a href="../editor/event_search.html"><strong aria-hidden="true">3.3.4.</strong> Event Search</a></li><li class="chapter-item "><a href="../editor/gamedisk.html"><strong aria-hidden="true">3.3.5.</strong> Create Gamedisk</a></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item "><a href="../runtime/runtime.html"><strong aria-hidden="true">4.</strong> Runtime</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../file_formats/file_formats.html"><strong aria-hidden="true">5.</strong> File Formats</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../file_formats/data_types.html" class="active"><strong aria-hidden="true">5.1.</strong> Data Types</a></li><li class="chapter-item "><a href="../file_formats/config.html"><strong aria-hidden="true">5.2.</strong> Config File</a></li><li class="chapter-item "><a href="../file_formats/xyz.html"><strong aria-hidden="true">5.3.</strong> XYZ Images</a></li><li class="chapter-item "><a href="../file_formats/lcf.html"><strong aria-hidden="true">5.4.</strong> LCF Files</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/common_tags.html"><strong aria-hidden="true">5.4.1.</strong> Common Tags</a></li><li class="chapter-item "><a href="../file_formats/lmt.html"><strong aria-hidden="true">5.4.2.</strong> LCF Map Tree</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/lmt_tags.html"><strong aria-hidden="true">5.4.2.1.</strong> LCF Map Tree Tags</a></li></ol></li><li class="chapter-item "><a href="../file_formats/lsd.html"><strong aria-hidden="true">5.4.3.</strong> LCF Save Data</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/lsd_tags.html"><strong aria-hidden="true">5.4.3.1.</strong> LCF Save Data</a></li><li class="spacer"></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../LICENSE.html"><strong aria-hidden="true">6.</strong> License</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Unofficial RPG Maker 2000/2003 Specifications</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/chikasoft/RPG-Maker-Specifications" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#byte-order" id="byte-order">Byte Order</a></h1>
+<p>All binary files (i.e. XYZ and Lcf files) are assumed to be using little-endian byte order:
+the least significant byte is stored first, and the most significant byte is stored last.</p>
+<p>For example, the 32-bit integer <code>0x456E7120</code> would be stored as <code>20 71 6E</code>.</p>
+<h1><a class="header" href="#data-types" id="data-types">Data Types</a></h1>
+<p>The following are all of the data types that may be present within one of RM2k/3’s custom file formats.</p>
+<p>All types may be appended with <code>[n]</code> to denote a contiguous array of said type, where <code>n</code> denotes the number of elements.
+For example, <code>U8[4]</code> denotes a contiguous array of four unsigned 8-bit integers.</p>
+<h2><a class="header" href="#basic-data-types" id="basic-data-types">Basic Data Types</a></h2>
+<p>These are the basic data types that will be taken as primitive. The reader is assumed to already be familiar with these data types.</p>
+<h3><a class="header" href="#integer-types" id="integer-types">Integer Types</a></h3>
+<p>Signed integers are represented in the usual two’s complement format.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left"><code>U8</code></td><td align="left">An unsigned 8-bit integer.</td></tr>
+<tr><td align="left"><code>U16</code></td><td align="left">An unsigned 16-bit integer.</td></tr>
+<tr><td align="left"><code>U32</code></td><td align="left">An unsigned 32-bit integer.</td></tr>
+<tr><td align="left"><code>BOOL</code></td><td align="left">An unsigned 8-bit integer acting as a boolean (<code>0</code> is false; <code>1</code> is true).</td></tr>
+<tr><td align="left"><code>FLAG</code></td><td align="left">An unsigned 8-bit integer that acts as a flag/toggle.</td></tr>
+<tr><td align="left"><code>EINT</code></td><td align="left">A 7-bit encoded integer. See <a href="#encoded-integers">Encoded Integers</a>.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#flag-values" id="flag-values">Flag Values</a></h4>
+<p><code>FLAG</code> fields may have the following values.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Inherit</td><td align="left">0</td><td align="left">Inherit value from parent.</td></tr>
+<tr><td align="left">Allow</td><td align="left">1</td><td align="left">Allow/enable flag.</td></tr>
+<tr><td align="left">Forbid</td><td align="left">2</td><td align="left">Forbid/disable flag.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#encoded-integers" id="encoded-integers">Encoded Integers</a></h4>
+<p>Lcf files make extensive use of 7-bit encoded integers to cut down on file size.
+These integers have a variable storage size, unlike the more common fixed-length formats.
+Ideally, they will only take up the minimum number of bytes needed to encode their value.</p>
+<p>For example, <code>123456</code> should only take up three bytes.</p>
+<p>Only the lower seven bits of an encoded integer will contribute to its overall value;
+the eighth (high) bit indicates whether or not the there is another byte that should be read, decoded, and added to the overall value.</p>
+<p>Below is some pseudocode for reading and decoding these encoded integers into a 32-bit signed integer.</p>
+<p><strong>Note:</strong> the code below makes no assumption on the size of the <code>EINT</code> which may not be efficient if the exact size is known,
+and the code does not perform any sort of error checking.</p>
+<pre><code class="language-rust ignore">i32 read_encoded_integer(reader) {
+    i32 result = 0;
+
+    while true {
+        u8 next_byte = reader.read_u8();
+
+        result &lt;&lt;= 7;
+        result |= (next_byte &amp; 0x7F) as i32;
+
+        if (next_byte &amp; 0x80) == 0 {
+            break;
+        }
+    }
+
+    return result;
+}
+</code></pre>
+<h3><a class="header" href="#floating-point-types" id="floating-point-types">Floating-Point Types</a></h3>
+<p>These are the usual IEEE floating-point types.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left"><code>F32</code></td><td align="left">A 32-bit floating-point number.</td></tr>
+<tr><td align="left"><code>F64</code></td><td align="left">A 64-bit floating-point number.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#compound-data-types" id="compound-data-types">Compound Data Types</a></h2>
+<p>Compound data types are built from the basic data types described above. These correspond to structures/records in many programming languages.</p>
+<h3><a class="header" href="#string-type" id="string-type">STRING Type</a></h3>
+<p>The <code>STRING</code> type represents a length-prepended string of characters. These are used to store textual data.</p>
+<p>When present within a tag of an Lcf file, the string’s length will not be present. Instead, the tag’s size field should
+be used as the string’s length.</p>
+<p>When present within a text file, this type is simply a sequence of characters with no explicit length.
+For an example, see the <code>GameTitle</code> field of the <a href="config.html">configuration file format</a>.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Length</td><td align="left"><code>EINT</code></td><td align="left">The length of the string in bytes.</td></tr>
+<tr><td align="left">Data</td><td align="left"><code>U8[Length]</code></td><td align="left">The characters that make up the string.</td></tr>
+</tbody></table>
+<p><strong>Note:</strong> Strings have no standard encoding, and the official Runtime performs little to no error checking;
+the operating system’s locale is used. (Japanese games will typically use <a href="https://en.wikipedia.org/wiki/Shift_JIS">Shift JIS</a>.)</p>
+<p>This is lack of regularity is likely due to RM2k/3 originally being a Japanese-only engine that only received an English port years later;
+Shift_JIS was assumed to be the encoding of choice. This has resulted in various different encodings being used across RM2k/3 games,
+although UTF-8 has become dominant for modern games.</p>
+<h3><a class="header" href="#list-type" id="list-type">LIST Type</a></h3>
+<p>The <code>LIST</code> type represents an ordered list of elements. Notation-wise, this will always be followed by another type to
+indicate what type the elements are.</p>
+<p>This is essentially an array with the caveat that, when stored in a binary file,
+all elements are to be preceded by their 1-based index and followed by an <a href="common_tags.html#end-tag">End Tag</a>.</p>
+<p>For example, suppose <code>L</code> is of type <code>LIST U8</code> with the elements 0, 25, 50, 75, and 100, respectively.
+When stored in an Lcf file, <code>L</code> should be laid out as follows:</p>
+<pre><code class="language-text">1 0 0   2 25 0   3 50 0   4 75 0   5 100 0
+</code></pre>
+<p>Notice how the elements are stored in their usual way while being sandwiched between their 1-based index and an end tag (<code>0</code>).</p>
+<h3><a class="header" href="#date-type" id="date-type">DATE Type</a></h3>
+<p>The <code>DATE</code> type represents a date and time.</p>
+<p>This type corresponds to the <code>TDateTime</code> type found in Delphi and other Pascal variants.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Date</td><td align="left"><code>F64</code></td><td align="left">The numeric encoding of the date and time.</td></tr>
+</tbody></table>
+<p>The <code>Date</code> field is stored such that the integral part is for days and the fractional part is for the time of day.</p>
+<p><strong>Note:</strong> Timezone and other considerations are ignored; <code>DATE</code> only stores raw day and time values.</p>
+<h3><a class="header" href="#rgb-type" id="rgb-type">RGB Type</a></h3>
+<p>The <code>RGB</code> types represents a color with three color values: red, green, and blue.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Red</td><td align="left"><code>U8</code></td><td align="left">The amount/intensity of red.</td></tr>
+<tr><td align="left">Green</td><td align="left"><code>U8</code></td><td align="left">The amount/intensity of green.</td></tr>
+<tr><td align="left">Blue</td><td align="left"><code>U8</code></td><td align="left">The amount/intensity of blue.</td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../file_formats/file_formats.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../file_formats/config.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../file_formats/file_formats.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../file_formats/config.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

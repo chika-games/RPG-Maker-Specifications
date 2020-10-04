@@ -1,0 +1,541 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>LCF Map Tree Tags - Unofficial RPG Maker 2000/2003 Specifications</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Unofficial specifications for the RPG Maker 2000/2003 editors and runtimes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item "><a href="../TERMINOLOGY.html"><strong aria-hidden="true">2.</strong> Terminology</a></li><li class="spacer"></li><li class="chapter-item "><a href="../editor/editor.html"><strong aria-hidden="true">3.</strong> Editor</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/project_management.html"><strong aria-hidden="true">3.1.</strong> Project Management</a></li><li class="chapter-item "><a href="../editor/map_editing.html"><strong aria-hidden="true">3.2.</strong> Map Editing</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/map_hierarchy.html"><strong aria-hidden="true">3.2.1.</strong> Map Hierarchy</a></li><li class="chapter-item "><a href="../editor/tile_viewer.html"><strong aria-hidden="true">3.2.2.</strong> Tile Viewer</a></li><li class="chapter-item "><a href="../editor/map_editor.html"><strong aria-hidden="true">3.2.3.</strong> Map Editor</a></li></ol></li><li class="chapter-item "><a href="../editor/menus.html"><strong aria-hidden="true">3.3.</strong> Menus</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../editor/database.html"><strong aria-hidden="true">3.3.1.</strong> Database</a></li><li class="chapter-item "><a href="../editor/resource_manager.html"><strong aria-hidden="true">3.3.2.</strong> Resource Manager</a></li><li class="chapter-item "><a href="../editor/listen_to_music.html"><strong aria-hidden="true">3.3.3.</strong> Listen to Music</a></li><li class="chapter-item "><a href="../editor/event_search.html"><strong aria-hidden="true">3.3.4.</strong> Event Search</a></li><li class="chapter-item "><a href="../editor/gamedisk.html"><strong aria-hidden="true">3.3.5.</strong> Create Gamedisk</a></li><li class="spacer"></li></ol></li></ol></li><li class="chapter-item "><a href="../runtime/runtime.html"><strong aria-hidden="true">4.</strong> Runtime</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../file_formats/file_formats.html"><strong aria-hidden="true">5.</strong> File Formats</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/data_types.html"><strong aria-hidden="true">5.1.</strong> Data Types</a></li><li class="chapter-item "><a href="../file_formats/config.html"><strong aria-hidden="true">5.2.</strong> Config File</a></li><li class="chapter-item "><a href="../file_formats/xyz.html"><strong aria-hidden="true">5.3.</strong> XYZ Images</a></li><li class="chapter-item expanded "><a href="../file_formats/lcf.html"><strong aria-hidden="true">5.4.</strong> LCF Files</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/common_tags.html"><strong aria-hidden="true">5.4.1.</strong> Common Tags</a></li><li class="chapter-item expanded "><a href="../file_formats/lmt.html"><strong aria-hidden="true">5.4.2.</strong> LCF Map Tree</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../file_formats/lmt_tags.html" class="active"><strong aria-hidden="true">5.4.2.1.</strong> LCF Map Tree Tags</a></li></ol></li><li class="chapter-item "><a href="../file_formats/lsd.html"><strong aria-hidden="true">5.4.3.</strong> LCF Save Data</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../file_formats/lsd_tags.html"><strong aria-hidden="true">5.4.3.1.</strong> LCF Save Data</a></li><li class="spacer"></li></ol></li></ol></li></ol></li><li class="chapter-item "><a href="../LICENSE.html"><strong aria-hidden="true">6.</strong> License</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Unofficial RPG Maker 2000/2003 Specifications</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/chikasoft/RPG-Maker-Specifications" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#lcf-map-tree-tags" id="lcf-map-tree-tags">LCF Map Tree Tags</a></h1>
+<p>Below are the various tags used exclusively by LCF Map Tree (LMT) files.</p>
+<p>For more information on tags, please consult the <a href="lcf.html">LCF page</a>.</p>
+<h2><a class="header" href="#map-info-tags" id="map-info-tags">Map Info Tags</a></h2>
+<p>These tags are used within the context of <a href="lmt.html#map-info-structure">Map Info Structures</a>.</p>
+<h3><a class="header" href="#map-name-tag" id="map-name-tag">Map Name Tag</a></h3>
+<p>This tag specifies the name of a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 1.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The number of characters in <code>MapName</code>.</td></tr>
+<tr><td align="left">MapName</td><td align="left"><code>U8[TagSize]</code></td><td align="left">The characters that make up the map’s name.</td></tr>
+</tbody></table>
+<p><code>TagSize</code> + <code>MapName</code> make a <a href="#string-type"><code>STRING</code></a>.</p>
+<h3><a class="header" href="#parent-id-tag" id="parent-id-tag">Parent ID Tag</a></h3>
+<p>This tag provides the ID of a map’s parent.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 2.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>ParentID</code> measured in bytes.</td></tr>
+<tr><td align="left">ParentID</td><td align="left"><code>EINT</code></td><td align="left">The ID of the parent map.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#indentation-tag" id="indentation-tag">Indentation Tag</a></h3>
+<p>This tag specifies a map’s indentation in the LMT <a href="lmt.html#map-hierarchy">Map Hierarchy</a>.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 3.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>Indentation</code> measured in bytes.</td></tr>
+<tr><td align="left">Indentation</td><td align="left"><code>EINT</code></td><td align="left">The indentation of the map.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#map-type-tag" id="map-type-tag">Map Type Tag</a></h3>
+<p>This tag specifies a map’s type.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 4.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>MapType</code> measured in bytes.</td></tr>
+<tr><td align="left">MapType</td><td align="left"><code>EINT</code></td><td align="left">The map’s type. See <a href="#map-type">Map Type</a> below.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#map-type" id="map-type">Map Type</a></h4>
+<p>The possible values of <code>MapType</code>.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Root</td><td align="left">0</td><td align="left">The root map.</td></tr>
+<tr><td align="left">Map</td><td align="left">1</td><td align="left">An ordinary map.</td></tr>
+<tr><td align="left">Area</td><td align="left">2</td><td align="left">An area of a map.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#edit-position-x-tag" id="edit-position-x-tag">Edit Position X Tag</a></h3>
+<p>This specifies the RM2k/3 Editor’s x-position when a particular map was last edited.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 5.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>EditPosX</code> measured in bytes.</td></tr>
+<tr><td align="left">EditPosX</td><td align="left"><code>EINT</code></td><td align="left">The editor’s last x-position.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#edit-position-y-tag" id="edit-position-y-tag">Edit Position Y Tag</a></h3>
+<p>This specifies the RM2k/3 Editor’s y-position when a particular map was last edited.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 6.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>EditPosY</code> measured in bytes.</td></tr>
+<tr><td align="left">EditPosY</td><td align="left"><code>EINT</code></td><td align="left">The editor’s last y-position.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#edit-expanded-tag" id="edit-expanded-tag">Edit Expanded Tag</a></h3>
+<p>This specifies whether or not a map was “expanded” within the the RM2k/3 editor;
+i.e., it’s children maps were visible in the <a href="lmt.html#map-hierarchy">Map Hierarchy</a>.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 7.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>EditExpanded</code> measured in bytes.</td></tr>
+<tr><td align="left">EditExpanded</td><td align="left"><code>EINT</code></td><td align="left">Whether or not the map was expanded in-editor.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#music-type-tag" id="music-type-tag">Music Type Tag</a></h3>
+<p>This tag specifies how music should be played within a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 11.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>MusicType</code> measured in bytes.</td></tr>
+<tr><td align="left">MusicType</td><td align="left"><code>EINT</code></td><td align="left">The map’s music type. See <a href="#music-type">Music Type</a> below.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#music-type" id="music-type">Music Type</a></h4>
+<p>The possible values of <code>MusicType</code>.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Inherit</td><td align="left">0</td><td align="left">Inherit music type from map’s parent.</td></tr>
+<tr><td align="left">Event</td><td align="left">1</td><td align="left">Music provided through events.</td></tr>
+<tr><td align="left">Specified</td><td align="left">2</td><td align="left">Play a specific song.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#music-tag" id="music-tag">Music Tag</a></h3>
+<p>This tag specifies a particular song and its playback settings.</p>
+<p>Not all fields may be present; the specified default value should be used in place of missing fields.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Default Value</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">Always present.</td><td align="left">This will always be 12.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">Always present.</td><td align="left">The total size of the remaining fields measured in bytes.</td></tr>
+<tr><td align="left">Name</td><td align="left"><a href="#music-name-tag">Music Name Tag</a></td><td align="left">“(OFF)”</td><td align="left">The filename of the song to play.</td></tr>
+<tr><td align="left">FadeTime</td><td align="left"><a href="#music-fade-time-tag">Music Fade Time Tag</a></td><td align="left">0</td><td align="left">The fade time for the music; 0 means no fade.</td></tr>
+<tr><td align="left">Volume</td><td align="left"><a href="#music-volume-tag">Music Volume Tag</a></td><td align="left">100</td><td align="left">The volume of the music.</td></tr>
+<tr><td align="left">Tempo</td><td align="left"><a href="#music-tempo-tag">Music Tempo Tag</a></td><td align="left">100</td><td align="left">The tempo of the music.</td></tr>
+<tr><td align="left">Balance</td><td align="left"><a href="#music-balance-tag">Music Balance Tag</a></td><td align="left">50</td><td align="left">The left-right balance of the music; 50 is centered.</td></tr>
+<tr><td align="left">End</td><td align="left"><a href="common_tags.html#end-tag">End Tag</a></td><td align="left">Always present.</td><td align="left">Indicates the end of the music tag.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#background-type-tag" id="background-type-tag">Background Type Tag</a></h3>
+<p>This tag specifies the type of background a map has.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 21.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>BackgroundType</code> measured in bytes.</td></tr>
+<tr><td align="left">BackgroundType</td><td align="left"><code>EINT</code></td><td align="left">The map’s background type. See <a href="#background-type">Background Type</a> below.</td></tr>
+</tbody></table>
+<h4><a class="header" href="#background-type" id="background-type">Background Type</a></h4>
+<table><thead><tr><th align="left">Type</th><th align="left">Value</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Inherit</td><td align="left">0</td><td align="left">Inherit music type from map’s parent.</td></tr>
+<tr><td align="left">Terrain</td><td align="left">1</td><td align="left">Use the terrain settings.</td></tr>
+<tr><td align="left">Specified</td><td align="left">2</td><td align="left">Use a specified background image.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#background-name-tag" id="background-name-tag">Background Name Tag</a></h3>
+<p>This tag provides the filename of a map’s background image.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 22.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The number of characters in <code>BackgroundName</code>.</td></tr>
+<tr><td align="left">BackgroundName</td><td align="left"><code>U8[TagSize]</code></td><td align="left">The characters that make up the background’s name.</td></tr>
+</tbody></table>
+<p><code>TagSize</code> + <code>BackgroundName</code> make a <a href="#string-type"><code>STRING</code></a>.</p>
+<h3><a class="header" href="#teleport-flag-tag" id="teleport-flag-tag">Teleport Flag Tag</a></h3>
+<p>This tag specifies whether or not teleportation is allowed within a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 31.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>TeleportFlag</code> measured in bytes.</td></tr>
+<tr><td align="left">TeleportFlag</td><td align="left"><code>FLAG</code></td><td align="left">Whether or not teleportation is allowed.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#escape-flag-tag" id="escape-flag-tag">Escape Flag Tag</a></h3>
+<p>This tag specifies whether or not escaping is allowed within a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 32.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>EscapeFlag</code> measured in bytes.</td></tr>
+<tr><td align="left">EscapeFlag</td><td align="left"><code>FLAG</code></td><td align="left">Whether or not escaping is allowed.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#save-flag-tag" id="save-flag-tag">Save Flag Tag</a></h3>
+<p>This tag specifies whether or not saving is allowed within a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 33.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>SaveFlag</code> measured in bytes.</td></tr>
+<tr><td align="left">SaveFlag</td><td align="left"><code>FLAG</code></td><td align="left">Whether or not saving is allowed.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#encounters-tag" id="encounters-tag">Encounters Tag</a></h3>
+<p>This tag describes the possible random enemy encounters within a map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 41.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of the remaining fields measured in bytes.</td></tr>
+<tr><td align="left">EncounterCount</td><td align="left"><code>EINT</code></td><td align="left">The number of random encounters in <code>Encounters</code>.</td></tr>
+<tr><td align="left">Encounters</td><td align="left"><code>LIST</code> <a href="#monster-group-tag">Monster Group Tag</a></td><td align="left">List of possible random encounters.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#encounter-steps-tag" id="encounter-steps-tag">Encounter Steps Tag</a></h3>
+<p>This tag specifies the number of steps between random encounters (i.e. their rarity).</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 44.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>EncounterSteps</code> measured in bytes.</td></tr>
+<tr><td align="left">EncounterSteps</td><td align="left"><code>EINT</code></td><td align="left">The number of steps between random encounters.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#area-rectangle-tag" id="area-rectangle-tag">Area Rectangle Tag</a></h3>
+<p>This tag specifies the boundaries of a map’s area. This tag only applies to maps whose <code>MapType</code> is <code>Area</code>.</p>
+<p>The coordinates are measured in pixels, and the origin is in the top-left corner of a map.
+For example, an area rectangle of [0, 0, 100, 100] would completely cover a 100x100 map,
+but [0, 0, 50, 50] would only cover the top-left quarter of a 100x100 map.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 51.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of the remaining fields measured in bytes.</td></tr>
+<tr><td align="left">LeftCoord</td><td align="left"><code>U32</code></td><td align="left">The left-coordinate of the area rectangle.</td></tr>
+<tr><td align="left">TopCoord</td><td align="left"><code>U32</code></td><td align="left">The top-coordinate of the area rectangle.</td></tr>
+<tr><td align="left">RightCoord</td><td align="left"><code>U32</code></td><td align="left">The right-coordinate of the area rectangle.</td></tr>
+<tr><td align="left">BottomCoord</td><td align="left"><code>U32</code></td><td align="left">The bottom-coordinate of the area rectangle.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#map-start-tags" id="map-start-tags">Map Start Tags</a></h2>
+<p>These tags are used within the context of <a href="lmt.html#map-start-structure">Map Start Structures</a>.</p>
+<h3><a class="header" href="#party-map-id-tag" id="party-map-id-tag">Party Map ID Tag</a></h3>
+<p>This tag specifies the ID of the map the player should initially spawn in when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 1.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>PartyMap</code> measured in bytes.</td></tr>
+<tr><td align="left">PartyMap</td><td align="left"><code>EINT</code></td><td align="left">The ID of the map the player should initially spawn in.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#party-x-tag" id="party-x-tag">Party X Tag</a></h3>
+<p>This tag specifies the x-position the player should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 2.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>PartyX</code> measured in bytes.</td></tr>
+<tr><td align="left">PartyX</td><td align="left"><code>EINT</code></td><td align="left">The x-position the player should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>PartyX</code> is measured in map tiles.</p>
+<h3><a class="header" href="#party-y-tag" id="party-y-tag">Party Y Tag</a></h3>
+<p>This tag specifies the y-position the player should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 3.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>PartyY</code> measured in bytes.</td></tr>
+<tr><td align="left">PartyY</td><td align="left"><code>EINT</code></td><td align="left">The y-position the player should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>PartyY</code> is measured in map tiles.</p>
+<h3><a class="header" href="#skiff-map-id-tag" id="skiff-map-id-tag">Skiff Map ID Tag</a></h3>
+<p>This tag specifies the ID of the map the skiff vehicle should initially spawn in when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 11.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>SkiffMap</code> measured in bytes.</td></tr>
+<tr><td align="left">SkiffMap</td><td align="left"><code>EINT</code></td><td align="left">The ID of the map the skiff vehicle should initially spawn in.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#skiff-x-tag" id="skiff-x-tag">Skiff X Tag</a></h3>
+<p>This tag specifies the x-position the skiff vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 12.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>SkiffX</code> measured in bytes.</td></tr>
+<tr><td align="left">SkiffX</td><td align="left"><code>EINT</code></td><td align="left">The x-position the skiff vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>SkiffX</code> is measured in map tiles.</p>
+<h3><a class="header" href="#skiff-y-tag" id="skiff-y-tag">Skiff Y Tag</a></h3>
+<p>This tag specifies the y-position the skiff vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 13.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>SkiffY</code> measured in bytes.</td></tr>
+<tr><td align="left">SkiffY</td><td align="left"><code>EINT</code></td><td align="left">The y-position the skiff vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>SkiffY</code> is measured in map tiles.</p>
+<h3><a class="header" href="#ship-map-id-tag" id="ship-map-id-tag">Ship Map ID Tag</a></h3>
+<p>This tag specifies the ID of the map the ship vehicle should initially spawn in when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 21.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>ShipMap</code> measured in bytes.</td></tr>
+<tr><td align="left">ShipMap</td><td align="left"><code>EINT</code></td><td align="left">The ID of the map the ship vehicle should initially spawn in.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#ship-x-tag" id="ship-x-tag">Ship X Tag</a></h3>
+<p>This tag specifies the x-position the ship vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 22.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>ShipX</code> measured in bytes.</td></tr>
+<tr><td align="left">ShipX</td><td align="left"><code>EINT</code></td><td align="left">The x-position the ship vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>ShipX</code> is measured in map tiles.</p>
+<h3><a class="header" href="#ship-y-tag" id="ship-y-tag">Ship Y Tag</a></h3>
+<p>This tag specifies the y-position the ship vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 23.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>ShipY</code> measured in bytes.</td></tr>
+<tr><td align="left">ShipY</td><td align="left"><code>EINT</code></td><td align="left">The y-position the ship vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>ShipY</code> is measured in map tiles.</p>
+<h3><a class="header" href="#airship-map-id-tag" id="airship-map-id-tag">Airship Map ID Tag</a></h3>
+<p>This tag specifies the ID of the map the airship vehicle should initially spawn in when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 31.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>AirshipMap</code> measured in bytes.</td></tr>
+<tr><td align="left">AirshipMap</td><td align="left"><code>EINT</code></td><td align="left">The ID of the map the airship vehicle should initially spawn in.</td></tr>
+</tbody></table>
+<h3><a class="header" href="#airship-x-tag" id="airship-x-tag">Airship X Tag</a></h3>
+<p>This tag specifies the x-position the airship vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 32.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>AirshipX</code> measured in bytes.</td></tr>
+<tr><td align="left">AirshipX</td><td align="left"><code>EINT</code></td><td align="left">The x-position the airship vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>AirshipX</code> is measured in map tiles.</p>
+<h3><a class="header" href="#airship-y-tag" id="airship-y-tag">Airship Y Tag</a></h3>
+<p>This tag specifies the y-position the airship vehicle should initially spawn at when starting a new game.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 33.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>AirshipY</code> measured in bytes.</td></tr>
+<tr><td align="left">AirshipY</td><td align="left"><code>EINT</code></td><td align="left">The y-position the airship vehicle should initially spawn at.</td></tr>
+</tbody></table>
+<p><code>AirshipY</code> is measured in map tiles.</p>
+<h2><a class="header" href="#music-tags" id="music-tags">Music Tags</a></h2>
+<p>These tags are used within the context of <a href="#music-tag">Music Tags</a>.</p>
+<h3><a class="header" href="#music-name-tag" id="music-name-tag">Music Name Tag</a></h3>
+<p>This tag provides the filename of a song.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 1.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The number of characters in <code>MusicName</code>.</td></tr>
+<tr><td align="left">MusicName</td><td align="left"><code>U8[TagSize]</code></td><td align="left">The characters that make up the song’s name.</td></tr>
+</tbody></table>
+<p>If <code>MusicName</code> is “(OFF)” or an empty string, then the song is considered empty and no song should play.</p>
+<p><code>TagSize</code> + <code>MusicName</code> make a <a href="#string-type"><code>STRING</code></a>.</p>
+<h3><a class="header" href="#music-fade-time-tag" id="music-fade-time-tag">Music Fade Time Tag</a></h3>
+<p>This tag provides the amount of time a song should fade-in for, measured in milliseconds.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 2.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>FadeTime</code> measured in bytes.</td></tr>
+<tr><td align="left">FadeTime</td><td align="left"><code>EINT</code></td><td align="left">The number of milliseconds the song should fade in for.</td></tr>
+</tbody></table>
+<p>The value of <code>FadeTime</code> ranges from 0 ms to 10000 ms (i.e. 0 to 10 seconds).</p>
+<h3><a class="header" href="#music-volume-tag" id="music-volume-tag">Music Volume Tag</a></h3>
+<p>This tag specifies the volume a song should be played at.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 3.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>Volume</code> measured in bytes.</td></tr>
+<tr><td align="left">Volume</td><td align="left"><code>EINT</code></td><td align="left">The volume the song should play at.</td></tr>
+</tbody></table>
+<p><code>Volume</code> is an integer percentage and ranges from 0% to 100%.</p>
+<h3><a class="header" href="#music-tempo-tag" id="music-tempo-tag">Music Tempo Tag</a></h3>
+<p>This tag specifies the tempo a song should be played at.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 4.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>Tempo</code> measured in bytes.</td></tr>
+<tr><td align="left">Tempo</td><td align="left"><code>EINT</code></td><td align="left">The tempo the song should play at.</td></tr>
+</tbody></table>
+<p><code>Tempo</code> is an integer percentage and ranges from 0% to 150%.</p>
+<h3><a class="header" href="#music-balance-tag" id="music-balance-tag">Music Balance Tag</a></h3>
+<p>This tag specifies the left-right balance a song should be played with.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 5.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>Balance</code> measured in bytes.</td></tr>
+<tr><td align="left">Balance</td><td align="left"><code>EINT</code></td><td align="left">The left-right balance the song should play with.</td></tr>
+</tbody></table>
+<p><code>Balance</code> is an integer that ranges from 0 to 100.
+A value of 50 is centered, 0 is left-balance only, and 100 is right-balance only.</p>
+<h3><a class="header" href="#encounter-tags" id="encounter-tags">Encounter Tags</a></h3>
+<p>These tags are used within the context of <a href="#encounters-tag">Encounters Tags</a>.</p>
+<h4><a class="header" href="#monster-group-tag" id="monster-group-tag">Monster Group Tag</a></h4>
+<p>This tag provides the ID of a monster group to be used in a random encounter.</p>
+<table><thead><tr><th align="left">Field</th><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">TagID</td><td align="left"><code>EINT</code></td><td align="left">This will always be 1.</td></tr>
+<tr><td align="left">TagSize</td><td align="left"><code>EINT</code></td><td align="left">The size of <code>GroupID</code> measured in bytes.</td></tr>
+<tr><td align="left">GroupID</td><td align="left"><code>EINT</code></td><td align="left">The ID of the monster group that will be attacking in a particular random encounter.</td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../file_formats/lmt.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../file_formats/lsd.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../file_formats/lmt.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../file_formats/lsd.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
