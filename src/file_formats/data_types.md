@@ -5,13 +5,13 @@ the least significant byte is stored first, and the most significant byte is sto
 For example, the 32-bit integer `0x456E7120` would be stored as `20 71 6E`.
 
 # Data Types
-These are all of the data types that may be present within the external files of RM2k/3.
+The following are all of the data types that may be present within one of RM2k/3's custom file formats.
 
-All types may be appended with `[n]` to denote a contiguous array of said type, where `n` indicates the number of elements.
+All types may be appended with `[n]` to denote a contiguous array of said type, where `n` denotes the number of elements.
 For example, `U8[4]` denotes a contiguous array of four unsigned 8-bit integers.
 
 ## Basic Data Types
-These are the basic data types that will be taken as primitive. The reader is assumed to already be familiar with these types.
+These are the basic data types that will be taken as primitive. The reader is assumed to already be familiar with these data types.
 
 ### Integer Types
 Signed integers are represented in the usual two's complement format.
@@ -23,29 +23,31 @@ Signed integers are represented in the usual two's complement format.
 | `U32`  | An unsigned 32-bit integer.                                                |
 | `BOOL` | An unsigned 8-bit integer acting as a boolean (`0` is false; `1` is true). |
 | `FLAG` | An unsigned 8-bit integer that acts as a flag/toggle.                      |
-| `EINT` | A 7-bit encoded integer. See [Encoded Integers](#encoded-integers)         |
+| `EINT` | A 7-bit encoded integer. See [Encoded Integers](#encoded-integers).        |
 
 #### Flag Values
 `FLAG` fields may have the following values.
 
-| Type    | Value | Description                             |
-|:--------|:------|:----------------------------------------|
-| Inherit | 0     | Inherit flag's value from map's parent. |
-| Allow   | 1     | Allow/enable flag.                      |
-| Forbid  | 2     | Forbid/disable flag.                    |
+| Type    | Value | Description                |
+|:--------|:------|:---------------------------|
+| Inherit | 0     | Inherit value from parent. |
+| Allow   | 1     | Allow/enable flag.         |
+| Forbid  | 2     | Forbid/disable flag.       |
 
 #### Encoded Integers
 Lcf files make extensive use of 7-bit encoded integers to cut down on file size.
-These integers vary in size, unlike the more common fixed-length formats,
-and will only take up the minimum number of bytes needed to encode a particular value.
+These integers have a variable storage size, unlike the more common fixed-length formats.
+Ideally, they will only take up the minimum number of bytes needed to encode their value.
 
-For example, `123456` will only take up three bytes.
+For example, `123456` should only take up three bytes.
 
 Only the lower seven bits of an encoded integer will contribute to its overall value;
-the eighth (high) bit is used to determine whether or not the there is another byte that should be read, decoded, and added to the overall value.
+the eighth (high) bit indicates whether or not the there is another byte that should be read, decoded, and added to the overall value.
 
 Below is some pseudocode for reading and decoding these encoded integers into a 32-bit signed integer.
-Note, however, that the provided code makes no assumption on the size of the `EINT` which may not be very efficient if the exact size of the `EINT` in bytes is known.
+
+**Note:** the code below makes no assumption on the size of the `EINT` which may not be efficient if the exact size is known,
+and the code does not perform any sort of error checking.
 
 ```rust,ignore
 i32 read_encoded_integer(reader) {
@@ -67,10 +69,10 @@ i32 read_encoded_integer(reader) {
 ```
 
 ### Floating-Point Types
-These are the usual floating-point types; no further details necessary.
+These are the usual IEEE floating-point types.
 
-| Type  | Description                    |
-|:------|:-------------------------------|
+| Type  | Description                     |
+|:------|:--------------------------------|
 | `F32` | A 32-bit floating-point number. |
 | `F64` | A 64-bit floating-point number. |
 

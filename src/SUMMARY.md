@@ -24,16 +24,16 @@
 
 -----------
 
-* [External Files & File Formats](external/external.md)
-	* [Byte Order & Data Types](external/types.md)
-	* [Config File](external/config.md)
-	* [XYZ Images](external/xyz.md)
-	* [LCF Files](external/lcf.md)
-		* [Common Tags](external/common_tags.md)
-		* [LCF Map Tree](external/lmt.md)
-			* [LCF Map Tree Tags](external/lmt_tags.md)
-		* [LCF Save Data](external/lsd.md)
-			* [LCF Save Data](external/lsd_tags.md)
+* [File Formats](file_formats/file_formats.md)
+	* [Data Types](file_formats/data_types.md)
+	* [Config File](file_formats/config.md)
+	* [XYZ Images](file_formats/xyz.md)
+	* [LCF Files](file_formats/lcf.md)
+		* [Common Tags](file_formats/common_tags.md)
+		* [LCF Map Tree](file_formats/lmt.md)
+			* [LCF Map Tree Tags](file_formats/lmt_tags.md)
+		* [LCF Save Data](file_formats/lsd.md)
+			* [LCF Save Data](file_formats/lsd_tags.md)
 
 -----------
 
