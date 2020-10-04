@@ -77,32 +77,32 @@ These are the usual IEEE floating-point types.
 | `F64` | A 64-bit floating-point number. |
 
 ## Compound Data Types
-These data types are built from the other data types and correspond to structures/records in many programming languages.
+Compound data types are built from the basic data types described above. These correspond to structures/records in many programming languages.
 
 ### STRING Type
-The `STRING` type represents a length-prepended string of characters. These are used for all textual data.
+The `STRING` type represents a length-prepended string of characters. These are used to store textual data.
 
 When present within a tag of an Lcf file, the string's length will not be present. Instead, the tag's size field should
-be used as the string's length. This further cuts down on the overall size of Lcf files.
+be used as the string's length.
 
 When present within a text file, this type is simply a sequence of characters with no explicit length.
-For an example, see the `GameTitle` field of the [configuration file](config.md).
-
-**Note:** Strings have no standard encoding, and it is the runtime's duty to determine an appropriate encoding.
-This is typically based on the operating system's current locale. (Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
-
-This is likely due to RM2k/3 originally being a Japanese-only engine; Shift_JIS was assumed to be the encoding of choice.
-This has resulted in various different encodings being used across RM2k/3 games, although UTF-8 has become dominant for modern games,
-and the engine did get an official English port over a decade after release.
+For an example, see the `GameTitle` field of the [configuration file format](config.md).
 
 | Field  | Type         | Description                             |
 |:-------|:-------------|:----------------------------------------|
 | Length | `EINT`       | The length of the string in bytes.      |
 | Data   | `U8[Length]` | The characters that make up the string. |
 
+**Note:** Strings have no standard encoding, and the official Runtime performs little to no error checking;
+the operating system's locale is used. (Japanese games will typically use [Shift JIS](https://en.wikipedia.org/wiki/Shift_JIS).)
+
+This is lack of regularity is likely due to RM2k/3 originally being a Japanese-only engine that only received an English port years later;
+Shift_JIS was assumed to be the encoding of choice. This has resulted in various different encodings being used across RM2k/3 games,
+although UTF-8 has become dominant for modern games.
+
 ### LIST Type
-The `LIST` type represents an ordered list of elements.
-This type will always be followed by another type which indicates the type of elements being stored.
+The `LIST` type represents an ordered list of elements. Notation-wise, this will always be followed by another type to
+indicate what type the elements are.
 
 This is essentially an array with the caveat that, when stored in a binary file,
 all elements are to be preceded by their 1-based index and followed by an [End Tag](common_tags.md#end-tag).
@@ -125,7 +125,7 @@ This type corresponds to the `TDateTime` type found in Delphi and other Pascal v
 |:-------|:------|:-------------------------------------------|
 | Date   | `F64` | The numeric encoding of the date and time. |
 
-The `Date` field is stored such that the integral part is for days and the fractional part is for the time.
+The `Date` field is stored such that the integral part is for days and the fractional part is for the time of day.
 
 **Note:** Timezone and other considerations are ignored; `DATE` only stores raw day and time values.
 
