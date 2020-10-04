@@ -26,4 +26,4 @@
 
 -----------
 
-[License](LICENSE.md)
+* [License](LICENSE.md)
