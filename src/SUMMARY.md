@@ -5,11 +5,22 @@
 
 -----------
 
-* [Editor Overview](editor/editor.md)
+* [Editor](editor/editor.md)
+    * [Project Management](editor/project_management.md)
+    * [Map Editing](editor/map_editing.md)
+        * [Map Hierarchy](editor/map_hierarchy.md)
+        * [Tile Viewer](editor/tile_viewer.md)
+        * [Map Editor](editor/map_editor.md)
+    * [Menus](editor/menus.md)
+        * [Database](editor/database.md)
+        * [Resource Manager](editor/resource_manager.md)
+        * [Listen to Music](editor/listen_to_music.md)
+        * [Event Search](editor/event_search.md)
+        * [Create Gamedisk](editor/gamedisk.md)
 
 -----------
 
-* [Runtime Overview](runtime/runtime.md)
+* [Runtime](runtime/runtime.md)
 
 -----------
 
